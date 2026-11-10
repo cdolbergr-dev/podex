@@ -93,6 +93,10 @@ async function main() {
         `Download looks incomplete: ${fresh.cards.length} cards vs ${previous.cards.length} last time.`,
       );
     }
+    if (previous) {
+      const known = new Set(previous.cards.map((card) => card.id));
+      fresh.addedCardIds = fresh.cards.filter((card) => !known.has(card.id)).map((card) => card.id).slice(0, 3000);
+    }
     const bytes = write(fresh);
     console.log(`build-catalog: wrote ${describe(fresh)} (${(bytes / 1024 / 1024).toFixed(1)} MB compressed).`);
   } catch (error) {

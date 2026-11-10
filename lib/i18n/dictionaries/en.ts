@@ -157,6 +157,8 @@ const en = {
     } as Record<string, string>,
   },
   pokemon: {
+    summary: (name: string, cards: string, sets: string, first: string, year: string, artists: string) =>
+      `${name} has appeared on ${cards} cards in ${sets} sets since ${first}${year ? ` (${year})` : ""}, drawn by ${artists} different artists.`,
     title: "Pokémon",
     intro: "Every Pokémon with its cards, by Pokédex number.",
     description: "Browse Pokémon cards by Pokémon, from Bulbasaur onwards.",
@@ -186,6 +188,9 @@ const en = {
     oldestFirst: "Oldest first",
   },
   artists: {
+    summary: (name: string, count: string, first: string, latest: string) =>
+      `${name} has illustrated ${count} Pokémon cards, from ${first} to ${latest}.`,
+    mostDrawn: "Most drawn",
     title: "Artists",
     intro: "The illustrators behind the cards.",
     description: "Browse Pokémon cards by the artists who illustrated them.",
@@ -325,6 +330,8 @@ const en = {
     install: "Install",
   },
   sets: {
+    summary: (name: string, date: string | null, count: string) =>
+      `${name}${date ? ` was released on ${date} and` : ""} has ${count} cards.`,
     title: "Sets",
     intro: "Open an expansion to see its cards.",
     count: (count: string, n: number) => `${count} ${n === 1 ? "set" : "sets"}`,

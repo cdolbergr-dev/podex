@@ -11,6 +11,8 @@ export type StaticCatalogFile = {
   version: 1 | 2;
   /** ISO time the catalog was downloaded from TCGdex. */
   builtAt: string;
+  /** Cards that were new in this download (compared with the previous one), for IndexNow. */
+  addedCardIds?: string[];
   sets: CardSet[];
   cards: Card[];
 };

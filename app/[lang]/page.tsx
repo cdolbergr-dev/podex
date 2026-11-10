@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { CardOfTheDay } from "@/components/card-of-the-day";
 import { ExploreContent } from "@/components/explore-content";
+import { JsonLd } from "@/components/json-ld";
+import { websiteJsonLd } from "@/lib/structured-data";
 import { PageContainer } from "@/components/page-container";
 import { ExploreFallback } from "@/components/skeletons";
 import { languageAlternates } from "@/lib/i18n/alternates";
@@ -16,10 +18,11 @@ export default async function HomePage({
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const t = await getDictionary();
+  const [locale, t] = await Promise.all([getLocale(), getDictionary()]);
 
   return (
     <main className="pb-20">
+      <JsonLd data={websiteJsonLd(locale, t)} />
       <PageContainer>
         <div className="flex flex-col gap-x-10 gap-y-2 pt-8 pb-4 sm:pt-10 sm:pb-5 lg:flex-row lg:items-start lg:justify-between">
           <header className="max-w-lg">

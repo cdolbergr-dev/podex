@@ -6,7 +6,7 @@ import { SearchField } from "@/components/search-field";
 import { SetProgress } from "@/components/set-progress";
 import { longerSetIds, setCardTotal } from "@/lib/owned";
 import { buildExploreHref, parseExploreParams } from "@/lib/explore-params";
-import { formatCount } from "@/lib/format";
+import { formatCount, formatReleaseDate } from "@/lib/format";
 import { getDictionary, getLocale } from "@/lib/i18n/server";
 import { DEFAULT_PAGE_SIZE, MAX_RESTORED_PAGES } from "@/lib/tcg/constants";
 import { catalogErrorMessage } from "@/lib/tcg/errors";
@@ -41,6 +41,15 @@ export async function ExploreContent({
 
       <FilterBar params={params} sets={meta.sets} rarities={meta.rarities} />
 
+      {activeSet ? (
+        <p className="mt-6 max-w-2xl text-sm leading-6 text-muted">
+          {t.sets.summary(
+            activeSet.name,
+            formatReleaseDate(activeSet.releaseDate, locale),
+            formatCount(setCardTotal(activeSet) || result.totalCount, locale),
+          )}
+        </p>
+      ) : null}
       {activeSet ? (
         <SetProgress setId={activeSet.id} total={setCardTotal(activeSet)} longer={longerSetIds(activeSet, meta.sets)} />
       ) : null}

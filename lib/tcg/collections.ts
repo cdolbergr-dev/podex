@@ -4,6 +4,7 @@ import { fetchPokemonSpecies, type PokemonSpecies } from "@/lib/pokeapi";
 import { getDataMode } from "@/lib/tcg/config";
 import {
   CatalogIndex,
+  type ArtistHistory,
   type ArtistSummary,
   type PokemonCardHistory,
   type PokemonSummary,
@@ -30,7 +31,7 @@ export type PokemonPage = {
   species: PokemonSpecies | null;
 };
 
-export type ArtistPage = { artist: ArtistSummary; cards: Card[] };
+export type ArtistPage = { artist: ArtistSummary; cards: Card[]; history: ArtistHistory };
 
 export type CardOfTheDay = {
   card: Card;
@@ -84,7 +85,7 @@ async function cachedArtistPage(mode: DataMode, slug: string): Promise<ArtistPag
   cacheLife("days");
   const index = await catalogIndex(mode);
   const artist = index.artistBySlugName(slug);
-  return artist ? { artist, cards: index.cardsForArtist(slug) } : null;
+  return artist ? { artist, cards: index.cardsForArtist(slug), history: index.artistHistory(slug) } : null;
 }
 
 async function cachedPokemonSlug(mode: DataMode, dex: number): Promise<string | null> {

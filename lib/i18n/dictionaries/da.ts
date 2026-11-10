@@ -157,6 +157,8 @@ const da: Dictionary = {
     },
   },
   pokemon: {
+    summary: (name, cards, sets, first, year, artists) =>
+      `${name} har været på ${cards} kort i ${sets} sæt siden ${first}${year ? ` (${year})` : ""}, tegnet af ${artists} forskellige illustratorer.`,
     title: "Pokémon",
     intro: "Alle Pokémon med deres kort, efter Pokédex-nummer.",
     description: "Find Pokémon-kort efter Pokémon, fra Bulbasaur og frem.",
@@ -186,6 +188,8 @@ const da: Dictionary = {
     oldestFirst: "Ældste først",
   },
   artists: {
+    summary: (name, count, first, latest) => `${name} har tegnet ${count} Pokémon-kort, fra ${first} til ${latest}.`,
+    mostDrawn: "Tegner oftest",
     title: "Illustratorer",
     intro: "Kunstnerne bag kortene.",
     description: "Find Pokémon-kort efter de kunstnere, der har tegnet dem.",
@@ -322,6 +326,7 @@ const da: Dictionary = {
     install: "Installér",
   },
   sets: {
+    summary: (name, date, count) => `${name}${date ? ` udkom ${date} og` : ""} har ${count} kort.`,
     title: "Sæt",
     intro: "Åbn en udvidelse for at se dens kort.",
     count: (count) => `${count} sæt`,

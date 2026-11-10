@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { CardDetail } from "@/components/card-detail";
 import { CardDetailTransitionLayout } from "@/components/card-detail-transition-layout";
+import { JsonLd } from "@/components/json-ld";
 import { PageContainer } from "@/components/page-container";
 import { CardDetailInfoFallback } from "@/components/card-detail-info-fallback";
 import { DetailFallback } from "@/components/skeletons";
 import { languageAlternates } from "@/lib/i18n/alternates";
 import { getDictionary, getLocale } from "@/lib/i18n/server";
+import { cardJsonLd } from "@/lib/structured-data";
 import { getCard } from "@/lib/tcg/service";
 
 type CardPageProps = {
@@ -46,9 +48,11 @@ export default function CardPage(props: CardPageProps) {
 async function CardPageBody({ params, searchParams }: CardPageProps) {
   const [{ id }, query] = await Promise.all([params, searchParams]);
   const returnTo = Array.isArray(query.return) ? query.return[0] : query.return;
+  const [card, locale, t] = await Promise.all([getCard(id).catch(() => null), getLocale(), getDictionary()]);
 
   return (
     <CardDetailTransitionLayout id={id} returnTo={returnTo}>
+      {card ? <JsonLd data={cardJsonLd(card, locale, t)} /> : null}
       <Suspense fallback={<CardDetailInfoFallback id={id} />}>
         <CardDetail id={id} returnTo={returnTo} />
       </Suspense>

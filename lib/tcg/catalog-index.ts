@@ -17,6 +17,13 @@ export type ArtistSummary = {
   count: number;
 };
 
+/** An artist's span of work and the Pokémon they've drawn most. */
+export type ArtistHistory = {
+  first?: { setName: string; releaseDate?: string };
+  latest?: { setName: string; releaseDate?: string };
+  topPokemon: { name: string; slug: string; count: number }[];
+};
+
 /** What the catalog itself says about a Pokémon's trading card history. */
 export type PokemonCardHistory = {
   cardCount: number;
@@ -160,6 +167,23 @@ export class CatalogIndex {
       evolvesFrom,
       evolvesTo,
     };
+  }
+
+  artistHistory(slug: string): ArtistHistory {
+    const cards = this.cardsForArtist(slug);
+    const counts = new Map<number, number>();
+    for (const card of cards) {
+      for (const dex of card.nationalPokedexNumbers ?? []) counts.set(dex, (counts.get(dex) ?? 0) + 1);
+    }
+    const topPokemon = [...counts.entries()]
+      .sort((a, b) => b[1] - a[1] || a[0] - b[0])
+      .slice(0, 5)
+      .flatMap(([dex, count]) => {
+        const entry = this.pokemonByDex(dex);
+        return entry ? [{ name: entry.name, slug: entry.slug, count }] : [];
+      });
+    const point = (card: Card | undefined) => (card ? { setName: card.set.name, releaseDate: card.set.releaseDate } : undefined);
+    return { first: point(cards[0]), latest: point(cards.at(-1)), topPokemon };
   }
 
   /** Name lookup for linking "Evolves from: Pichu" to Pichu's page. */

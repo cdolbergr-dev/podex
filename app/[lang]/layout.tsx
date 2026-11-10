@@ -14,7 +14,8 @@ import { SiteFooter } from "@/components/site-footer";
 import { UmamiAnalytics } from "@/components/umami-analytics";
 import { I18nProvider } from "@/components/i18n-provider";
 import { brand } from "@/lib/brand";
-import { INTL_LOCALES, LOCALES } from "@/lib/i18n/config";
+import { notFound } from "next/navigation";
+import { INTL_LOCALES, isLocale, LOCALES } from "@/lib/i18n/config";
 import { getDictionary, getLocale } from "@/lib/i18n/server";
 import { siteUrl } from "@/lib/site";
 import "../globals.css";
@@ -55,7 +56,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RootLayout({
   children,
   modal,
+  params,
 }: LayoutProps<"/[lang]"> & { modal: ReactNode }) {
+  // Paths the proxy doesn't rewrite (e.g. /anything.txt) arrive with a "language" that isn't one.
+  if (!isLocale((await params).lang)) notFound();
   const [locale, t] = await Promise.all([getLocale(), getDictionary()]);
   return (
     <html lang={locale} className={`${geistSans.variable} h-full antialiased`}>

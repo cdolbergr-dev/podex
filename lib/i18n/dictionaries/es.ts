@@ -164,6 +164,8 @@ const es: Dictionary = {
     },
   },
   pokemon: {
+    summary: (name, cards, sets, first, year, artists) =>
+      `${name} ha aparecido en ${cards} cartas de ${sets} expansiones desde ${first}${year ? ` (${year})` : ""}, dibujado por ${artists} artistas distintos.`,
     title: "Pokémon",
     intro: "Todos los Pokémon con sus cartas, por número de la Pokédex.",
     description: "Explora cartas Pokémon por Pokémon, desde Bulbasaur en adelante.",
@@ -193,6 +195,8 @@ const es: Dictionary = {
     oldestFirst: "Más antiguas primero",
   },
   artists: {
+    summary: (name, count, first, latest) => `${name} ha ilustrado ${count} cartas Pokémon, desde ${first} hasta ${latest}.`,
+    mostDrawn: "Dibuja más a menudo",
     title: "Artistas",
     intro: "Los ilustradores detrás de las cartas.",
     description: "Explora cartas Pokémon por los artistas que las ilustraron.",
@@ -334,6 +338,7 @@ const es: Dictionary = {
     install: "Instalar",
   },
   sets: {
+    summary: (name, date, count) => `${name}${date ? ` salió el ${date} y` : ""} tiene ${count} cartas.`,
     title: "Expansiones",
     intro: "Abre una expansión para ver sus cartas.",
     count: (count, n) => `${count} ${n === 1 ? "expansión" : "expansiones"}`,
