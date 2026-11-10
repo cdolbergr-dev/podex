@@ -2,8 +2,10 @@
 
 import { Share, SquarePlus, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 import { brand } from "@/lib/brand";
 import {
+  appPlatform,
   canAddToHomeScreenOnIOS,
   isInstalledApp,
   isTouchDevice,
@@ -32,7 +34,10 @@ export function InstallAppPrompt() {
     let timer: ReturnType<typeof setTimeout> | undefined;
     const showLater = (next: Mode) => {
       clearTimeout(timer);
-      timer = setTimeout(() => setMode(next), SHOW_AFTER_MS);
+      timer = setTimeout(() => {
+        setMode(next);
+        trackEvent("install-prompt-shown", { kind: next === "ios" ? "ios-steps" : "install-button", platform: appPlatform() });
+      }, SHOW_AFTER_MS);
     };
 
     function onBeforeInstallPrompt(event: Event) {
@@ -61,6 +66,7 @@ export function InstallAppPrompt() {
 
   function dismiss() {
     rememberInstallPromptDismissed();
+    trackEvent("install-prompt-closed", { kind: mode === "ios" ? "ios-steps" : "install-button" });
     setMode(null);
   }
 
@@ -70,6 +76,9 @@ export function InstallAppPrompt() {
     installEvent.current = null;
     await event.prompt();
     const { outcome } = await event.userChoice;
+    trackEvent(outcome === "accepted" ? "install-prompt-accepted" : "install-prompt-declined", {
+      platform: appPlatform(),
+    });
     if (outcome === "dismissed") rememberInstallPromptDismissed();
     setMode(null);
   }

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Suspense } from "react";
 import { Geist } from "next/font/google";
+import { AppUsageTracking } from "@/components/app-usage-tracking";
 import { CardOpenProvider } from "@/components/card-open-context";
 import { CardRouteEffects } from "@/components/card-route-effects";
 import { FavoritesProvider } from "@/components/favorites-provider";
@@ -10,6 +11,7 @@ import { InstallAppPrompt } from "@/components/install-app-prompt";
 import { ServiceWorkerRegistration } from "@/components/service-worker-registration";
 import { HeaderFallback, SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { UmamiAnalytics } from "@/components/umami-analytics";
 import { brand } from "@/lib/brand";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
@@ -69,8 +71,12 @@ export default function RootLayout({
               </div>
               <SiteFooter />
               <InstallAppPrompt />
+              <AppUsageTracking />
               <FavoritesSafetyNet />
               <ServiceWorkerRegistration />
+              <Suspense fallback={null}>
+                <UmamiAnalytics />
+              </Suspense>
             </CardOpenProvider>
           </Suspense>
         </FavoritesProvider>

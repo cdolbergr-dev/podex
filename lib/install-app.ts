@@ -18,6 +18,13 @@ export function isIOS(): boolean {
   return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 }
 
+/** Coarse platform label for analytics. */
+export function appPlatform(): "ios" | "android" | "desktop" {
+  if (isIOS()) return "ios";
+  if (/Android/i.test(navigator.userAgent)) return "android";
+  return "desktop";
+}
+
 /** Web views inside social apps (Instagram, Facebook, …): can't install, may drop storage. */
 export function isInAppBrowser(): boolean {
   return /FBAN|FBAV|Instagram|Line\/|GSA\/|TikTok/i.test(navigator.userAgent);
