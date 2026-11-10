@@ -1,7 +1,7 @@
 "use client";
 
+import { useI18n, useLocaleRouter } from "@/components/i18n-provider";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { flushSync } from "react-dom";
 import type { ComponentProps } from "react";
 import { useCardOpen } from "@/components/card-open-context";
@@ -38,12 +38,13 @@ export function CardTransitionLink({
   transitionCard,
   ...props
 }: CardTransitionLinkProps) {
-  const router = useRouter();
+  const router = useLocaleRouter();
+  const { href: localize } = useI18n();
   const { beginCardOpen, finishCardMorph, endCardOpen } = useCardOpen();
 
   return (
     <Link
-      href={href}
+      href={typeof href === "string" ? localize(href) : href}
       {...props}
       onClick={(event) => {
         onClick?.(event);

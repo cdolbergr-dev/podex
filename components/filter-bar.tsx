@@ -1,8 +1,9 @@
 "use client";
 
+import { useI18n, useLocaleRouter } from "@/components/i18n-provider";
 import { SlidersHorizontal, X } from "lucide-react";
 import { useId, useState, type ReactNode } from "react";
-import { useRouter } from "next/navigation";
+import type { Dictionary } from "@/lib/i18n/dictionaries/en";
 import { DEFAULT_SORT, POKEMON_TYPES, SORT_OPTIONS } from "@/lib/tcg/constants";
 import { buildExploreHref } from "@/lib/explore-params";
 import { groupSetsBySeries } from "@/lib/format";
@@ -17,12 +18,13 @@ type FilterBarProps = {
 type FilterPatch = Partial<Pick<ExploreParams, "set" | "type" | "rarity" | "sort">>;
 
 export function FilterBar({ params, sets, rarities }: FilterBarProps) {
-  const router = useRouter();
+  const router = useLocaleRouter();
+  const { t } = useI18n();
   const panelId = useId();
   const [open, setOpen] = useState(false);
-  const groups = groupSetsBySeries(sets);
+  const groups = groupSetsBySeries(sets, t.sets.other);
   const rarityOptions = rarities.includes(params.rarity) || !params.rarity ? rarities : [params.rarity, ...rarities];
-  const active = activeFilters(params, sets);
+  const active = activeFilters(params, sets, t);
 
   function update(patch: FilterPatch) {
     router.push(buildExploreHref(params, { ...patch, page: 1 }), { scroll: false });
@@ -43,18 +45,18 @@ export function FilterBar({ params, sets, rarities }: FilterBarProps) {
           className="inline-flex h-11 cursor-pointer items-center gap-2 rounded-full border border-border bg-surface px-4 text-sm"
         >
           <SlidersHorizontal aria-hidden="true" className="size-4" />
-          Filters & sort
+          {t.explore.filtersSort}
           {active.length > 0 ? <span className="tabular-nums text-muted">{active.length}</span> : null}
         </button>
         {active.length > 0 ? (
           <button type="button" onClick={clearFilters} className="h-11 px-3 text-sm text-muted hover:text-foreground">
-            Clear
+            {t.common.clear}
           </button>
         ) : null}
       </div>
 
       <div id={panelId} className={open ? "mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" : "hidden"}>
-        <FilterControls params={params} groups={groups} rarities={rarityOptions} onChange={update} />
+        <FilterControls params={params} groups={groups} rarities={rarityOptions} onChange={update} t={t} />
       </div>
 
       {active.length > 0 ? (
@@ -70,7 +72,7 @@ export function FilterBar({ params, sets, rarities }: FilterBarProps) {
                   else update({ sort: DEFAULT_SORT });
                 }}
                 className="inline-flex h-8 items-center gap-1.5 rounded-full border border-border bg-surface px-3 text-xs text-foreground"
-                aria-label={`Remove ${filter.label} filter`}
+                aria-label={t.explore.removeFilter(filter.label)}
               >
                 {filter.label}
                 <X aria-hidden="true" className="size-3 text-muted" />
@@ -88,16 +90,18 @@ function FilterControls({
   groups,
   rarities,
   onChange,
+  t,
 }: {
   params: ExploreParams;
   groups: { series: string; sets: CardSet[] }[];
   rarities: string[];
   onChange: (patch: FilterPatch) => void;
+  t: Dictionary;
 }) {
   return (
     <>
-      <SelectField id="filter-set" label="Set" value={params.set} onChange={(set) => onChange({ set })}>
-        <option value="">All sets</option>
+      <SelectField id="filter-set" label={t.explore.set} value={params.set} onChange={(set) => onChange({ set })}>
+        <option value="">{t.explore.allSets}</option>
         {groups.map((group) => (
           <optgroup key={group.series} label={group.series}>
             {group.sets.map((set) => (
@@ -108,16 +112,16 @@ function FilterControls({
           </optgroup>
         ))}
       </SelectField>
-      <SelectField id="filter-type" label="Type" value={params.type} onChange={(type) => onChange({ type })}>
-        <option value="">All types</option>
+      <SelectField id="filter-type" label={t.explore.type} value={params.type} onChange={(type) => onChange({ type })}>
+        <option value="">{t.explore.allTypes}</option>
         {POKEMON_TYPES.map((type) => (
           <option key={type} value={type}>
-            {type}
+            {t.types[type] ?? type}
           </option>
         ))}
       </SelectField>
-      <SelectField id="filter-rarity" label="Rarity" value={params.rarity} onChange={(rarity) => onChange({ rarity })}>
-        <option value="">All rarities</option>
+      <SelectField id="filter-rarity" label={t.explore.rarity} value={params.rarity} onChange={(rarity) => onChange({ rarity })}>
+        <option value="">{t.explore.allRarities}</option>
         {rarities.map((rarity) => (
           <option key={rarity} value={rarity}>
             {rarity}
@@ -126,7 +130,7 @@ function FilterControls({
       </SelectField>
       <SelectField
         id="filter-sort"
-        label="Sort"
+        label={t.explore.sort}
         value={params.sort}
         onChange={(sort) => {
           const next =
@@ -136,7 +140,7 @@ function FilterControls({
       >
         {SORT_OPTIONS.map((option) => (
           <option key={option.value} value={option.value}>
-            {option.label}
+            {t.explore.sortOptions[option.value]}
           </option>
         ))}
       </SelectField>
@@ -193,16 +197,15 @@ function SelectField({
   );
 }
 
-function activeFilters(params: ExploreParams, sets: CardSet[]) {
+function activeFilters(params: ExploreParams, sets: CardSet[], t: Dictionary) {
   const filters: { key: "set" | "type" | "rarity" | "sort"; label: string }[] = [];
   if (params.set) {
     filters.push({ key: "set", label: sets.find((set) => set.id === params.set)?.name ?? params.set });
   }
-  if (params.type) filters.push({ key: "type", label: params.type });
+  if (params.type) filters.push({ key: "type", label: t.types[params.type] ?? params.type });
   if (params.rarity) filters.push({ key: "rarity", label: params.rarity });
   if (params.sort !== DEFAULT_SORT) {
-    const label = SORT_OPTIONS.find((option) => option.value === params.sort)?.label ?? params.sort;
-    filters.push({ key: "sort", label });
+    filters.push({ key: "sort", label: t.explore.sortOptions[params.sort] ?? params.sort });
   }
   return filters;
 }

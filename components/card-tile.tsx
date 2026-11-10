@@ -1,4 +1,7 @@
+"use client";
+
 import { Artwork } from "@/components/artwork";
+import { useI18n } from "@/components/i18n-provider";
 import { CardTransitionLink } from "@/components/card-transition-link";
 import { FavoriteButton } from "@/components/favorite-button";
 import { cardHref } from "@/lib/explore-params";
@@ -16,6 +19,7 @@ export function CardTile({
   returnTo?: string;
   priority?: boolean;
 }) {
+  const { t } = useI18n();
   const href = cardHref(card.id, returnTo);
 
   return (
@@ -34,7 +38,7 @@ export function CardTile({
         >
           <Artwork
             src={card.images.small || card.images.large}
-            alt={`${card.name} from ${card.set.name}, card ${card.number}`}
+            alt={t.card.imageAlt(card.name, card.set.name, card.number)}
             sizes={GRID_SIZES}
             priority={priority}
             fallback={card.name}

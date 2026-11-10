@@ -7,13 +7,13 @@ import { SaveSharedButton } from "@/components/save-shared-button";
 import { CardSkeletonGrid } from "@/components/skeletons";
 import { parseSharedCardIds, parseSharedListName, sharedFavoritesPath } from "@/lib/card-ids";
 import { formatCount } from "@/lib/format";
+import { getDictionary, getLocale } from "@/lib/i18n/server";
 import { getCardsByIds } from "@/lib/tcg/service";
 
-export const metadata: Metadata = {
-  title: "Shared favorites",
-  description: "A list of Pokémon cards someone shared from Podex.",
-  robots: { index: false },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getDictionary();
+  return { title: t.meta.sharedTitle, description: t.meta.sharedDescription, robots: { index: false } };
+}
 
 type SharedPageProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
@@ -32,17 +32,17 @@ export default function SharedFavoritesPage(props: SharedPageProps) {
 }
 
 async function SharedFavorites({ searchParams }: SharedPageProps) {
-  const query = await searchParams;
+  const [query, locale, t] = await Promise.all([searchParams, getLocale(), getDictionary()]);
   const ids = parseSharedCardIds(query.cards);
   const name = parseSharedListName(query.name);
 
   if (ids.length === 0) {
     return (
       <EmptyState
-        title="This link has no cards"
-        message="The shared list is empty or the link was cut off."
+        title={t.shared.emptyLinkTitle}
+        message={t.shared.emptyLinkMessage}
         actionHref="/"
-        actionLabel="Explore cards"
+        actionLabel={t.common.exploreCards}
       />
     );
   }
@@ -51,7 +51,7 @@ async function SharedFavorites({ searchParams }: SharedPageProps) {
     (result) => ({ ok: true as const, ...result }),
     () => ({ ok: false as const }),
   );
-  if (!loaded.ok) return <ErrorPanel message="The shared cards could not be loaded." />;
+  if (!loaded.ok) return <ErrorPanel message={t.shared.loadFailed} />;
 
   // Keep the sharer's order.
   const byId = new Map(loaded.cards.map((card) => [card.id, card]));
@@ -61,24 +61,24 @@ async function SharedFavorites({ searchParams }: SharedPageProps) {
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-sm text-muted">Shared list</p>
-          <h1 className="mt-1 text-3xl font-medium tracking-tight sm:text-4xl">{name || "Shared favorites"}</h1>
+          <p className="text-sm text-muted">{t.shared.eyebrow}</p>
+          <h1 className="mt-1 text-3xl font-medium tracking-tight sm:text-4xl">{name || t.shared.fallbackTitle}</h1>
           <p className="mt-2 text-sm text-muted">
-            <span className="tabular-nums">{formatCount(cards.length)}</span> {cards.length === 1 ? "card" : "cards"}
-            {loaded.missingIds.length > 0 ? ` · ${loaded.missingIds.length} no longer in the catalog` : ""}
+            <span className="tabular-nums">{t.shared.cardCount(formatCount(cards.length, locale), cards.length)}</span>
+            {loaded.missingIds.length > 0 ? t.shared.missing(loaded.missingIds.length) : ""}
           </p>
         </div>
-        {cards.length > 0 ? <SaveSharedButton ids={cards.map((card) => card.id)} name={name || "Shared list"} /> : null}
+        {cards.length > 0 ? <SaveSharedButton ids={cards.map((card) => card.id)} name={name || t.shared.defaultName} /> : null}
       </div>
       <div className="mt-8">
         {cards.length > 0 ? (
           <CardGrid cards={cards} returnTo={sharedFavoritesPath(ids, name || undefined)} />
         ) : (
           <EmptyState
-            title="None of these cards are available"
-            message="They may have been removed from the catalog."
+            title={t.shared.noneAvailableTitle}
+            message={t.shared.noneAvailableMessage}
             actionHref="/"
-            actionLabel="Explore cards"
+            actionLabel={t.common.exploreCards}
           />
         )}
       </div>

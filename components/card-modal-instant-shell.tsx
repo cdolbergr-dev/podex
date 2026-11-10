@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { stripLocale } from "@/lib/i18n/config";
 import { CardDetailTransitionLayout } from "@/components/card-detail-transition-layout";
 import { CardModalOverlay } from "@/components/card-modal-overlay";
 import { CardDetailInfoFallback } from "@/components/card-detail-info-fallback";
@@ -14,7 +15,7 @@ export function CardModalInstantShell({
   preflight?: boolean;
 }) {
   const pathname = usePathname();
-  const match = pathname.match(/^\/cards\/([^/]+)/);
+  const match = stripLocale(pathname).match(/^\/cards\/([^/]+)/);
   const id = cardId ?? (match ? decodeURIComponent(match[1]) : "");
   if (!id) return null;
 

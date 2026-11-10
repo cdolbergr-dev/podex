@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { stripLocale } from "@/lib/i18n/config";
 import type { ReactNode } from "react";
 import { useCardOpen } from "@/components/card-open-context";
 
@@ -8,7 +9,7 @@ import { useCardOpen } from "@/components/card-open-context";
 export function CardModalRouteGate({ children }: { children: ReactNode }) {
   const { preflightCardId, morphing } = useCardOpen();
   const pathname = usePathname();
-  const match = pathname.match(/^\/cards\/([^/]+)/);
+  const match = stripLocale(pathname).match(/^\/cards\/([^/]+)/);
   const routeCardId = match ? decodeURIComponent(match[1]) : "";
 
   // Mounting mid-morph would yank the live "new" snapshot; hand off once the morph ends.

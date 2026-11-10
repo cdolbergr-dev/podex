@@ -3,6 +3,7 @@
 import { AlertTriangle, Check, ChevronDown, CloudOff, Link2, ShieldCheck } from "lucide-react";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { useFavorites } from "@/components/favorites-provider";
+import { useI18n } from "@/components/i18n-provider";
 import {
   BACKUP_CHANGE_EVENT,
   backupRestoreUrl,
@@ -12,6 +13,8 @@ import {
   rememberBackup,
 } from "@/lib/favorites-backup";
 import { hasSevenDayStorageLimit, isInAppBrowser, isInstalledApp, isTouchDevice } from "@/lib/install-app";
+import { INTL_LOCALES, type Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/lib/i18n/dictionaries/en";
 import { isStoragePersisted } from "@/lib/storage-persistence";
 
 type Environment = {
@@ -29,12 +32,12 @@ const subscribeBackup = (onChange: () => void) => {
 };
 const lastBackupSnapshot = () => JSON.stringify(readLastBackup());
 
-function relativeDay(at: number): string {
+function relativeDay(at: number, t: Dictionary, locale: Locale): string {
   const days = Math.floor((Date.now() - at) / 86_400_000);
-  if (days <= 0) return "today";
-  if (days === 1) return "yesterday";
-  if (days < 30) return `${days} days ago`;
-  return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric" }).format(at);
+  if (days <= 0) return t.safeguards.today;
+  if (days === 1) return t.safeguards.yesterday;
+  if (days < 30) return t.safeguards.daysAgo(days);
+  return new Intl.DateTimeFormat(INTL_LOCALES[locale], { month: "short", day: "numeric", year: "numeric" }).format(at);
 }
 
 /**
@@ -43,6 +46,7 @@ function relativeDay(at: number): string {
  */
 export function FavoritesSafeguards() {
   const { lists, count } = useFavorites();
+  const { locale, t, href } = useI18n();
   const [environment, setEnvironment] = useState<Environment | null>(null);
   const [encoded, setEncoded] = useState<string | null>(null);
   const [status, setStatus] = useState<"idle" | "copied" | "shared">("idle");
@@ -91,10 +95,10 @@ export function FavoritesSafeguards() {
 
   async function backUp() {
     if (!encoded) return;
-    const url = backupRestoreUrl(encoded);
+    const url = backupRestoreUrl(encoded, href("/favorites/restore"));
     if (isTouchDevice() && typeof navigator.share === "function") {
       try {
-        await navigator.share({ title: "Podex favorites backup", url });
+        await navigator.share({ title: t.safeguards.backupShareTitle, url });
         rememberBackup(lists);
         setStatus("shared");
         return;
@@ -107,19 +111,19 @@ export function FavoritesSafeguards() {
       rememberBackup(lists);
       setStatus("copied");
     } catch {
-      if (window.prompt("Copy this link and keep it somewhere safe:", url) !== null) rememberBackup(lists);
+      if (window.prompt(t.safeguards.backupPrompt, url) !== null) rememberBackup(lists);
     }
   }
 
   const warning =
     environment.kind === "in-app"
-      ? "You’re in an app’s built-in browser, which may not keep your lists. Open Podex in Safari or Chrome to keep them."
+      ? t.safeguards.inAppWarning
       : environment.kind === "seven-day"
-        ? "This browser can clear your lists if you don’t visit Podex for 7 days. Podex keeps a copy and restores them when you’re back, unless you clear your cookies."
+        ? t.safeguards.sevenDayWarning
         : null;
 
   return (
-    <section aria-label="How your favorites are saved" className="mt-6 rounded-2xl border border-border bg-panel p-4">
+    <section aria-label={t.safeguards.region} className="mt-6 rounded-2xl border border-border bg-panel p-4">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex min-w-0 flex-1 gap-3">
           {warning ? (
@@ -129,19 +133,17 @@ export function FavoritesSafeguards() {
           )}
           <div className="min-w-0 text-sm leading-6">
             <p>
-              {environment.kind === "installed"
-                ? "Saved in the Podex app on this device — no account needed."
-                : "Saved in this browser on this device — no account needed."}
+              {environment.kind === "installed" ? t.safeguards.savedInApp : t.safeguards.savedHere}
             </p>
             {warning ? <p className="text-muted">{warning}</p> : null}
             <p className="text-faint">
               {lastBackup ? (
                 <>
-                  Last backup {relativeDay(lastBackup.at)}
-                  {outOfDate ? " · you’ve made changes since" : ""}
+                  {t.safeguards.lastBackup(relativeDay(lastBackup.at, t, locale))}
+                  {outOfDate ? t.safeguards.changedSince : ""}
                 </>
               ) : count > 0 ? (
-                "Not backed up yet"
+                t.safeguards.notBackedUp
               ) : null}
             </p>
           </div>
@@ -159,54 +161,45 @@ export function FavoritesSafeguards() {
               <Check aria-hidden="true" className="size-4" />
             )}
             <span aria-live="polite">
-              {status === "copied" ? "Backup link copied" : status === "shared" ? "Backup shared" : "Back up all lists"}
+              {status === "copied"
+                ? t.safeguards.backupCopied
+                : status === "shared"
+                  ? t.safeguards.backupShared
+                  : t.safeguards.backUp}
             </span>
           </button>
         ) : null}
       </div>
 
-      <HowSavingWorks environment={environment} />
+      <HowSavingWorks environment={environment} t={t} />
     </section>
   );
 }
 
-function HowSavingWorks({ environment }: { environment: Environment }) {
+function HowSavingWorks({ environment, t }: { environment: Environment; t: Dictionary }) {
   return (
     <details className="group mt-2 pl-7 text-sm">
       <summary className="inline-flex cursor-pointer list-none items-center gap-1 text-muted hover:text-foreground [&::-webkit-details-marker]:hidden">
-        How saving works
+        {t.safeguards.howItWorks}
         <ChevronDown aria-hidden="true" className="size-4 transition-transform group-open:rotate-180" />
       </summary>
       <ul className="mt-2 max-w-2xl list-disc space-y-1.5 pl-4 leading-6 text-muted marker:text-faint">
-        <li>
-          Your lists are stored on this device, in this browser. They don’t sync to your other devices or browsers.
-        </li>
-        <li>Clearing cookies and site data for Podex removes them.</li>
-        <li>Private and incognito windows forget them when you close the window.</li>
-        {environment.kind === "seven-day" ? (
-          <li>
-            Safari, and every browser on iPhone and iPad, removes data from sites you haven’t visited for 7 days.
-            Adding Podex to your Home Screen avoids this limit.
-          </li>
-        ) : null}
-        <li>
-          Podex also keeps a copy in a cookie on this device and puts your lists back automatically if the browser
-          clears them on its own. Nothing is stored on our servers.
-        </li>
-        <li>
-          “Back up all lists” gives you a link with every list in it. Keep it in your notes or email it to yourself —
-          opening it on any device restores your lists.
-        </li>
+        <li>{t.safeguards.pointDevice}</li>
+        <li>{t.safeguards.pointClearing}</li>
+        <li>{t.safeguards.pointPrivate}</li>
+        {environment.kind === "seven-day" ? <li>{t.safeguards.pointSevenDay}</li> : null}
+        <li>{t.safeguards.pointCopy}</li>
+        <li>{t.safeguards.pointBackup}</li>
         <li className="list-none -ml-4 flex items-center gap-2 pt-1">
           {environment.persisted ? (
             <>
               <ShieldCheck aria-hidden="true" className="size-4 text-foreground" />
-              This browser has agreed to keep Podex’s data when it needs to free up space.
+              {t.safeguards.persisted}
             </>
           ) : (
             <>
               <CloudOff aria-hidden="true" className="size-4" />
-              This browser may remove Podex’s data if your device runs low on space.
+              {t.safeguards.notPersisted}
             </>
           )}
         </li>

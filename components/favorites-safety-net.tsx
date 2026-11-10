@@ -1,8 +1,8 @@
 "use client";
 
 import { RotateCcw, X } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import { LocaleLink, useI18n } from "@/components/i18n-provider";
 import { countBackupCards, decodeFavoriteLists, encodeFavoriteLists } from "@/lib/favorites-backup";
 import {
   FAVORITES_CHANGE_EVENT,
@@ -11,7 +11,6 @@ import {
   readFavoriteLists,
   writeFavoriteLists,
 } from "@/lib/favorites-storage";
-import { formatCount } from "@/lib/format";
 import { requestPersistentStorage } from "@/lib/storage-persistence";
 
 const ENDPOINT = "/api/favorites/backup";
@@ -70,6 +69,7 @@ async function restoreFromServer(): Promise<number> {
  * from it if the browser cleared localStorage on its own (e.g. Safari's 7-day limit).
  */
 export function FavoritesSafetyNet() {
+  const { t, formatNumber } = useI18n();
   const [restoredCount, setRestoredCount] = useState(0);
 
   useEffect(() => {
@@ -114,16 +114,15 @@ export function FavoritesSafetyNet() {
     >
       <RotateCcw aria-hidden="true" className="size-5 shrink-0 text-heart" />
       <p className="min-w-0 flex-1 text-sm leading-5">
-        Your browser had cleared your saved cards, so we restored them ({formatCount(restoredCount)}{" "}
-        {restoredCount === 1 ? "card" : "cards"}).{" "}
-        <Link href="/favorites" className="underline underline-offset-4" onClick={() => setRestoredCount(0)}>
-          View favorites
-        </Link>
+        {t.safetyNet.restored(formatNumber(restoredCount), restoredCount)}{" "}
+        <LocaleLink href="/favorites" className="underline underline-offset-4" onClick={() => setRestoredCount(0)}>
+          {t.safetyNet.view}
+        </LocaleLink>
       </p>
       <button
         type="button"
         onClick={() => setRestoredCount(0)}
-        aria-label="Dismiss"
+        aria-label={t.common.dismiss}
         className="inline-flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full text-muted hover:bg-background hover:text-foreground"
       >
         <X aria-hidden="true" className="size-4" />

@@ -2,10 +2,12 @@
 
 import { Check, Share } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useI18n } from "@/components/i18n-provider";
 import { sharedFavoritesPath } from "@/lib/card-ids";
 
 /** Share sheet on devices that have one; otherwise copies the link. */
 export function ShareFavoritesButton({ ids, name }: { ids: string[]; name?: string }) {
+  const { t, href } = useI18n();
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -15,12 +17,12 @@ export function ShareFavoritesButton({ ids, name }: { ids: string[]; name?: stri
   }, [copied]);
 
   async function share() {
-    const url = new URL(sharedFavoritesPath(ids, name), window.location.origin).toString();
+    const url = new URL(href(sharedFavoritesPath(ids, name)), window.location.origin).toString();
     const canShareSheet = typeof navigator.share === "function" && window.matchMedia("(pointer: coarse)").matches;
 
     if (canShareSheet) {
       try {
-        await navigator.share({ title: name ? `${name} · Pokémon cards` : "My Pokémon card favorites", url });
+        await navigator.share({ title: t.favorites.shareTitle(name), url });
         return;
       } catch (error) {
         if (error instanceof DOMException && error.name === "AbortError") return;
@@ -31,7 +33,7 @@ export function ShareFavoritesButton({ ids, name }: { ids: string[]; name?: stri
       await navigator.clipboard.writeText(url);
       setCopied(true);
     } catch {
-      window.prompt("Copy this link to share your favorites:", url);
+      window.prompt(t.favorites.copyPrompt, url);
     }
   }
 
@@ -42,7 +44,7 @@ export function ShareFavoritesButton({ ids, name }: { ids: string[]; name?: stri
       className="inline-flex h-11 cursor-pointer items-center gap-2 rounded-full border border-border bg-surface px-4 text-sm hover:bg-surface-hover"
     >
       {copied ? <Check aria-hidden="true" className="size-4" /> : <Share aria-hidden="true" className="size-4" />}
-      <span aria-live="polite">{copied ? "Link copied" : "Share"}</span>
+      <span aria-live="polite">{copied ? t.favorites.linkCopied : t.favorites.share}</span>
     </button>
   );
 }

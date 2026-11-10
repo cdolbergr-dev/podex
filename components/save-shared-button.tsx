@@ -1,13 +1,14 @@
 "use client";
 
 import { ArrowRight, Heart } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useFavorites } from "@/components/favorites-provider";
+import { LocaleLink, useI18n } from "@/components/i18n-provider";
 
 /** Saves a shared list as one of the visitor's own lists, under the sharer's name for it. */
 export function SaveSharedButton({ ids, name }: { ids: string[]; name: string }) {
   const { ready, lists, createList } = useFavorites();
+  const { t, listName } = useI18n();
   const [shown, setShown] = useState(false);
   const [savedListId, setSavedListId] = useState<string | null>(null);
 
@@ -22,14 +23,14 @@ export function SaveSharedButton({ ids, name }: { ids: string[]; name: string })
 
   if (savedList) {
     return (
-      <Link
+      <LocaleLink
         href={`/favorites?list=${encodeURIComponent(savedList.id)}`}
         className="inline-flex h-11 items-center gap-2 rounded-full border border-heart/25 bg-heart-soft px-4 text-sm text-heart"
       >
         <Heart aria-hidden="true" strokeWidth={1.75} className="size-4 fill-current" />
-        Saved as “{savedList.name}”
+        {t.shared.savedAs(listName(savedList.name))}
         <ArrowRight aria-hidden="true" className="size-4" />
-      </Link>
+      </LocaleLink>
     );
   }
 
@@ -41,7 +42,7 @@ export function SaveSharedButton({ ids, name }: { ids: string[]; name: string })
       className="inline-flex h-11 cursor-pointer items-center gap-2 rounded-full bg-foreground px-4 text-sm text-surface transition-colors hover:opacity-90 disabled:cursor-default"
     >
       <Heart aria-hidden="true" strokeWidth={1.75} className="size-4" />
-      Save as a list
+      {t.shared.saveAsList}
     </button>
   );
 }

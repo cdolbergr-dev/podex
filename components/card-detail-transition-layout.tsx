@@ -2,6 +2,7 @@
 
 import { useLayoutEffect, useRef, type ReactNode } from "react";
 import { Artwork } from "@/components/artwork";
+import { useI18n } from "@/components/i18n-provider";
 import {
   CardDetailArtworkProvider,
   useCardDetailArtwork,
@@ -16,13 +17,14 @@ import { safeReturnPath } from "@/lib/explore-params";
 
 function CardDetailArtworkColumn({ id }: { id: string }) {
   const { preview } = useCardDetailArtwork();
+  const { t } = useI18n();
 
   if (preview) {
     return (
       <CardTilt>
         <Artwork
           src={preview.src}
-          alt={`${preview.name} from ${preview.setName}, card ${preview.number}`}
+          alt={t.card.imageAlt(preview.name, preview.setName, preview.number)}
           sizes="(min-width: 1024px) 420px, 90vw"
           priority
           fallback={preview.name}

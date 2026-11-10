@@ -1,24 +1,31 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ExploreContent } from "@/components/explore-content";
 import { PageContainer } from "@/components/page-container";
 import { ExploreFallback } from "@/components/skeletons";
-import { brand } from "@/lib/brand";
+import { languageAlternates } from "@/lib/i18n/alternates";
+import { getDictionary, getLocale } from "@/lib/i18n/server";
 
-export default function HomePage({
+export async function generateMetadata(): Promise<Metadata> {
+  return { alternates: languageAlternates(await getLocale(), "/") };
+}
+
+export default async function HomePage({
   searchParams,
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const [lead, rest] = brand.headline.split(". ");
+  const t = await getDictionary();
 
   return (
     <main className="pb-20">
       <PageContainer>
         <header className="max-w-lg pt-8 pb-4 sm:pt-10 sm:pb-5">
           <h1 className="text-2xl leading-snug font-medium tracking-[-0.02em] text-balance sm:text-[1.75rem]">
-            {lead}.<span className="mt-0.5 block">{rest}</span>
+            {t.meta.headlineLead}
+            <span className="mt-0.5 block">{t.meta.headlineRest}</span>
           </h1>
-          <p className="mt-2 text-sm text-muted">{brand.tagline}</p>
+          <p className="mt-2 text-sm text-muted">{t.meta.tagline}</p>
         </header>
         <Suspense fallback={<ExploreFallback />}>
           <ExploreContent searchParams={searchParams} />

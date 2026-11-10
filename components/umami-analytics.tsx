@@ -2,6 +2,7 @@
 
 import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
+import { stripLocale } from "@/lib/i18n/config";
 import { useEffect } from "react";
 import {
   flushAnalyticsQueue,
@@ -31,7 +32,7 @@ export function UmamiAnalytics() {
   }
   const query = kept.toString();
   // Shared lists carry card ids in the URL; report the page, not the ids.
-  const url = pathname === "/favorites/shared" ? pathname : `${pathname}${query ? `?${query}` : ""}`;
+  const url = stripLocale(pathname) === "/favorites/shared" ? pathname : `${pathname}${query ? `?${query}` : ""}`;
 
   useEffect(() => {
     trackPageview(url);

@@ -1,7 +1,7 @@
 "use client";
 
+import { useI18n, useLocaleRouter } from "@/components/i18n-provider";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useSyncExternalStore } from "react";
 import { getBrowseNeighbors } from "@/lib/card-cache";
 import { goToNeighborCard, type CardNavDirection } from "@/lib/card-modal-nav";
@@ -10,7 +10,7 @@ const noSubscribe = () => () => {};
 
 /** Previous/next arrows in the card modal header (keys and swipe live in CardModalOverlay). */
 export function CardModalNavButtons({ cardId, returnTo }: { cardId: string; returnTo: string }) {
-  const router = useRouter();
+  const router = useLocaleRouter();
   // String snapshot keeps useSyncExternalStore stable; empty on the server.
   const neighbors = useSyncExternalStore(
     noSubscribe,
@@ -40,13 +40,14 @@ function NavButton({
   disabled: boolean;
   onClick: () => void;
 }) {
+  const { t } = useI18n();
   const Icon = direction === "prev" ? ChevronLeft : ChevronRight;
   return (
     <button
       type="button"
       onClick={onClick}
       disabled={disabled}
-      aria-label={direction === "prev" ? "Previous card" : "Next card"}
+      aria-label={direction === "prev" ? t.card.previous : t.card.next}
       aria-keyshortcuts={direction === "prev" ? "ArrowLeft" : "ArrowRight"}
       className="inline-flex size-10 cursor-pointer items-center justify-center rounded-full border border-border bg-surface text-foreground transition-colors hover:bg-background disabled:cursor-default disabled:opacity-40"
     >

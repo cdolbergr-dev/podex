@@ -110,7 +110,8 @@ export function rememberBackup(lists: FavoriteList[]): void {
 
 export const BACKUP_CHANGE_EVENT = "podex-favorites-backup-change";
 
-export function backupRestoreUrl(encoded: string): string {
+/** `restorePath` is /favorites/restore in the visitor's language. */
+export function backupRestoreUrl(encoded: string, restorePath = "/favorites/restore"): string {
   // After "#": never sent to the server, so lists don't end up in request logs.
-  return `${window.location.origin}/favorites/restore#${encoded}`;
+  return `${window.location.origin}${restorePath}#${encoded}`;
 }

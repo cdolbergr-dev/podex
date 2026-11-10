@@ -1,7 +1,8 @@
 "use client";
 
+import { useI18n, useLocaleRouter } from "@/components/i18n-provider";
 import { Pencil, Plus, Trash2 } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { CardGrid } from "@/components/card-grid";
 import { EmptyState, ErrorPanel } from "@/components/empty-state";
@@ -11,7 +12,6 @@ import { ShareFavoritesButton } from "@/components/share-favorites-button";
 import { CardSkeletonGrid } from "@/components/skeletons";
 import { loadFavoriteCards } from "@/lib/actions";
 import { MAX_LIST_NAME_LENGTH } from "@/lib/favorites-storage";
-import { formatCount } from "@/lib/format";
 import type { Card } from "@/types/catalog";
 
 function listHref(listId: string): string {
@@ -19,7 +19,8 @@ function listHref(listId: string): string {
 }
 
 export function FavoritesView() {
-  const router = useRouter();
+  const router = useLocaleRouter();
+  const { t, formatNumber, listName } = useI18n();
   const searchParams = useSearchParams();
   const { lists, ready, count, createList, renameList, deleteList } = useFavorites();
   const [request, setRequest] = useState<{
@@ -86,22 +87,9 @@ export function FavoritesView() {
   return (
     <div>
       <div>
-        <h1 className="text-3xl font-medium tracking-tight sm:text-4xl">Favorites</h1>
+        <h1 className="text-3xl font-medium tracking-tight sm:text-4xl">{t.meta.favoritesTitle}</h1>
         <p className="mt-2 text-sm text-muted">
-          {settled ? (
-            <>
-              <span className="tabular-nums">{formatCount(count)}</span> {count === 1 ? "card" : "cards"}
-              {lists.length > 1 ? (
-                <>
-                  {" "}
-                  in <span className="tabular-nums">{lists.length}</span> lists
-                </>
-              ) : null}{" "}
-              saved in this browser
-            </>
-          ) : (
-            "Saved in this browser"
-          )}
+          {settled ? t.favorites.summary(formatNumber(count), count, lists.length) : t.favorites.savedInBrowser}
         </p>
       </div>
 
@@ -109,7 +97,7 @@ export function FavoritesView() {
 
       {settled && list ? (
         <>
-          <nav aria-label="Favorite lists" className="mt-6 -mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+          <nav aria-label={t.favorites.favoriteLists} className="mt-6 -mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
             <ul className="flex w-max items-center gap-2 sm:w-auto sm:flex-wrap">
               {lists.map((item) => {
                 const selected = item.id === list.id;
@@ -125,7 +113,7 @@ export function FavoritesView() {
                           : "border-border bg-surface text-foreground hover:bg-surface-hover"
                       }`}
                     >
-                      <span className="max-w-48 truncate">{item.name}</span>
+                      <span className="max-w-48 truncate">{listName(item.name)}</span>
                       <span className={`tabular-nums text-xs ${selected ? "text-surface/70" : "text-faint"}`}>
                         {item.cardIds.length}
                       </span>
@@ -136,8 +124,9 @@ export function FavoritesView() {
               <li>
                 {creating ? (
                   <NameForm
-                    label="New list name"
-                    submitLabel="Create"
+                    label={t.favorites.newListName}
+                    submitLabel={t.common.create}
+                    cancelLabel={t.common.cancel}
                     onSubmit={(name) => {
                       const id = createList(name);
                       setCreating(false);
@@ -152,7 +141,7 @@ export function FavoritesView() {
                     className="inline-flex h-10 cursor-pointer items-center gap-1.5 rounded-full border border-dashed border-border px-4 text-sm text-muted hover:border-foreground/30 hover:text-foreground"
                   >
                     <Plus aria-hidden="true" className="size-4" />
-                    New list
+                    {t.favorites.newList}
                   </button>
                 )}
               </li>
@@ -162,9 +151,10 @@ export function FavoritesView() {
           <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
             {renaming ? (
               <NameForm
-                label="List name"
-                submitLabel="Save"
-                initialValue={list.name}
+                label={t.favorites.listName}
+                submitLabel={t.common.save}
+                cancelLabel={t.common.cancel}
+                initialValue={listName(list.name)}
                 onSubmit={(name) => {
                   renameList(list.id, name);
                   setRenaming(false);
@@ -172,18 +162,18 @@ export function FavoritesView() {
                 onCancel={() => setRenaming(false)}
               />
             ) : (
-              <h2 className="min-w-0 truncate text-xl font-medium tracking-tight">{list.name}</h2>
+              <h2 className="min-w-0 truncate text-xl font-medium tracking-tight">{listName(list.name)}</h2>
             )}
             <div className="flex items-center gap-1">
-              {ids.length > 0 ? <ShareFavoritesButton ids={ids} name={list.name} /> : null}
+              {ids.length > 0 ? <ShareFavoritesButton ids={ids} name={listName(list.name)} /> : null}
               {!renaming ? (
-                <IconAction label={`Rename ${list.name}`} onClick={() => setRenaming(true)}>
+                <IconAction label={t.favorites.rename(listName(list.name))} onClick={() => setRenaming(true)}>
                   <Pencil aria-hidden="true" className="size-4" />
                 </IconAction>
               ) : null}
               {lists.length > 1 || ids.length > 0 ? (
                 <IconAction
-                  label={lists.length > 1 ? `Delete ${list.name}` : `Clear ${list.name}`}
+                  label={lists.length > 1 ? t.favorites.delete(listName(list.name)) : t.favorites.clear(listName(list.name))}
                   onClick={() => setConfirmingDelete(true)}
                 >
                   <Trash2 aria-hidden="true" className="size-4" />
@@ -199,14 +189,14 @@ export function FavoritesView() {
 
         {current?.status === "error" && visible.length === 0 ? (
           <ErrorPanel
-            message="Saved cards could not be loaded."
+            message={t.errors.savedNotLoaded}
             action={
               <button
                 type="button"
                 onClick={() => setAttempt((value) => value + 1)}
                 className="inline-flex h-11 items-center rounded-full bg-foreground px-4 text-sm text-surface"
               >
-                Try again
+                {t.common.tryAgain}
               </button>
             }
           />
@@ -214,14 +204,10 @@ export function FavoritesView() {
 
         {settled && ids.length === 0 ? (
           <EmptyState
-            title={count === 0 ? "No favorites yet" : "Nothing in this list yet"}
-            message={
-              count === 0
-                ? "Save a card while you browse. It will still be here when you come back."
-                : "Open a card and use Save to add it to this list."
-            }
+            title={count === 0 ? t.favorites.noFavoritesTitle : t.favorites.emptyListTitle}
+            message={count === 0 ? t.favorites.noFavoritesMessage : t.favorites.emptyListMessage}
             actionHref="/"
-            actionLabel="Explore cards"
+            actionLabel={t.common.exploreCards}
           />
         ) : null}
 
@@ -229,8 +215,7 @@ export function FavoritesView() {
           <>
             {current && current.missingCount > 0 ? (
               <p className="mb-5 text-sm text-muted">
-                {current.missingCount} saved {current.missingCount === 1 ? "card isn’t" : "cards aren’t"} in the
-                current catalog.
+                {t.favorites.missingCards(current.missingCount)}
               </p>
             ) : null}
             <CardGrid cards={visible} returnTo={listHref(list.id)} />
@@ -242,13 +227,10 @@ export function FavoritesView() {
       {settled && list ? (
         <ConfirmDialog
           open={confirmingDelete}
-          title={lists.length > 1 ? `Delete “${list.name}”?` : `Clear “${list.name}”?`}
-          message={
-            lists.length > 1
-              ? "The list is removed from this browser. Its cards stay in any other lists they’re in."
-              : "This removes every card from the list. You can save them again later."
-          }
-          confirmLabel={lists.length > 1 ? "Delete list" : "Clear list"}
+          title={lists.length > 1 ? t.favorites.deleteTitle(listName(list.name)) : t.favorites.clearTitle(listName(list.name))}
+          message={lists.length > 1 ? t.favorites.deleteMessage : t.favorites.clearMessage}
+          confirmLabel={lists.length > 1 ? t.favorites.deleteConfirm : t.favorites.clearConfirm}
+          cancelLabel={t.common.cancel}
           onCancel={() => setConfirmingDelete(false)}
           onConfirm={() => {
             const remaining = lists.filter((item) => item.id !== list.id);
@@ -280,12 +262,14 @@ function IconAction({ label, onClick, children }: { label: string; onClick: () =
 function NameForm({
   label,
   submitLabel,
+  cancelLabel,
   initialValue = "",
   onSubmit,
   onCancel,
 }: {
   label: string;
   submitLabel: string;
+  cancelLabel: string;
   initialValue?: string;
   onSubmit: (name: string) => void;
   onCancel: () => void;
@@ -309,7 +293,7 @@ function NameForm({
         onKeyDown={(event) => {
           if (event.key === "Escape") onCancel();
         }}
-        placeholder="List name"
+        placeholder={label}
         className="h-10 w-48 rounded-full border border-border bg-surface px-4 text-sm placeholder:text-faint"
       />
       <button
@@ -324,7 +308,7 @@ function NameForm({
         onClick={onCancel}
         className="inline-flex h-10 cursor-pointer items-center rounded-full px-3 text-sm text-muted hover:text-foreground"
       >
-        Cancel
+        {cancelLabel}
       </button>
     </form>
   );
@@ -335,6 +319,7 @@ function ConfirmDialog({
   title,
   message,
   confirmLabel,
+  cancelLabel,
   onCancel,
   onConfirm,
 }: {
@@ -342,6 +327,7 @@ function ConfirmDialog({
   title: string;
   message: string;
   confirmLabel: string;
+  cancelLabel: string;
   onCancel: () => void;
   onConfirm: () => void;
 }) {
@@ -375,7 +361,7 @@ function ConfirmDialog({
             onClick={onCancel}
             className="inline-flex h-11 items-center rounded-full px-4 text-sm text-muted hover:text-foreground"
           >
-            Cancel
+            {cancelLabel}
           </button>
           <button
             type="button"

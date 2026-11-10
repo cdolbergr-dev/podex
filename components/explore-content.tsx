@@ -5,6 +5,7 @@ import { RetryButton } from "@/components/retry-button";
 import { SearchField } from "@/components/search-field";
 import { buildExploreHref, parseExploreParams } from "@/lib/explore-params";
 import { formatCount } from "@/lib/format";
+import { getDictionary, getLocale } from "@/lib/i18n/server";
 import { DEFAULT_PAGE_SIZE, MAX_RESTORED_PAGES } from "@/lib/tcg/constants";
 import { catalogErrorMessage } from "@/lib/tcg/errors";
 import { getFilterMeta, searchCards } from "@/lib/tcg/service";
@@ -26,6 +27,8 @@ export async function ExploreContent({
   }
 
   const { result, meta } = loaded;
+  const [locale, t] = await Promise.all([getLocale(), getDictionary()]);
+  const count = formatCount(result.totalCount, locale);
   const listKey = buildExploreHref(params);
   const narrowed = Boolean(params.q || params.set || params.type || params.rarity);
 
@@ -37,14 +40,14 @@ export async function ExploreContent({
 
       {result.correctedQuery ? (
         <p className="mt-8 text-sm text-muted">
-          No matches for “{params.q}”. Showing results for{" "}
+          {t.explore.noMatchesFor(params.q)}{" "}
           <span className="font-medium text-foreground">{result.correctedQuery}</span>.
         </p>
       ) : null}
       <p className={`${result.correctedQuery ? "mt-1" : "mt-8"} mb-5 text-sm text-muted`}>
-        <span className="tabular-nums">{formatCount(result.totalCount)}</span>{" "}
-        {result.totalCount === 1 ? "card" : "cards"}
-        {narrowed ? (result.totalCount === 1 ? " matches" : " match") : ""}
+        <span className="tabular-nums">
+          {narrowed ? t.explore.cardMatchCount(count, result.totalCount) : t.explore.cardCount(count, result.totalCount)}
+        </span>
       </p>
 
       {result.cards.length > 0 ? (
@@ -57,10 +60,10 @@ export async function ExploreContent({
         />
       ) : (
         <EmptyState
-          title="No cards match"
-          message="Try another name, set, type, or rarity."
+          title={t.explore.noCardsMatchTitle}
+          message={t.explore.noCardsMatchMessage}
           actionHref="/"
-          actionLabel="Browse all cards"
+          actionLabel={t.explore.browseAll}
         />
       )}
 

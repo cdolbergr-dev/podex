@@ -1,11 +1,15 @@
-import Link from "next/link";
 import { Layers } from "lucide-react";
 import { SetMark } from "@/components/set-mark";
-import { formatReleaseDate, groupSetsBySeries, setCountLabel } from "@/lib/format";
+import { LocaleLink } from "@/components/i18n-provider";
+import { formatCount, formatReleaseDate, groupSetsBySeries } from "@/lib/format";
+import type { Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/lib/i18n/dictionaries/en";
+import { getDictionary, getLocale } from "@/lib/i18n/server";
 import type { CardSet } from "@/types/catalog";
 
-export function SetBrowser({ sets }: { sets: CardSet[] }) {
-  const groups = groupSetsBySeries(sets);
+export async function SetBrowser({ sets }: { sets: CardSet[] }) {
+  const [locale, t] = await Promise.all([getLocale(), getDictionary()]);
+  const groups = groupSetsBySeries(sets, t.sets.other);
 
   return (
     <div className="space-y-12">
@@ -17,7 +21,7 @@ export function SetBrowser({ sets }: { sets: CardSet[] }) {
           <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {group.sets.map((set) => (
               <li key={set.id}>
-                <SetTile set={set} />
+                <SetTile set={set} locale={locale} t={t} />
               </li>
             ))}
           </ul>
@@ -27,12 +31,20 @@ export function SetBrowser({ sets }: { sets: CardSet[] }) {
   );
 }
 
-function SetTile({ set }: { set: CardSet }) {
-  const released = formatReleaseDate(set.releaseDate);
-  const count = setCountLabel(set);
+function setCountLabel(set: CardSet, locale: Locale, t: Dictionary): string | null {
+  if (set.printedTotal && set.total && set.total !== set.printedTotal) {
+    return t.sets.cardsWithTotal(formatCount(set.printedTotal, locale), formatCount(set.total, locale));
+  }
+  const count = set.printedTotal || set.total;
+  return count ? t.sets.cards(formatCount(count, locale)) : null;
+}
+
+function SetTile({ set, locale, t }: { set: CardSet; locale: Locale; t: Dictionary }) {
+  const released = formatReleaseDate(set.releaseDate, locale);
+  const count = setCountLabel(set, locale, t);
 
   return (
-    <Link
+    <LocaleLink
       href={`/?set=${encodeURIComponent(set.id)}`}
       className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_32px_-24px_rgba(28,25,23,0.45)] motion-reduce:transform-none"
     >
@@ -49,13 +61,13 @@ function SetTile({ set }: { set: CardSet }) {
         <div className="min-w-0">
           <h3 className="truncate text-sm font-medium tracking-tight">{set.name}</h3>
           <p className="mt-0.5 truncate text-xs leading-5 text-muted">
-            {[released, count].filter(Boolean).join(" · ") || "Set details unavailable"}
+            {[released, count].filter(Boolean).join(" · ") || t.sets.detailsUnavailable}
           </p>
         </div>
         {set.images.logo && set.images.symbol ? (
           <SetMark src={set.images.symbol} alt="" sizes="24px" align="center" className="mt-0.5 size-5 shrink-0" />
         ) : null}
       </div>
-    </Link>
+    </LocaleLink>
   );
 }

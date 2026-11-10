@@ -1,7 +1,7 @@
 "use client";
 
+import { useLocaleRouter } from "@/components/i18n-provider";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { useRouter } from "next/navigation";
 import { PageContainer } from "@/components/page-container";
 import { useCardOpen } from "@/components/card-open-context";
 import { CardModalHandoff } from "@/components/card-modal-handoff";
@@ -36,7 +36,7 @@ export function CardModalOverlay({
   preflight?: boolean;
   children: ReactNode;
 }) {
-  const router = useRouter();
+  const router = useLocaleRouter();
   const { endCardOpen, preflightCardId } = useCardOpen();
   const back = safeReturnPath(returnTo);
   // Fade the backdrop in only when nothing is on screen yet: not when the route modal takes over

@@ -1,3 +1,5 @@
+import { stripLocale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/lib/i18n/dictionaries/en";
 import { DEFAULT_PAGE_SIZE, DEFAULT_SORT, PAGE_SIZE_OPTIONS } from "@/lib/tcg/constants";
 import type { ExploreParams, SortKey } from "@/types/catalog";
 
@@ -60,18 +62,20 @@ export function safeReturnPath(value: string | undefined): string {
   try {
     const url = new URL(value, "https://podex.local");
     if (url.origin !== "https://podex.local") return "/";
-    if (!["/", "/favorites", "/favorites/shared", "/sets"].includes(url.pathname)) {
+    const path = stripLocale(url.pathname);
+    if (!["/", "/favorites", "/favorites/shared", "/sets"].includes(path)) {
       return "/";
     }
-    return `${url.pathname}${url.search}`;
+    return `${path}${url.search}`;
   } catch {
     return "/";
   }
 }
 
-export function returnLabel(path: string): string {
-  if (path.startsWith("/favorites/shared")) return "Back to shared list";
-  if (path.startsWith("/favorites")) return "Back to favorites";
-  if (path.startsWith("/sets")) return "Back to sets";
-  return "Back to explore";
+/** `path` is a site path without a language prefix (see safeReturnPath). */
+export function returnLabel(path: string, t: Dictionary): string {
+  if (path.startsWith("/favorites/shared")) return t.card.backToShared;
+  if (path.startsWith("/favorites")) return t.card.backToFavorites;
+  if (path.startsWith("/sets")) return t.card.backToSets;
+  return t.card.backToExplore;
 }

@@ -1,11 +1,10 @@
 "use client";
 
 import { ArrowRight, RotateCcw } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { useFavorites } from "@/components/favorites-provider";
+import { LocaleLink, useI18n } from "@/components/i18n-provider";
 import { countBackupCards, decodeFavoriteLists, type BackupList } from "@/lib/favorites-backup";
-import { formatCount } from "@/lib/format";
 
 const subscribeHash = (onChange: () => void) => {
   window.addEventListener("hashchange", onChange);
@@ -21,6 +20,7 @@ type State =
 /** Restores lists from a "Back up all lists" link. The data is in the URL hash, client-only. */
 export function RestoreFavorites() {
   const { ready, mergeLists } = useFavorites();
+  const { t, formatNumber, listName } = useI18n();
   const hash = useSyncExternalStore(subscribeHash, () => window.location.hash.slice(1), () => null);
   const [state, setState] = useState<State>({ status: "reading" });
 
@@ -37,35 +37,35 @@ export function RestoreFavorites() {
 
   return (
     <div className="max-w-xl">
-      <h1 className="text-3xl font-medium tracking-tight sm:text-4xl">Restore favorites</h1>
+      <h1 className="text-3xl font-medium tracking-tight sm:text-4xl">{t.restore.title}</h1>
 
-      {state.status === "reading" ? <p className="mt-3 text-sm text-muted">Reading your backup…</p> : null}
+      {state.status === "reading" ? <p className="mt-3 text-sm text-muted">{t.restore.reading}</p> : null}
 
       {state.status === "invalid" ? (
         <div className="mt-3 space-y-5">
-          <p className="text-sm leading-6 text-muted">
-            This backup link is incomplete or damaged. Make sure you copied the whole link, including everything
-            after the “#”.
-          </p>
-          <Link href="/favorites" className="inline-flex h-11 items-center rounded-full bg-foreground px-4 text-sm text-surface">
-            Go to favorites
-          </Link>
+          <p className="text-sm leading-6 text-muted">{t.restore.invalid}</p>
+          <LocaleLink href="/favorites" className="inline-flex h-11 items-center rounded-full bg-foreground px-4 text-sm text-surface">
+            {t.restore.goToFavorites}
+          </LocaleLink>
         </div>
       ) : null}
 
       {state.status === "ready" || state.status === "restored" ? (
         <div className="mt-3">
           <p className="text-sm leading-6 text-muted">
-            This backup has {formatCount(state.lists.length)} {state.lists.length === 1 ? "list" : "lists"} with{" "}
-            {formatCount(countBackupCards(state.lists))} {countBackupCards(state.lists) === 1 ? "card" : "cards"}.
-            Restoring adds them to the favorites in this browser — nothing you already have is removed.
+            {t.restore.summary(
+              formatNumber(state.lists.length),
+              state.lists.length,
+              formatNumber(countBackupCards(state.lists)),
+              countBackupCards(state.lists),
+            )}
           </p>
           <ul className="mt-5 divide-y divide-border rounded-2xl border border-border bg-surface">
             {state.lists.map((list, index) => (
               <li key={`${list.name}-${index}`} className="flex items-center justify-between gap-4 px-4 py-3 text-sm">
-                <span className="min-w-0 truncate">{list.name}</span>
+                <span className="min-w-0 truncate">{listName(list.name)}</span>
                 <span className="tabular-nums text-faint">
-                  {formatCount(list.cardIds.length)} {list.cardIds.length === 1 ? "card" : "cards"}
+                  {t.restore.cards(formatNumber(list.cardIds.length), list.cardIds.length)}
                 </span>
               </li>
             ))}
@@ -75,16 +75,16 @@ export function RestoreFavorites() {
               <div className="flex flex-wrap items-center gap-3">
                 <p className="text-sm" role="status">
                   {state.added > 0
-                    ? `Restored — ${formatCount(state.added)} ${state.added === 1 ? "card" : "cards"} added.`
-                    : "Everything in this backup was already saved here."}
+                    ? t.restore.restored(formatNumber(state.added), state.added)
+                    : t.restore.alreadySaved}
                 </p>
-                <Link
+                <LocaleLink
                   href="/favorites"
                   className="inline-flex h-11 items-center gap-2 rounded-full bg-foreground px-4 text-sm text-surface"
                 >
-                  View favorites
+                  {t.restore.viewFavorites}
                   <ArrowRight aria-hidden="true" className="size-4" />
-                </Link>
+                </LocaleLink>
               </div>
             ) : (
               <button
@@ -94,7 +94,7 @@ export function RestoreFavorites() {
                 className="inline-flex h-11 cursor-pointer items-center gap-2 rounded-full bg-foreground px-5 text-sm text-surface hover:opacity-90 disabled:cursor-default disabled:opacity-60"
               >
                 <RotateCcw aria-hidden="true" className="size-4" />
-                Restore {state.lists.length === 1 ? "list" : "lists"}
+                {t.restore.restoreButton(state.lists.length)}
               </button>
             )}
           </div>

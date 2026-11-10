@@ -12,9 +12,12 @@ import { ServiceWorkerRegistration } from "@/components/service-worker-registrat
 import { HeaderFallback, SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { UmamiAnalytics } from "@/components/umami-analytics";
+import { I18nProvider } from "@/components/i18n-provider";
 import { brand } from "@/lib/brand";
+import { INTL_LOCALES, LOCALES } from "@/lib/i18n/config";
+import { getDictionary, getLocale } from "@/lib/i18n/server";
 import { siteUrl } from "@/lib/site";
-import "./globals.css";
+import "../globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,32 +31,42 @@ export const viewport: Viewport = {
   ],
 };
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  openGraph: { siteName: brand.name, type: "website" },
-  twitter: { card: "summary_large_image" },
-  // Installed on iOS: open full-screen, titled "Podex" on the home screen.
-  appleWebApp: { capable: true, title: brand.name, statusBarStyle: "default" },
-  title: {
-    default: brand.name,
-    template: `%s · ${brand.name}`,
-  },
-  description: brand.description,
-};
+/** Every page exists in each language (Cache Components needs the root params up front). */
+export async function generateStaticParams() {
+  return LOCALES.map((lang) => ({ lang }));
+}
 
-export default function RootLayout({
+export async function generateMetadata(): Promise<Metadata> {
+  const [locale, t] = await Promise.all([getLocale(), getDictionary()]);
+  return {
+    metadataBase: new URL(siteUrl),
+    openGraph: { siteName: brand.name, type: "website", locale: INTL_LOCALES[locale].replace("-", "_") },
+    twitter: { card: "summary_large_image" },
+    // Installed on iOS: open full-screen, titled "Podex" on the home screen.
+    appleWebApp: { capable: true, title: brand.name, statusBarStyle: "default" },
+    title: {
+      default: brand.name,
+      template: `%s · ${brand.name}`,
+    },
+    description: t.meta.description,
+  };
+}
+
+export default async function RootLayout({
   children,
   modal,
-}: LayoutProps<"/"> & { modal: ReactNode }) {
+}: LayoutProps<"/[lang]"> & { modal: ReactNode }) {
+  const [locale, t] = await Promise.all([getLocale(), getDictionary()]);
   return (
-    <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
+    <html lang={locale} className={`${geistSans.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <a
           href="#content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-foreground focus:px-4 focus:py-2 focus:text-sm focus:text-surface"
         >
-          Skip to content
+          {t.common.skipToContent}
         </a>
+        <I18nProvider locale={locale}>
         <FavoritesProvider>
           <Suspense fallback={null}>
             <CardOpenProvider>
@@ -80,6 +93,7 @@ export default function RootLayout({
             </CardOpenProvider>
           </Suspense>
         </FavoritesProvider>
+        </I18nProvider>
       </body>
     </html>
   );

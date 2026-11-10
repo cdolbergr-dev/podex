@@ -2,6 +2,7 @@
 
 import { useLayoutEffect } from "react";
 import { usePathname } from "next/navigation";
+import { stripLocale } from "@/lib/i18n/config";
 import { clearCardOpenedFromGrid } from "@/lib/card-transition-pending";
 
 /** While a card route is open, grid tiles must not use the same view-transition-name as the detail art. */
@@ -9,7 +10,7 @@ export function CardRouteEffects() {
   const pathname = usePathname();
 
   useLayoutEffect(() => {
-    const match = pathname.match(/^\/cards\/([^/]+)/);
+    const match = stripLocale(pathname).match(/^\/cards\/([^/]+)/);
     if (!match) {
       delete document.body.dataset.openCard;
       return;

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { useI18n } from "@/components/i18n-provider";
 
 type ArtworkProps = {
   src: string;
@@ -34,7 +35,8 @@ export function Artwork({
   const [failed, setFailed] = useState(src.length === 0);
   const [loadedSrc, setLoadedSrc] = useState<string | null>(null);
   const showPlaceholder = Boolean(placeholderSrc) && loadedSrc !== src;
-  const missingLabel = `${fallback}: illustration not available`;
+  const { t } = useI18n();
+  const missingLabel = t.card.illustrationMissingLabel(fallback);
   const isGridTile = Boolean(cardId);
 
   return (
@@ -49,9 +51,9 @@ export function Artwork({
           aria-label={missingLabel}
           className="absolute inset-0 flex flex-col items-center justify-center bg-[linear-gradient(180deg,var(--panel)_0%,var(--skeleton)_100%)] px-4 py-6 text-center"
         >
-          <p className="text-sm font-medium leading-5 text-soft">Illustration not available</p>
+          <p className="text-sm font-medium leading-5 text-soft">{t.card.illustrationMissing}</p>
           <p className="mt-1.5 max-w-[14rem] text-xs leading-5 text-muted">
-            This card&apos;s image is missing from the catalog.
+            {t.card.illustrationMissingMessage}
           </p>
         </div>
       ) : (

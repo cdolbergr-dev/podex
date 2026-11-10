@@ -2,6 +2,7 @@
 
 import { Share, SquarePlus, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { useI18n } from "@/components/i18n-provider";
 import { trackEvent } from "@/lib/analytics";
 import { brand } from "@/lib/brand";
 import {
@@ -25,6 +26,7 @@ type Mode = "install" | "ios";
  * on desktop (browsers show their own install icon there) and for 30 days after "Not now".
  */
 export function InstallAppPrompt() {
+  const { t } = useI18n();
   const [mode, setMode] = useState<Mode | null>(null);
   const installEvent = useRef<BeforeInstallPromptEvent | null>(null);
 
@@ -87,29 +89,29 @@ export function InstallAppPrompt() {
 
   return (
     <section
-      aria-label={`Install the ${brand.name} app`}
+      aria-label={t.install.region(brand.name)}
       className="install-prompt-in fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-50 mx-auto max-w-md rounded-2xl border border-border bg-surface p-4 shadow-[0_24px_48px_-24px_rgba(28,25,23,0.5)]"
     >
       <div className="flex items-start gap-3.5">
         {/* eslint-disable-next-line @next/next/no-img-element -- tiny static app icon */}
         <img src="/icons/icon-192.png" alt="" width={48} height={48} className="size-12 shrink-0 rounded-xl" />
         <div className="min-w-0 flex-1">
-          <h2 className="text-sm font-medium">Get the {brand.name} app</h2>
+          <h2 className="text-sm font-medium">{t.install.title(brand.name)}</h2>
           {mode === "install" ? (
             <p className="mt-0.5 text-sm leading-5 text-muted">
-              Add {brand.name} to your home screen for quick, full-screen browsing.
+              {t.install.description(brand.name)}
             </p>
           ) : (
             <p className="mt-0.5 text-sm leading-6 text-muted">
-              Tap{" "}
+              {t.install.tap}{" "}
               <span className="inline-flex items-center gap-1 font-medium text-foreground">
                 <Share aria-hidden="true" className="size-3.5" />
-                Share
+                {t.install.share}
               </span>
-              , then{" "}
+              {t.install.then}{" "}
               <span className="inline-flex items-center gap-1 font-medium text-foreground">
                 <SquarePlus aria-hidden="true" className="size-3.5" />
-                Add to Home Screen
+                {t.install.addToHomeScreen}
               </span>
               .
             </p>
@@ -118,7 +120,7 @@ export function InstallAppPrompt() {
         <button
           type="button"
           onClick={dismiss}
-          aria-label="Dismiss"
+          aria-label={t.common.dismiss}
           className="-mt-1 -mr-1 inline-flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full text-muted hover:bg-background hover:text-foreground"
         >
           <X aria-hidden="true" className="size-4" />
@@ -131,14 +133,14 @@ export function InstallAppPrompt() {
             onClick={dismiss}
             className="inline-flex h-10 cursor-pointer items-center rounded-full px-4 text-sm text-muted hover:text-foreground"
           >
-            Not now
+            {t.install.notNow}
           </button>
           <button
             type="button"
             onClick={install}
             className="inline-flex h-10 cursor-pointer items-center rounded-full bg-foreground px-5 text-sm text-surface hover:opacity-90"
           >
-            Install
+            {t.install.install}
           </button>
         </div>
       ) : null}

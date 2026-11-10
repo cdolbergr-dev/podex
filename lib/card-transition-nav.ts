@@ -1,4 +1,5 @@
 import { flushSync } from "react-dom";
+import { stripLocale } from "@/lib/i18n/config";
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import {
   canUseViewTransitions,
@@ -18,7 +19,7 @@ function clearCardTransitionFlags() {
 }
 
 function isOnCardRoute(): boolean {
-  return /^\/cards\/[^/]+/.test(window.location.pathname);
+  return /^\/cards\/[^/]+/.test(stripLocale(window.location.pathname));
 }
 
 /**

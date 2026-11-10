@@ -5,6 +5,8 @@ import { CardDetailTransitionLayout } from "@/components/card-detail-transition-
 import { PageContainer } from "@/components/page-container";
 import { CardDetailInfoFallback } from "@/components/card-detail-info-fallback";
 import { DetailFallback } from "@/components/skeletons";
+import { languageAlternates } from "@/lib/i18n/alternates";
+import { getDictionary, getLocale } from "@/lib/i18n/server";
 import { getCard } from "@/lib/tcg/service";
 
 type CardPageProps = {
@@ -13,19 +15,19 @@ type CardPageProps = {
 };
 
 export async function generateMetadata({ params }: CardPageProps): Promise<Metadata> {
-  const { id } = await params;
+  const [{ id }, locale, t] = await Promise.all([params, getLocale(), getDictionary()]);
   try {
     const card = await getCard(id);
-    if (!card) return { title: "Card not found" };
-    const description = `${card.name} from ${card.set.name}${card.rarity ? ` · ${card.rarity}` : ""}.`;
+    if (!card) return { title: t.meta.cardNotFoundTitle };
+    const description = t.meta.cardDescription(card.name, card.set.name, card.rarity);
     return {
       title: card.name,
       description,
-      alternates: { canonical: `/cards/${encodeURIComponent(card.id)}` },
+      alternates: languageAlternates(locale, `/cards/${encodeURIComponent(card.id)}`),
       openGraph: { title: card.name, description, type: "article" },
     };
   } catch {
-    return { title: "Card" };
+    return { title: t.meta.cardTitleFallback };
   }
 }
 

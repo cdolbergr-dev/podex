@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { CardGrid } from "@/components/card-grid";
 import { loadMoreExploreCards } from "@/lib/actions";
 import { buildExploreHref } from "@/lib/explore-params";
-import { formatCount } from "@/lib/format";
+import { useI18n } from "@/components/i18n-provider";
+import { stripLocale } from "@/lib/i18n/config";
 import { findGridTile } from "@/lib/card-transition";
 import { DEFAULT_PAGE_SIZE, MAX_RESTORED_PAGES } from "@/lib/tcg/constants";
 import type { Card, ExploreParams } from "@/types/catalog";
@@ -17,7 +18,7 @@ import type { Card, ExploreParams } from "@/types/catalog";
 function restoreDepth(listKey: string): number {
   const current = new URL(window.location.href);
   let list = current;
-  if (/^\/cards\//.test(current.pathname)) {
+  if (/^\/cards\//.test(stripLocale(current.pathname))) {
     const back = current.searchParams.get("return");
     if (!back) return 1;
     list = new URL(back, current.origin);
@@ -26,7 +27,7 @@ function restoreDepth(listKey: string): number {
   const page = Number.parseInt(list.searchParams.get("page") ?? "1", 10);
   list.searchParams.delete("page");
   const query = list.searchParams.toString();
-  if (`${list.pathname}${query ? `?${query}` : ""}` !== listKey) return 1;
+  if (`${stripLocale(list.pathname)}${query ? `?${query}` : ""}` !== listKey) return 1;
   return Number.isFinite(page) ? Math.min(Math.max(page, 1), MAX_RESTORED_PAGES) : 1;
 }
 
@@ -84,6 +85,7 @@ export function ExploreResults({
   initialCards: Card[];
   totalCount: number;
 }) {
+  const { t, href: localize, formatNumber } = useI18n();
   const [cards, setCards] = useState(initialCards);
   const loadedPages = Math.max(1, Math.ceil(cards.length / DEFAULT_PAGE_SIZE));
   // Cards opened from here return to this depth (and the URL keeps it for back/reload).
@@ -147,7 +149,7 @@ export function ExploreResults({
       if (more.length > 0) {
         // Replace, not push: the current entry should remember the depth, but Back should
         // still leave the page rather than step through each batch.
-        window.history.replaceState(null, "", buildExploreHref(params, { page: nextPage }));
+        window.history.replaceState(null, "", localize(buildExploreHref(params, { page: nextPage })));
       }
       appendCards(more);
     } catch {
@@ -169,12 +171,12 @@ export function ExploreResults({
             aria-busy={loading}
             className="inline-flex h-11 min-w-36 cursor-pointer items-center justify-center rounded-full border border-border bg-surface px-5 hover:bg-surface-hover disabled:cursor-default disabled:text-muted"
           >
-            {loading ? "Loading…" : failed ? "Try again" : "Load more"}
+            {loading ? t.explore.loading : failed ? t.common.tryAgain : t.explore.loadMore}
           </button>
           <p className="tabular-nums text-faint" aria-live="polite">
             {failed
-              ? "Could not load more cards."
-              : `Showing ${formatCount(cards.length)} of ${formatCount(totalCount)}`}
+              ? t.explore.couldNotLoadMore
+              : t.explore.showingOf(formatNumber(cards.length), formatNumber(totalCount))}
           </p>
         </div>
       ) : null}

@@ -1,8 +1,8 @@
 "use client";
 
+import { useI18n, useLocaleRouter } from "@/components/i18n-provider";
 import { Clock, Search, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { buildExploreHref } from "@/lib/explore-params";
 import { clearRecentSearches, readRecentSearches, rememberSearch } from "@/lib/recent-searches";
 import { DEFAULT_PAGE_SIZE, DEFAULT_SORT } from "@/lib/tcg/constants";
@@ -14,7 +14,8 @@ function isTypingTarget(target: EventTarget | null): boolean {
 }
 
 export function SearchField({ params }: { params: ExploreParams }) {
-  const router = useRouter();
+  const router = useLocaleRouter();
+  const { t, href } = useI18n();
   const inputRef = useRef<HTMLInputElement>(null);
   const [value, setValue] = useState(params.q);
   const [focused, setFocused] = useState(false);
@@ -64,7 +65,7 @@ export function SearchField({ params }: { params: ExploreParams }) {
   return (
     <form
       role="search"
-      action="/"
+      action={href("/")}
       className="w-full"
       onSubmit={(event) => {
         event.preventDefault();
@@ -78,7 +79,7 @@ export function SearchField({ params }: { params: ExploreParams }) {
       {params.sort !== DEFAULT_SORT ? <input type="hidden" name="sort" value={params.sort} /> : null}
       {params.pageSize !== DEFAULT_PAGE_SIZE ? <input type="hidden" name="per" value={params.pageSize} /> : null}
       <label htmlFor="card-search" className="sr-only">
-        Search cards by name, set, or number
+        {t.explore.searchLabel}
       </label>
       <div className="relative">
         <Search aria-hidden="true" className="pointer-events-none absolute top-1/2 left-4 size-4 -translate-y-1/2 text-faint" />
@@ -100,7 +101,7 @@ export function SearchField({ params }: { params: ExploreParams }) {
           onKeyDown={(event) => {
             if (event.key === "Escape") inputRef.current?.blur();
           }}
-          placeholder="Search by name, set, or number"
+          placeholder={t.explore.searchPlaceholder}
           autoComplete="off"
           spellCheck={false}
           enterKeyHint="search"
@@ -111,7 +112,7 @@ export function SearchField({ params }: { params: ExploreParams }) {
           <button
             type="button"
             onClick={clear}
-            aria-label="Clear search"
+            aria-label={t.explore.clearSearch}
             className="absolute top-1/2 right-2 inline-flex size-8 -translate-y-1/2 items-center justify-center rounded-full text-muted hover:bg-background hover:text-foreground"
           >
             <X aria-hidden="true" className="size-4" />
@@ -133,7 +134,7 @@ export function SearchField({ params }: { params: ExploreParams }) {
             onMouseDown={(event) => event.preventDefault()}
           >
             <div className="flex items-center justify-between px-4 pt-1 pb-1.5 text-xs text-faint">
-              <span>Recent</span>
+              <span>{t.explore.recent}</span>
               <button
                 type="button"
                 onClick={() => {
@@ -142,7 +143,7 @@ export function SearchField({ params }: { params: ExploreParams }) {
                 }}
                 className="cursor-pointer hover:text-foreground"
               >
-                Clear
+                {t.common.clear}
               </button>
             </div>
             <ul>

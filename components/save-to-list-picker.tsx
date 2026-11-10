@@ -4,6 +4,7 @@ import { Check, Plus } from "lucide-react";
 import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from "react";
 import { createPortal } from "react-dom";
 import { useFavorites } from "@/components/favorites-provider";
+import { useI18n } from "@/components/i18n-provider";
 import { MAX_LIST_NAME_LENGTH } from "@/lib/favorites-storage";
 
 const WIDTH = 256;
@@ -26,6 +27,7 @@ export function SaveToListPicker({
   onClose: () => void;
 }) {
   const { lists, listsContaining, toggleInList, createList } = useFavorites();
+  const { t, listName } = useI18n();
   const panelRef = useRef<HTMLDivElement>(null);
   const [creating, setCreating] = useState(false);
   const [name, setName] = useState("");
@@ -89,12 +91,12 @@ export function SaveToListPicker({
     <div
       ref={panelRef}
       role="dialog"
-      aria-label={`Save ${cardName} to a list`}
+      aria-label={t.favorites.saveToListLabel(cardName)}
       // Placed (and revealed) by the layout effect once its height is known.
       style={{ top: 0, left: 0, width: WIDTH, visibility: "hidden" }}
       className="fixed z-[130] rounded-2xl border border-border bg-surface p-1.5 shadow-[0_24px_48px_-20px_rgba(28,25,23,0.5)]"
     >
-      <p className="px-3 pt-2 pb-1.5 text-xs text-faint">Save to list</p>
+      <p className="px-3 pt-2 pb-1.5 text-xs text-faint">{t.favorites.saveToList}</p>
       <ul className="max-h-64 overflow-y-auto">
         {lists.map((list) => {
           const saved = containing.includes(list.id);
@@ -115,7 +117,7 @@ export function SaveToListPicker({
                 >
                   {saved ? <Check className="size-3.5" strokeWidth={2.5} /> : null}
                 </span>
-                <span className="min-w-0 flex-1 truncate">{list.name}</span>
+                <span className="min-w-0 flex-1 truncate">{listName(list.name)}</span>
                 <span className="text-xs tabular-nums text-faint">{list.cardIds.length}</span>
               </button>
             </li>
@@ -126,7 +128,7 @@ export function SaveToListPicker({
         {creating ? (
           <form onSubmit={submit} className="flex items-center gap-1.5 px-1.5 py-1.5">
             <label htmlFor={`new-list-${cardId}`} className="sr-only">
-              New list name
+              {t.favorites.newListName}
             </label>
             <input
               id={`new-list-${cardId}`}
@@ -134,7 +136,7 @@ export function SaveToListPicker({
               value={name}
               maxLength={MAX_LIST_NAME_LENGTH}
               onChange={(event) => setName(event.target.value)}
-              placeholder="List name"
+              placeholder={t.favorites.listName}
               className="h-9 min-w-0 flex-1 rounded-lg border border-border bg-background px-2.5 text-sm placeholder:text-faint"
             />
             <button
@@ -142,7 +144,7 @@ export function SaveToListPicker({
               disabled={!name.trim()}
               className="inline-flex h-9 cursor-pointer items-center rounded-lg bg-foreground px-3 text-sm text-surface disabled:cursor-default disabled:opacity-40"
             >
-              Add
+              {t.common.add}
             </button>
           </form>
         ) : (
@@ -152,7 +154,7 @@ export function SaveToListPicker({
             className="flex w-full cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm text-muted hover:bg-background hover:text-foreground"
           >
             <Plus aria-hidden="true" className="size-4" />
-            New list
+            {t.favorites.newList}
           </button>
         )}
       </div>

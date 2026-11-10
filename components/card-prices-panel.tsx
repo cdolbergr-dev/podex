@@ -1,22 +1,27 @@
+"use client";
+
 import { ArrowUpRight } from "lucide-react";
+import { useI18n } from "@/components/i18n-provider";
+import { INTL_LOCALES, type Locale } from "@/lib/i18n/config";
 import type { CardPrices } from "@/types/catalog";
 
-function money(value: number, currency: "USD" | "EUR"): string {
-  return new Intl.NumberFormat(currency === "EUR" ? "de-DE" : "en-US", { style: "currency", currency }).format(value);
+function money(value: number, currency: "USD" | "EUR", locale: Locale): string {
+  return new Intl.NumberFormat(INTL_LOCALES[locale], { style: "currency", currency }).format(value);
 }
 
-function updatedLabel(value: string | undefined): string | null {
+function updatedLabel(value: string | undefined, locale: Locale): string | null {
   if (!value) return null;
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return null;
-  return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", timeZone: "UTC" }).format(date);
+  return new Intl.DateTimeFormat(INTL_LOCALES[locale], { month: "short", day: "numeric", timeZone: "UTC" }).format(date);
 }
 
 function PricesSection({ children }: { children: React.ReactNode }) {
+  const { t } = useI18n();
   return (
     <section className="mt-10 border-t border-border pt-6" aria-labelledby="market-price-heading">
       <h2 id="market-price-heading" className="text-sm font-medium">
-        Market price
+        {t.prices.heading}
       </h2>
       <div className="mt-4 min-h-24">{children}</div>
     </section>
@@ -24,15 +29,16 @@ function PricesSection({ children }: { children: React.ReactNode }) {
 }
 
 export function CardPricesPanel({ prices }: { prices: CardPrices | null }) {
+  const { locale, t } = useI18n();
   if (!prices) {
     return (
       <PricesSection>
-        <p className="text-sm text-muted">No recent market price for this card.</p>
+        <p className="text-sm text-muted">{t.prices.none}</p>
       </PricesSection>
     );
   }
 
-  const updated = updatedLabel(prices.updated);
+  const updated = updatedLabel(prices.updated, locale);
 
   return (
     <PricesSection>
@@ -40,27 +46,27 @@ export function CardPricesPanel({ prices }: { prices: CardPrices | null }) {
         {prices.tcgplayer?.variants.map((variant) => (
           <div key={variant.label} className="contents">
             <dt className="text-muted">
-              TCGplayer <span className="text-faint">·</span> {variant.label}
+              {t.prices.tcgplayer} <span className="text-faint">·</span> {t.prices.variants[variant.label] ?? variant.label}
             </dt>
-            <dd className="text-right font-medium tabular-nums">{money(variant.price, "USD")}</dd>
+            <dd className="text-right font-medium tabular-nums">{money(variant.price, "USD", locale)}</dd>
           </div>
         ))}
         {prices.cardmarket ? (
           <div className="contents">
             <dt className="text-muted">
-              Cardmarket <span className="text-faint">·</span> Trend
+              {t.prices.cardmarketTrend}
             </dt>
             <dd className="text-right font-medium tabular-nums">
-              {money(prices.cardmarket.trend, "EUR")}
+              {money(prices.cardmarket.trend, "EUR", locale)}
               {prices.cardmarket.avg30 ? (
-                <span className="ml-2 font-normal text-faint">30d avg {money(prices.cardmarket.avg30, "EUR")}</span>
+                <span className="ml-2 font-normal text-faint">{t.prices.avg30(money(prices.cardmarket.avg30, "EUR", locale))}</span>
               ) : null}
             </dd>
           </div>
         ) : null}
       </dl>
       <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-faint">
-        <span>{updated ? `Updated ${updated} · via TCGdex` : "Via TCGdex"}</span>
+        <span>{updated ? t.prices.updatedVia(updated) : t.prices.via}</span>
         {prices.tcgplayer?.url ? (
           <a
             href={prices.tcgplayer.url}
@@ -68,7 +74,7 @@ export function CardPricesPanel({ prices }: { prices: CardPrices | null }) {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-0.5 underline decoration-border underline-offset-4 hover:text-foreground"
           >
-            View on TCGplayer
+            {t.prices.viewOnTcgplayer}
             <ArrowUpRight aria-hidden="true" className="size-3" />
           </a>
         ) : null}
@@ -78,10 +84,11 @@ export function CardPricesPanel({ prices }: { prices: CardPrices | null }) {
 }
 
 export function CardPricesSkeleton() {
+  const { t } = useI18n();
   return (
     <PricesSection>
       <div role="status" className="space-y-3">
-        <span className="sr-only">Loading market prices</span>
+        <span className="sr-only">{t.prices.loading}</span>
         <div className="h-4 w-full animate-pulse rounded-full bg-skeleton-soft" />
         <div className="h-4 w-4/5 animate-pulse rounded-full bg-skeleton-soft" />
       </div>

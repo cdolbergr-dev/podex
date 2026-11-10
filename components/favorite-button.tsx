@@ -3,6 +3,7 @@
 import { Heart } from "lucide-react";
 import { useEffect, useState, type MouseEvent } from "react";
 import { useFavorites } from "@/components/favorites-provider";
+import { useI18n } from "@/components/i18n-provider";
 import { SaveToListPicker } from "@/components/save-to-list-picker";
 
 type FavoriteButtonProps = {
@@ -13,6 +14,7 @@ type FavoriteButtonProps = {
 
 export function FavoriteButton({ id, name, variant = "icon" }: FavoriteButtonProps) {
   const { isFavorite, toggle, lists } = useFavorites();
+  const { t } = useI18n();
   const [pulse, setPulse] = useState(0);
   const [shown, setShown] = useState(false);
   const [pickerAnchor, setPickerAnchor] = useState<HTMLElement | null>(null);
@@ -28,7 +30,11 @@ export function FavoriteButton({ id, name, variant = "icon" }: FavoriteButtonPro
   // there's always a way to start another list): choose lists in the picker.
   // Lists live in localStorage, so only count them after mount (the server render can't).
   const usesPicker = variant === "label" || (shown && lists.length > 1);
-  const label = usesPicker ? `Save ${name} to a list` : active ? `Remove ${name} from favorites` : `Save ${name}`;
+  const label = usesPicker
+    ? t.favorites.saveToListLabel(name)
+    : active
+      ? t.favorites.removeCard(name)
+      : t.favorites.saveCard(name);
 
   function onClick(event: MouseEvent<HTMLButtonElement>) {
     if (usesPicker) {
@@ -73,7 +79,7 @@ export function FavoriteButton({ id, name, variant = "icon" }: FavoriteButtonPro
           }`}
         >
           {icon}
-          {active ? "Saved" : "Save"}
+          {active ? t.favorites.saved : t.favorites.save}
         </button>
         {picker}
       </>
