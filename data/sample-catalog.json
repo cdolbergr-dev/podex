@@ -1,0 +1,6435 @@
+{
+  "cards": [
+    {
+      "id": "pop9-3",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Slam",
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "30×",
+          "text": "Flip 2 coins. This attack does 30 damage times the number of heads."
+        },
+        {
+          "name": "High Volt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "60",
+          "text": "If Raichu evolved from Pikachu during this turn, this attack's base damage is 100 instead of 60."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "+20"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "pop9",
+        "name": "POP Series 9",
+        "series": "",
+        "printedTotal": 17,
+        "total": 17,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/pop/pop9/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/pop/pop9/logo.webp"
+        }
+      },
+      "number": "3",
+      "artist": "Midori Harada",
+      "rarity": "Rare",
+      "flavorText": "It can loose 100,000-volt bursts of electricity, instantly downing foes several times its size.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/pop/pop9/3/low.webp",
+        "large": "https://assets.tcgdex.net/en/pop/pop9/3/high.webp"
+      }
+    },
+    {
+      "id": "lc-7",
+      "name": "Dark Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "70",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Surprise Thunder",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "30",
+          "text": "Flip a coin. If heads, flip another coin. If the second coins is heads, this attack does 20 damage to each of your opponent's Benched Pokémon. If the second coin is tails, this attack does 10 damage to each of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "lc",
+        "name": "Legendary Collection",
+        "series": "",
+        "printedTotal": 110,
+        "total": 110,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/lc/lc/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/lc/lc/logo.webp"
+        }
+      },
+      "number": "7",
+      "artist": "Mitsuhiro Arita",
+      "rarity": "Holo Rare",
+      "flavorText": "Stores up electricity in its body, then suddenly releases it to surprise and shock everyone.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/lc/lc/7/low.webp",
+        "large": "https://assets.tcgdex.net/en/lc/lc/7/high.webp"
+      }
+    },
+    {
+      "id": "dp7-8",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Slice",
+          "cost": [],
+          "convertedEnergyCost": 0,
+          "damage": "30",
+          "text": "Raichu can't use Slice during your next turn."
+        },
+        {
+          "name": "Split Ball",
+          "cost": [
+            "Colorless",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "50",
+          "text": "Move an Energy card attached to Raichu to 1 of your Benched Pokémon."
+        },
+        {
+          "name": "Burst Ball",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "100",
+          "text": "Discard 3 Energy attached to any of your Pokémon in any way you like."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "+20"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "set": {
+        "id": "dp7",
+        "name": "Stormfront",
+        "series": "",
+        "printedTotal": 100,
+        "total": 106,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/dp/dp7/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/dp/dp7/logo.webp"
+        }
+      },
+      "number": "8",
+      "artist": "Kagemaru Himeno",
+      "rarity": "Rare Holo",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/dp/dp7/8/low.webp",
+        "large": "https://assets.tcgdex.net/en/dp/dp7/8/high.webp"
+      }
+    },
+    {
+      "id": "hgss1-10",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Iron Tail",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "30×",
+          "text": "Flip a coin until you get tails. This attack does 30 damage times the number of heads."
+        },
+        {
+          "name": "Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "100",
+          "text": "Discard all Energy attached to Raichu."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "convertedRetreatCost": 0,
+      "set": {
+        "id": "hgss1",
+        "name": "HeartGold SoulSilver",
+        "series": "",
+        "printedTotal": 123,
+        "total": 124,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/hgss/hgss1/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/hgss/hgss1/logo.webp"
+        }
+      },
+      "number": "10",
+      "artist": "match",
+      "rarity": "Holo Rare",
+      "flavorText": "If the electric pouches in its cheeks become fully charged, both ears will stand straight up.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/hgss/hgss1/10/low.webp",
+        "large": "https://assets.tcgdex.net/en/hgss/hgss1/10/high.webp"
+      }
+    },
+    {
+      "id": "gym2-11",
+      "name": "Lt. Surge's Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "80",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Kerzap",
+          "cost": [
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "20+",
+          "text": "Flip a coin. If heads, this attack does 20 damage plus 30 more damage to the Defending Pokémon and discard all Lightning Energy cards attached to Lt. Surge's Raichu. If tails, this attack does 20 damage."
+        },
+        {
+          "name": "Thundertackle",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 4,
+          "damage": "40",
+          "text": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed. If tails, Lt. Surge's Raichu does 20 damage to itself."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "x2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedRetreatCost": 2,
+      "set": {
+        "id": "gym2",
+        "name": "Gym Challenge",
+        "series": "",
+        "printedTotal": 132,
+        "total": 132,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/gym/gym2/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/gym/gym2/logo.webp"
+        }
+      },
+      "number": "11",
+      "artist": "Ken Sugimori",
+      "rarity": "Holo Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/gym/gym2/11/low.webp",
+        "large": "https://assets.tcgdex.net/en/gym/gym2/11/high.webp"
+      }
+    },
+    {
+      "id": "ex16-12",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "70",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Plasma",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "10",
+          "text": "Search your discard pile for a Lightning Energy card and attach it to Raichu."
+        },
+        {
+          "name": "Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "100",
+          "text": "Discard all Energy cards attached to Raichu."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "ex16",
+        "name": "Power Keepers",
+        "series": "",
+        "printedTotal": 108,
+        "total": 108,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/ex/ex16/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/ex/ex16/logo.webp"
+        }
+      },
+      "number": "12",
+      "artist": "Hajime Kusajima",
+      "rarity": "Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/ex/ex16/12/low.webp",
+        "large": "https://assets.tcgdex.net/en/ex/ex16/12/high.webp"
+      }
+    },
+    {
+      "id": "ex6-12",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "80",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Recharge",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "",
+          "text": "Search your deck for up to 2 Lightning Energy cards and attach them to Raichu. Shuffle your deck afterward."
+        },
+        {
+          "name": "Thunder Reflection",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "50",
+          "text": "You may move any number of Lightning Energy cards attached to Raichu to another of your Pokémon."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "ex6",
+        "name": "FireRed & LeafGreen",
+        "series": "",
+        "printedTotal": 112,
+        "total": 116,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/ex/ex6/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/ex/ex6/logo.webp"
+        }
+      },
+      "number": "12",
+      "artist": "Midori Harada",
+      "rarity": "Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/ex/ex6/12/low.webp",
+        "large": "https://assets.tcgdex.net/en/ex/ex6/12/high.webp"
+      }
+    },
+    {
+      "id": "ex4-13",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "80",
+      "types": [
+        "Lightning"
+      ],
+      "attacks": [
+        {
+          "name": "Spark",
+          "cost": [
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "20",
+          "text": "Does 10 damage to 2 of your opponent's Benched Pokémon (1 if there is only 1). (Don't apply Weakness and Resistance for Benched Pokémon.)"
+        },
+        {
+          "name": "Kerzap",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "40+",
+          "text": "Flip a coin. If heads, this attack does 40 damage plus 40 more damage to the Defending Pokémon and discard all Lightning Energy cards attached to Raichu."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "ex4",
+        "name": "Team Magma vs Team Aqua",
+        "series": "",
+        "printedTotal": 95,
+        "total": 97,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/ex/ex4/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/ex/ex4/logo.webp"
+        }
+      },
+      "number": "13",
+      "artist": "Ken Sugimori",
+      "rarity": "Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/ex/ex4/13/low.webp",
+        "large": "https://assets.tcgdex.net/en/ex/ex4/13/high.webp"
+      }
+    },
+    {
+      "id": "base1-14",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "80",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Agility",
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "20",
+          "text": "Flip a coin. If heads, during your opponent's next turn, prevent all effects of attacks, including damage, done to Raichu."
+        },
+        {
+          "name": "Thunder",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 4,
+          "damage": "60",
+          "text": "Flip a coin. If tails, Raichu does 30 damage to itself."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "base1",
+        "name": "Base Set",
+        "series": "",
+        "printedTotal": 102,
+        "total": 102,
+        "images": {
+          "symbol": "",
+          "logo": "https://assets.tcgdex.net/en/base/base1/logo.webp"
+        }
+      },
+      "number": "14",
+      "artist": "Ken Sugimori",
+      "rarity": "Rare",
+      "flavorText": "Its long tail serves as a ground to protect itself from its own high-voltage power.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/base/base1/14/low.webp",
+        "large": "https://assets.tcgdex.net/en/base/base1/14/high.webp"
+      }
+    },
+    {
+      "id": "base3-14",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Gigashock",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 4,
+          "damage": "30",
+          "text": "Choose 3 of your opponent's Benched Pokémon and this attack does 10 damage to each of them. (Don't apply Weakness and Resistance for Benched Pokémon.) If your opponent has fewer than 3 Benched Pokémon, do the damage to each of them."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "base3",
+        "name": "Fossil",
+        "series": "",
+        "printedTotal": 62,
+        "total": 62,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/base/base3/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/base/base3/logo.webp"
+        }
+      },
+      "number": "14",
+      "artist": "Mitsuhiro Arita",
+      "rarity": "Rare",
+      "flavorText": "Its long tail serves as a ground to protect itself from its own high-voltage power.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/base/base3/14/low.webp",
+        "large": "https://assets.tcgdex.net/en/base/base3/14/high.webp"
+      }
+    },
+    {
+      "id": "dp2-15",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Electromagnetic Induction",
+          "cost": [],
+          "convertedEnergyCost": 0,
+          "damage": "",
+          "text": "Search your deck for up to 2 Lightning Energy cards and attach them to 1 of your Pokémon. Shuffle your deck afterward."
+        },
+        {
+          "name": "Explosive Thunder",
+          "cost": [
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "30x",
+          "text": "Discard all basic Lightning Energy cards attached to Raichu. This attack does 30 damage times the number of Lightning Energy cards you discarded."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "+20"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "dp2",
+        "name": "Mysterious Treasures",
+        "series": "",
+        "printedTotal": 123,
+        "total": 124,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/dp/dp2/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/dp/dp2/logo.webp"
+        }
+      },
+      "number": "15",
+      "artist": "Daisuke Ito",
+      "rarity": "Rare Holo",
+      "flavorText": "It turns aggressive if it has too much electricity in its body. It discharges power through its tail.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/dp/dp2/15/low.webp",
+        "large": "https://assets.tcgdex.net/en/dp/dp2/15/high.webp"
+      }
+    },
+    {
+      "id": "ex13-15",
+      "name": "Raichu δ",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "70",
+      "types": [
+        "Metal"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Zzzap",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "",
+          "text": "Does 20 damage to each Pokémon that has any Poké-Powers or Poké-Bodies (both yours and your opponent's). Don't apply Weakness or Resistance."
+        },
+        {
+          "name": "Metallic Thunder",
+          "cost": [
+            "Metal",
+            "Metal",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "50",
+          "text": "You may discard 2 Metal Energy attached to Raichu. If you do, this attack's base damage is 90 instead of 50."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "convertedRetreatCost": 0,
+      "set": {
+        "id": "ex13",
+        "name": "Holon Phantoms",
+        "series": "",
+        "printedTotal": 110,
+        "total": 111,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/ex/ex13/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/ex/ex13/logo.webp"
+        }
+      },
+      "number": "15",
+      "artist": "Masakazu Fukuda",
+      "rarity": "Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/ex/ex13/15/low.webp",
+        "large": "https://assets.tcgdex.net/en/ex/ex13/15/high.webp"
+      }
+    },
+    {
+      "id": "base4-16",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "80",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Agility",
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "20",
+          "text": "Flip a coin. If heads, during your opponent's next turn, prevent all effects of attacks, including damage, done to Raichu."
+        },
+        {
+          "name": "Thunder",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 4,
+          "damage": "60",
+          "text": "Flip a coin. If tails, Raichu does 30 damage to itself."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "base4",
+        "name": "Base Set 2",
+        "series": "",
+        "printedTotal": 130,
+        "total": 130,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/base/base4/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/base/base4/logo.webp"
+        }
+      },
+      "number": "16",
+      "artist": "Ken Sugimori",
+      "rarity": "Rare",
+      "flavorText": "Its long tail serves as a ground to protect itself from its own high-voltage power.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/base/base4/16/low.webp",
+        "large": "https://assets.tcgdex.net/en/base/base4/16/high.webp"
+      }
+    },
+    {
+      "id": "tk-sm-r-17",
+      "name": "Alolan Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "110",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Quick Attack",
+          "cost": [],
+          "convertedEnergyCost": 0,
+          "damage": "10+",
+          "text": "Flip a coin. If heads, this attack does 30 more damage."
+        },
+        {
+          "name": "Electric Surfer",
+          "cost": [],
+          "convertedEnergyCost": 0,
+          "damage": "70",
+          "text": ""
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "tk-sm-r",
+        "name": "SM trainer Kit (Alolan Raichu)",
+        "series": "",
+        "printedTotal": 30,
+        "total": 30,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/tk/tk-sm-r/symbol.webp",
+          "logo": ""
+        }
+      },
+      "number": "17",
+      "artist": "5ban Graphics",
+      "rarity": "None",
+      "flavorText": "It only evolves to this form in the Alola region. According to researchers, its diet is one of the causes of this change.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "",
+        "large": ""
+      }
+    },
+    {
+      "id": "mfb-18",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "100",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Electro Ball",
+          "cost": [
+            "Lightning"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "30",
+          "text": ""
+        },
+        {
+          "name": "Thunder",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "60",
+          "text": ""
+        }
+      ],
+      "set": {
+        "id": "mfb",
+        "name": "My First Battle",
+        "series": "",
+        "printedTotal": 48,
+        "total": 48,
+        "images": {
+          "symbol": "",
+          "logo": ""
+        }
+      },
+      "number": "18",
+      "artist": "Kariya",
+      "rarity": "None",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "",
+        "large": ""
+      }
+    },
+    {
+      "id": "sv04.5-019",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "120",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Thunder",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "180",
+          "text": "This Pokémon also does 50 damage to itself."
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Electrical Grounding",
+          "text": "When 1 of your Pokémon is Knocked Out by damage from an attack from your opponent's Pokémon, you may move a {L} Energy from that Pokémon to this Pokémon.",
+          "type": "Ability"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "sv04.5",
+        "name": "Paldean Fates",
+        "series": "",
+        "printedTotal": 91,
+        "total": 245,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sv/sv04.5/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sv/sv04.5/logo.webp"
+        }
+      },
+      "number": "019",
+      "artist": "Naoyo Kimura",
+      "rarity": "Rare",
+      "flavorText": "Its tail discharges electricity into the ground, protecting it from getting shocked.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sv/sv04.5/019/low.webp",
+        "large": "https://assets.tcgdex.net/en/sv/sv04.5/019/high.webp"
+      }
+    },
+    {
+      "id": "tk-hs-r-19",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Iron Tail",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "30×",
+          "text": "Flip a coin until you get tails. This attack does 30 damage times the number of heads."
+        },
+        {
+          "name": "Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "100",
+          "text": "Discard all Energy attached to Raichu."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "convertedRetreatCost": 0,
+      "set": {
+        "id": "tk-hs-r",
+        "name": "HS trainer Kit (Raichu)",
+        "series": "",
+        "printedTotal": 30,
+        "total": 30,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/tk/tk-hs-r/symbol.webp",
+          "logo": ""
+        }
+      },
+      "number": "19",
+      "artist": "match",
+      "rarity": "None",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "",
+        "large": ""
+      }
+    },
+    {
+      "id": "sm115-20",
+      "name": "Raichu GX",
+      "supertype": "Pokémon",
+      "subtypes": [],
+      "hp": "210",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "120",
+          "text": ""
+        },
+        {
+          "name": "Spark Ball GX",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "200",
+          "text": "(You can’t use more than 1 GX attack in a game.)"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "sm115",
+        "name": "Hidden Fates",
+        "series": "",
+        "printedTotal": 68,
+        "total": 69,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sm/sm115/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sm/sm115/logo.webp"
+        }
+      },
+      "number": "20",
+      "artist": "5ban Graphics",
+      "rarity": "Ultra Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sm/sm115/20/low.webp",
+        "large": "https://assets.tcgdex.net/en/sm/sm115/20/high.webp"
+      }
+    },
+    {
+      "id": "neo3-21",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "80",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Thundershock",
+          "cost": [
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "20",
+          "text": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+        },
+        {
+          "name": "Lightning Strike",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "40",
+          "text": "You may discard all Energy cards attached to Raichu. If you do, this attack does 80 damage."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "neo3",
+        "name": "Neo Revelation",
+        "series": "",
+        "printedTotal": 64,
+        "total": 66,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/neo/neo3/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/neo/neo3/logo.webp"
+        }
+      },
+      "number": "21",
+      "artist": "Masako Yamashita",
+      "rarity": "Rare",
+      "flavorText": "If the electric pouches in its cheeks become fully charged, both ears will stand straight up.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/neo/neo3/21/low.webp",
+        "large": "https://assets.tcgdex.net/en/neo/neo3/21/high.webp"
+      }
+    },
+    {
+      "id": "ecard1-25",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "80",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Plasma",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "10",
+          "text": "If there are any Lightning Energy cards in your discard pile, flip a coin. If heads, attach 1 of them to Raichu."
+        },
+        {
+          "name": "Shock Bolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "60",
+          "text": "Discard all Lightning Energy cards attached to Raichu or this attack does nothing."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "x2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "ecard1",
+        "name": "Expedition Base Set",
+        "series": "",
+        "printedTotal": 165,
+        "total": 165,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/ecard/ecard1/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/ecard/ecard1/logo.webp"
+        }
+      },
+      "number": "25",
+      "artist": "Atsuko Nishida",
+      "rarity": "Holo Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/ecard/ecard1/25/low.webp",
+        "large": "https://assets.tcgdex.net/en/ecard/ecard1/25/high.webp"
+      }
+    },
+    {
+      "id": "sv03.5-026",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "120",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Thunder",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "180",
+          "text": "This Pokémon also does 50 damage to itself."
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Electrical Grounding",
+          "text": "When 1 of your Pokémon is Knocked Out by damage from an attack from your opponent's Pokémon, you may move a {L} Energy from that Pokémon to this Pokémon.",
+          "type": "Ability"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "sv03.5",
+        "name": "151",
+        "series": "",
+        "printedTotal": 165,
+        "total": 207,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sv/sv03.5/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sv/sv03.5/logo.webp"
+        }
+      },
+      "number": "026",
+      "artist": "Naoyo Kimura",
+      "rarity": "Rare",
+      "flavorText": "Its tail discharges electricity into the ground, protecting it from getting shocked.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sv/sv03.5/026/low.webp",
+        "large": "https://assets.tcgdex.net/en/sv/sv03.5/026/high.webp"
+      }
+    },
+    {
+      "id": "A1a-026",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "120",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Gigashock",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "60",
+          "text": "This attack also does 20 damage to each of your opponent's Benched Pokémon."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "+20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedRetreatCost": 2,
+      "set": {
+        "id": "A1a",
+        "name": "Mythical Island",
+        "series": "",
+        "printedTotal": 68,
+        "total": 86,
+        "images": {
+          "symbol": "",
+          "logo": "https://assets.tcgdex.net/en/tcgp/A1a/logo.webp"
+        }
+      },
+      "number": "026",
+      "artist": "hncl",
+      "rarity": "Three Diamond",
+      "flavorText": "Its tail discharges electricity into the ground, protecting it from getting shocked.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/tcgp/A1a/026/low.webp",
+        "large": "https://assets.tcgdex.net/en/tcgp/A1a/026/high.webp"
+      }
+    },
+    {
+      "id": "A2a-026",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Spark",
+          "cost": [
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "40",
+          "text": "This attack also does 20 damage to 1 of your opponent's Benched Pokémon."
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Resilience Link",
+          "text": "If you have Arceus or Arceus ex in play, this Pokémon takes −30 damage from attacks.",
+          "type": "Ability"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "+20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "A2a",
+        "name": "Triumphant Light",
+        "series": "",
+        "printedTotal": 75,
+        "total": 96,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/tcgp/A2a/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/tcgp/A2a/logo.webp"
+        }
+      },
+      "number": "026",
+      "artist": "Nisota Niso",
+      "rarity": "Three Diamond",
+      "flavorText": "Its tail discharges electricity into the ground, protecting it from getting shocked.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/tcgp/A2a/026/low.webp",
+        "large": "https://assets.tcgdex.net/en/tcgp/A2a/026/high.webp"
+      }
+    },
+    {
+      "id": "g1-27",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Circle Circuit",
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "20×",
+          "text": "This attack does 20 damage times the number of your Benched Pokémon."
+        },
+        {
+          "name": "Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "100",
+          "text": "Discard all Energy attached to this Pokémon."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "convertedRetreatCost": 0,
+      "set": {
+        "id": "g1",
+        "name": "Generations",
+        "series": "",
+        "printedTotal": 83,
+        "total": 117,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/xy/g1/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/xy/g1/logo.webp"
+        }
+      },
+      "number": "27",
+      "artist": "Mitsuhiro Arita",
+      "rarity": "Rare",
+      "flavorText": "When its electricity builds, its muscles are stimulated, and it becomes more aggressive than usual.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/xy/g1/27/low.webp",
+        "large": "https://assets.tcgdex.net/en/xy/g1/27/high.webp"
+      }
+    },
+    {
+      "id": "ecard3-27",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "80",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Zzzap",
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "",
+          "text": "This attack does 20 damage to each Pokémon with a Poké-Body or Poké-Power (yours and your opponent's). (Don't apply Weakness or Resistance.)"
+        },
+        {
+          "name": "Lightning Storm",
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "50",
+          "text": "Flip a coin. If tails, put 2 damage counters on Raichu."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "x2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "ecard3",
+        "name": "Skyridge",
+        "series": "",
+        "printedTotal": 144,
+        "total": 182,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/ecard/ecard3/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/ecard/ecard3/logo.webp"
+        }
+      },
+      "number": "27",
+      "artist": "Yuka Morii",
+      "rarity": "Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/ecard/ecard3/27/low.webp",
+        "large": "https://assets.tcgdex.net/en/ecard/ecard3/27/high.webp"
+      }
+    },
+    {
+      "id": "pl4-27",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Boosted Voltage",
+          "cost": [
+            "Lightning"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "20",
+          "text": "If Raichu has a Pokémon Tool card attached to it, this attack does 20 damage to each of your opponent's Benched Pokémon that isn't an Evolved Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+        },
+        {
+          "name": "Thunder Blast",
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "70",
+          "text": "Discard a Lightning Energy card attached to Raichu."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "+20"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "pl4",
+        "name": "Arceus",
+        "series": "",
+        "printedTotal": 99,
+        "total": 111,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/pl/pl4/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/pl/pl4/logo.webp"
+        }
+      },
+      "number": "27",
+      "artist": "Suwama Chiaki",
+      "rarity": "Rare",
+      "flavorText": "Its tail discharges electricity into the ground, protecting it from getting shocked.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/pl/pl4/27/low.webp",
+        "large": "https://assets.tcgdex.net/en/pl/pl4/27/high.webp"
+      }
+    },
+    {
+      "id": "xy3-28",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Thunder Shock",
+          "cost": [
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "30",
+          "text": "Flip a coin. If heads, your opponent's Active Pokémon is now Paralyzed."
+        },
+        {
+          "name": "Electro Ball",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "80",
+          "text": ""
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "xy3",
+        "name": "Furious Fists",
+        "series": "",
+        "printedTotal": 111,
+        "total": 114,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/xy/xy3/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/xy/xy3/logo.webp"
+        }
+      },
+      "number": "28",
+      "artist": "Sanosuke Sakuma",
+      "rarity": "Uncommon",
+      "flavorText": "When its electricity builds, its muscles are stimulated, and it becomes more aggressive than usual.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/xy/xy3/28/low.webp",
+        "large": "https://assets.tcgdex.net/en/xy/xy3/28/high.webp"
+      }
+    },
+    {
+      "id": "gym1-28",
+      "name": "Lt. Surge's Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "70",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Mega Punch",
+          "cost": [
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "30",
+          "text": ""
+        },
+        {
+          "name": "Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 4,
+          "damage": "100",
+          "text": "Discard all Energy cards attached to Lt. Surge's Raichu in order to use this attack."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "x2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedRetreatCost": 2,
+      "set": {
+        "id": "gym1",
+        "name": "Gym Heroes",
+        "series": "",
+        "printedTotal": 132,
+        "total": 132,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/gym/gym1/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/gym/gym1/logo.webp"
+        }
+      },
+      "number": "28",
+      "artist": "Ken Sugimori",
+      "rarity": "Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/gym/gym1/28/low.webp",
+        "large": "https://assets.tcgdex.net/en/gym/gym1/28/high.webp"
+      }
+    },
+    {
+      "id": "sm3.5-29",
+      "name": "Raichu GX",
+      "supertype": "Pokémon",
+      "subtypes": [],
+      "hp": "210",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Powerful Spark",
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "20+",
+          "text": "This attack does 20 more damage times the amount of Lightning Energy attached to your Pokémon."
+        },
+        {
+          "name": "Thunder",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "160",
+          "text": "This Pokémon does 30 damage to itself."
+        },
+        {
+          "name": "Voltail GX",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "120",
+          "text": "Your opponent’s Active Pokémon is now Paralyzed. (You can’t use more than 1 GX attack in a game.)"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "sm3.5",
+        "name": "Shining Legends",
+        "series": "",
+        "printedTotal": 73,
+        "total": 78,
+        "images": {
+          "symbol": "",
+          "logo": ""
+        }
+      },
+      "number": "29",
+      "artist": "5ban Graphics",
+      "rarity": "Ultra Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "",
+        "large": ""
+      }
+    },
+    {
+      "id": "base3-29",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Gigashock",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 4,
+          "damage": "30",
+          "text": "Choose 3 of your opponent's Benched Pokémon and this attack does 10 damage to each of them. (Don't apply Weakness and Resistance for Benched Pokémon.) If your opponent has fewer than 3 Benched Pokémon, do the damage to each of them."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "base3",
+        "name": "Fossil",
+        "series": "",
+        "printedTotal": 62,
+        "total": 62,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/base/base3/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/base/base3/logo.webp"
+        }
+      },
+      "number": "29",
+      "artist": "Mitsuhiro Arita",
+      "rarity": "Rare",
+      "flavorText": "Its long tail serves as a ground to protect itself from its own high voltage power.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/base/base3/29/low.webp",
+        "large": "https://assets.tcgdex.net/en/base/base3/29/high.webp"
+      }
+    },
+    {
+      "id": "tk-hs-r-30",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Iron Tail",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "30×",
+          "text": "Flip a coin until you get tails. This attack does 30 damage times the number of heads."
+        },
+        {
+          "name": "Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "100",
+          "text": "Discard all Energy attached to Raichu."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "convertedRetreatCost": 0,
+      "set": {
+        "id": "tk-hs-r",
+        "name": "HS trainer Kit (Raichu)",
+        "series": "",
+        "printedTotal": 30,
+        "total": 30,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/tk/tk-hs-r/symbol.webp",
+          "logo": ""
+        }
+      },
+      "number": "30",
+      "artist": "match",
+      "rarity": "None",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "",
+        "large": ""
+      }
+    },
+    {
+      "id": "tk-sm-r-30",
+      "name": "Alolan Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "110",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Quick Attack",
+          "cost": [],
+          "convertedEnergyCost": 0,
+          "damage": "10+",
+          "text": "Flip a coin. If heads, this attack does 30 more damage."
+        },
+        {
+          "name": "Electric Surfer",
+          "cost": [],
+          "convertedEnergyCost": 0,
+          "damage": "70",
+          "text": ""
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "tk-sm-r",
+        "name": "SM trainer Kit (Alolan Raichu)",
+        "series": "",
+        "printedTotal": 30,
+        "total": 30,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/tk/tk-sm-r/symbol.webp",
+          "logo": ""
+        }
+      },
+      "number": "30",
+      "artist": "5ban Graphics",
+      "rarity": "None",
+      "flavorText": "It only evolves to this form in the Alola region. According to researchers, its diet is one of the causes of this change.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "",
+        "large": ""
+      }
+    },
+    {
+      "id": "pl2-31",
+      "name": "Raichu GL",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Basic"
+      ],
+      "hp": "80",
+      "types": [
+        "Lightning"
+      ],
+      "attacks": [
+        {
+          "name": "Thunder Throw",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "",
+          "text": "Choose 2 of your opponent's Benched Pokémon. This attack does 10 damage to each of them. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+        },
+        {
+          "name": "Repeat Lightning",
+          "cost": [
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "30+",
+          "text": "Does 30 damage plus 10 more damage for each of your opponent's Benched Pokémon that has any damage counters on it."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "x2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "convertedRetreatCost": 0,
+      "set": {
+        "id": "pl2",
+        "name": "Rising Rivals",
+        "series": "",
+        "printedTotal": 111,
+        "total": 120,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/pl/pl2/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/pl/pl2/logo.webp"
+        }
+      },
+      "number": "31",
+      "artist": "Kouki Saitou",
+      "rarity": "Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/pl/pl2/31/low.webp",
+        "large": "https://assets.tcgdex.net/en/pl/pl2/31/high.webp"
+      }
+    },
+    {
+      "id": "sm4-31",
+      "name": "Alolan Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "110",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Psychic",
+          "cost": [
+            "Colorless",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "70+",
+          "text": "This attack does 20 more damage times the amount of Energy attached to your opponent’s Active Pokémon."
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Surge Surfer",
+          "text": "If there is any Stadium card in play, this Pokémon has no Retreat Cost.",
+          "type": "Ability"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedRetreatCost": 2,
+      "set": {
+        "id": "sm4",
+        "name": "Crimson Invasion",
+        "series": "",
+        "printedTotal": 111,
+        "total": 125,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sm/sm4/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sm/sm4/logo.webp"
+        }
+      },
+      "number": "31",
+      "artist": "Akira Komayama",
+      "rarity": "Rare",
+      "flavorText": "It only evolves to this form in the Alola region. According to researchers, its diet is one of the causes of this change.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sm/sm4/31/low.webp",
+        "large": "https://assets.tcgdex.net/en/sm/sm4/31/high.webp"
+      }
+    },
+    {
+      "id": "hgss3-33",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "80",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Pain-full Punch",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "30",
+          "text": ""
+        },
+        {
+          "name": "Spark",
+          "cost": [
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "40",
+          "text": "Does 20 damage to 1 of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "convertedRetreatCost": 0,
+      "set": {
+        "id": "hgss3",
+        "name": "Undaunted",
+        "series": "",
+        "printedTotal": 90,
+        "total": 91,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/hgss/hgss3/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/hgss/hgss3/logo.webp"
+        }
+      },
+      "number": "33",
+      "artist": "Kouki Saitou",
+      "rarity": "Uncommon",
+      "flavorText": "When its electricity builds, its muscles are stimulated, and it becomes more aggressive than usual.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/hgss/hgss3/33/low.webp",
+        "large": "https://assets.tcgdex.net/en/hgss/hgss3/33/high.webp"
+      }
+    },
+    {
+      "id": "xy12-36",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "100",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Energize",
+          "cost": [
+            "Lightning"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "",
+          "text": "Attach a Lightning Energy card from your discard pile to this Pokémon."
+        },
+        {
+          "name": "Spark Bolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "70+",
+          "text": "You may discard all Energy attached to this Pokémon. If you do, this attack does 70 more damage."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "xy12",
+        "name": "Evolutions",
+        "series": "",
+        "printedTotal": 108,
+        "total": 113,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/xy/xy12/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/xy/xy12/logo.webp"
+        }
+      },
+      "number": "36",
+      "artist": "Ken Sugimori",
+      "rarity": "Rare",
+      "flavorText": "Its electric charges can reach even 100,000 volts. Careless contact can cause even an Indian elephant to faint.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/xy/xy12/36/low.webp",
+        "large": "https://assets.tcgdex.net/en/xy/xy12/36/high.webp"
+      }
+    },
+    {
+      "id": "bw4-40",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Thundershock",
+          "cost": [
+            "Lightning"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "20",
+          "text": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+        },
+        {
+          "name": "Slam",
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "80",
+          "text": "Flip 2 coins. This attack does 80 damage times the number of heads."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "bw4",
+        "name": "Next Destinies",
+        "series": "",
+        "printedTotal": 99,
+        "total": 103,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/bw/bw4/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/bw/bw4/logo.webp"
+        }
+      },
+      "number": "40",
+      "artist": "Naoki Saito",
+      "rarity": "Uncommon",
+      "flavorText": "Its tail discharges electricity into the ground, protecting it from getting shocked.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/bw/bw4/40/low.webp",
+        "large": "https://assets.tcgdex.net/en/bw/bw4/40/high.webp"
+      }
+    },
+    {
+      "id": "sm3-41",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "110",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Volt Tackle",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "130",
+          "text": "This Pokémon does 30 damage to itself."
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Evoshock",
+          "text": "When you play this Pokémon from your hand to evolve 1 of your Pokémon during your turn, you may leave your opponent’s Active Pokémon Paralyzed.",
+          "type": "Ability"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "sm3",
+        "name": "Burning Shadows",
+        "series": "",
+        "printedTotal": 147,
+        "total": 169,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sm/sm3/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sm/sm3/logo.webp"
+        }
+      },
+      "number": "41",
+      "artist": "Kagemaru Himeno",
+      "rarity": "Rare",
+      "flavorText": "It unleashes electric shocks that can reach 100,000 volts. When agitated, it can knock out even an Indian elephant.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sm/sm3/41/low.webp",
+        "large": "https://assets.tcgdex.net/en/sm/sm3/41/high.webp"
+      }
+    },
+    {
+      "id": "xy1-43",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Circle Circuit",
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "20×",
+          "text": "This attack does 20 damage times the number of your Benched Pokémon."
+        },
+        {
+          "name": "Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "100",
+          "text": "Discard all Energy attached to this Pokémon."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "convertedRetreatCost": 0,
+      "set": {
+        "id": "xy1",
+        "name": "XY",
+        "series": "",
+        "printedTotal": 146,
+        "total": 146,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/xy/xy1/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/xy/xy1/logo.webp"
+        }
+      },
+      "number": "43",
+      "artist": "Mitsuhiro Arita",
+      "rarity": "Rare",
+      "flavorText": "When its electricity builds, its muscles are stimulated, and it becomes more aggressive than usual.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/xy/xy1/43/low.webp",
+        "large": "https://assets.tcgdex.net/en/xy/xy1/43/high.webp"
+      }
+    },
+    {
+      "id": "P-A-044",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Spark",
+          "cost": [
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "40",
+          "text": "This attack also does 20 damage to 1 of your opponent's Benched Pokémon."
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Resilience Link",
+          "text": "If you have Arceus or Arceus ex in play, this Pokémon takes −30 damage from attacks.",
+          "type": "Ability"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "+20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "P-A",
+        "name": "Promos-A",
+        "series": "",
+        "printedTotal": 0,
+        "total": 100,
+        "images": {
+          "symbol": "",
+          "logo": "https://assets.tcgdex.net/en/tcgp/P-A/logo.webp"
+        }
+      },
+      "number": "044",
+      "artist": "Kazumasa Yasukuni",
+      "rarity": "None",
+      "flavorText": "Its tail discharges electricity into the ground,\nprotecting it from getting shocked.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/tcgp/P-A/044/low.webp",
+        "large": "https://assets.tcgdex.net/en/tcgp/P-A/044/high.webp"
+      }
+    },
+    {
+      "id": "dp5-45",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Agility",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "20",
+          "text": "Flip a coin. If heads, prevent all effects of an attack, including damage, done to Raichu during your opponent's next turn."
+        },
+        {
+          "name": "Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "100",
+          "text": "Discard all Energy cards attached to Raichu."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "+20"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "set": {
+        "id": "dp5",
+        "name": "Majestic Dawn",
+        "series": "",
+        "printedTotal": 100,
+        "total": 100,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/dp/dp5/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/dp/dp5/logo.webp"
+        }
+      },
+      "number": "45",
+      "artist": "Daisuke Ito",
+      "rarity": "Uncommon",
+      "flavorText": "It can loose 100,000-volt bursts of electricity, instantly downing foes several times its size.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/dp/dp5/45/low.webp",
+        "large": "https://assets.tcgdex.net/en/dp/dp5/45/high.webp"
+      }
+    },
+    {
+      "id": "swsh9-045",
+      "name": "Raichu V",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Basic"
+      ],
+      "hp": "200",
+      "types": [
+        "Lightning"
+      ],
+      "attacks": [
+        {
+          "name": "Fast Charge",
+          "cost": [
+            "Lightning"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "",
+          "text": "If you go first, you can use this attack during your first turn. Search your deck for a Lightning Energy card and attach it to this Pokémon. Then, shuffle your deck."
+        },
+        {
+          "name": "Dynamic Spark",
+          "cost": [
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "60×",
+          "text": "You may discard any amount of Lightning Energy from your Pokémon. This attack does 60 damage for each card you discarded in this way."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "swsh9",
+        "name": "Brilliant Stars",
+        "series": "",
+        "printedTotal": 172,
+        "total": 186,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/swsh/swsh9/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/swsh/swsh9/logo.webp"
+        }
+      },
+      "number": "045",
+      "artist": "MUGENUP",
+      "rarity": "Holo Rare V",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/swsh/swsh9/045/low.webp",
+        "large": "https://assets.tcgdex.net/en/swsh/swsh9/045/high.webp"
+      }
+    },
+    {
+      "id": "xy8-49",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Thunderclap Shot",
+          "cost": [
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "",
+          "text": "This attack does 50 damage to each of your opponent's Pokémon-EX. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+        },
+        {
+          "name": "Electrosmash",
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "70+",
+          "text": "Flip a coin. If heads, this attack does 20 more damage."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "convertedRetreatCost": 0,
+      "set": {
+        "id": "xy8",
+        "name": "BREAKthrough",
+        "series": "",
+        "printedTotal": 162,
+        "total": 165,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/xy/xy8/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/xy/xy8/logo.webp"
+        }
+      },
+      "number": "49",
+      "artist": "Masakazu Fukuda",
+      "rarity": "Rare",
+      "flavorText": "It can loose 100,000-volt bursts of electricity instantly downing foes several times its size.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/xy/xy8/49/low.webp",
+        "large": "https://assets.tcgdex.net/en/xy/xy8/49/high.webp"
+      }
+    },
+    {
+      "id": "xy8-50",
+      "name": "Raichu BREAK",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "BREAK"
+      ],
+      "hp": "130",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Raichu",
+      "attacks": [
+        {
+          "name": "Grand Bolt",
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "170",
+          "text": "Discard all Energy attached to this Pokémon."
+        }
+      ],
+      "convertedRetreatCost": 0,
+      "set": {
+        "id": "xy8",
+        "name": "BREAKthrough",
+        "series": "",
+        "printedTotal": 162,
+        "total": 165,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/xy/xy8/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/xy/xy8/logo.webp"
+        }
+      },
+      "number": "50",
+      "artist": "5ban Graphics",
+      "rarity": "Ultra Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/xy/xy8/50/low.webp",
+        "large": "https://assets.tcgdex.net/en/xy/xy8/50/high.webp"
+      }
+    },
+    {
+      "id": "swsh12-050",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "120",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Ambushing Spark",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "40+",
+          "text": "If your opponent has used their VSTAR Power during this game, this attack does 100 more damage."
+        },
+        {
+          "name": "Electric Ball",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "120",
+          "text": ""
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "swsh12",
+        "name": "Silver Tempest",
+        "series": "",
+        "printedTotal": 195,
+        "total": 215,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/swsh/swsh12/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/swsh/swsh12/logo.webp"
+        }
+      },
+      "number": "050",
+      "artist": "Megumi Mizutani",
+      "rarity": "Uncommon",
+      "flavorText": "Its long tail serves as a ground to protect itself from its own high-voltage power.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/swsh/swsh12/050/low.webp",
+        "large": "https://assets.tcgdex.net/en/swsh/swsh12/050/high.webp"
+      }
+    },
+    {
+      "id": "swsh7-50",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "130",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Big Sparking",
+          "cost": [
+            "Lightning"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "",
+          "text": "This attack does 50 damage to each Pokémon V and Pokémon-GX (both yours and your opponent's). (Don't apply Weakness and Resistance for Benched Pokémon.)"
+        },
+        {
+          "name": "Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "180",
+          "text": "Discard all Energy from this Pokémon."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedRetreatCost": 2,
+      "set": {
+        "id": "swsh7",
+        "name": "Evolving Skies",
+        "series": "",
+        "printedTotal": 203,
+        "total": 237,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/swsh/swsh7/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/swsh/swsh7/logo.webp"
+        }
+      },
+      "number": "50",
+      "artist": "Mitsuhiro Arita",
+      "rarity": "Holo Rare",
+      "flavorText": "If its electric pouches run empty, it raises its tail to gather electricity from the atmosphere.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/swsh/swsh7/50/low.webp",
+        "large": "https://assets.tcgdex.net/en/swsh/swsh7/50/high.webp"
+      }
+    },
+    {
+      "id": "B2-050",
+      "name": "Alolan Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "110",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Thunder Spear",
+          "cost": [
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "",
+          "text": "This attack does 50 damage to 1 of your opponent's Pokémon."
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Surge Surfer",
+          "text": "If a Stadium is in play, this Pokémon has no Retreat Cost.",
+          "type": "Ability"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "+20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedRetreatCost": 2,
+      "set": {
+        "id": "B2",
+        "name": "Fantastical Parade",
+        "series": "",
+        "printedTotal": 155,
+        "total": 234,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/tcgp/B2/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/tcgp/B2/logo.webp"
+        }
+      },
+      "number": "050",
+      "artist": "Akira Komayama",
+      "rarity": "Three Diamond",
+      "flavorText": "This Pokémon rides on its tail while it uses\nits psychic powers to levitate. It attacks with\nstar-shaped thunderbolts.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/tcgp/B2/050/low.webp",
+        "large": "https://assets.tcgdex.net/en/tcgp/B2/050/high.webp"
+      }
+    },
+    {
+      "id": "ex13-51",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "80",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Thundershock",
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "20",
+          "text": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+        },
+        {
+          "name": "Pika Bolt",
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "50",
+          "text": ""
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "ex13",
+        "name": "Holon Phantoms",
+        "series": "",
+        "printedTotal": 110,
+        "total": 111,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/ex/ex13/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/ex/ex13/logo.webp"
+        }
+      },
+      "number": "51",
+      "artist": "Kouki Saitou",
+      "rarity": "Uncommon",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/ex/ex13/51/low.webp",
+        "large": "https://assets.tcgdex.net/en/ex/ex13/51/high.webp"
+      }
+    },
+    {
+      "id": "sv05-052",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "130",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Collateral Bolts",
+          "cost": [
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "",
+          "text": "This attack does 50 damage to each Pokémon that has any damage counters on it (both yours and your opponent's), except for this Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+        },
+        {
+          "name": "Electric Ball",
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "120",
+          "text": ""
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "sv05",
+        "name": "Temporal Forces",
+        "series": "",
+        "printedTotal": 162,
+        "total": 218,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sv/sv05/symbol.webp",
+          "logo": ""
+        }
+      },
+      "number": "052",
+      "artist": "cochi8i",
+      "rarity": "Common",
+      "flavorText": "If the electric pouches in its cheeks become fully charged, both ears will stand straight up.",
+      "legalities": {
+        "standard": "Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sv/sv05/052/low.webp",
+        "large": "https://assets.tcgdex.net/en/sv/sv05/052/high.webp"
+      }
+    },
+    {
+      "id": "swsh11-053",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "120",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Thunder Shock",
+          "cost": [
+            "Lightning"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "30",
+          "text": "Flip a coin. If heads, your opponent's Active Pokémon is now Paralyzed."
+        },
+        {
+          "name": "Ace Spark",
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "100+",
+          "text": "If you have used your VSTAR Power, this attack does 120 more damage."
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "swsh11",
+        "name": "Lost Origin",
+        "series": "",
+        "printedTotal": 196,
+        "total": 217,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/swsh/swsh11/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/swsh/swsh11/logo.webp"
+        }
+      },
+      "number": "053",
+      "artist": "GIDORA",
+      "rarity": "Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/swsh/swsh11/053/low.webp",
+        "large": "https://assets.tcgdex.net/en/swsh/swsh11/053/high.webp"
+      }
+    },
+    {
+      "id": "sm11-54",
+      "name": "Raichu & Alolan Raichu GX",
+      "supertype": "Pokémon",
+      "subtypes": [],
+      "hp": "260",
+      "types": [
+        "Lightning"
+      ],
+      "attacks": [
+        {
+          "name": "Tandem Shock",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "80+",
+          "text": "If this Pokémon was on the Bench and became your Active Pokémon this turn, this attack does 80 more damage, and your opponent’s Active Pokémon is now Paralyzed."
+        },
+        {
+          "name": "Lightning Ride GX",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "150+",
+          "text": "Switch this Pokémon with 1 of your Benched Pokémon. If this Pokémon has at least 2 extra Lightning Energy attached to it (in addition to this attack’s cost), this attack does 100 more damage. (You can’t use more than 1 GX attack in a game.)"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedRetreatCost": 2,
+      "set": {
+        "id": "sm11",
+        "name": "Unified Minds",
+        "series": "",
+        "printedTotal": 236,
+        "total": 258,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sm/sm11/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sm/sm11/logo.webp"
+        }
+      },
+      "number": "54",
+      "artist": "Mitsuhiro Arita",
+      "rarity": "Ultra Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sm/sm11/54/low.webp",
+        "large": "https://assets.tcgdex.net/en/sm/sm11/54/high.webp"
+      }
+    },
+    {
+      "id": "sm10-55",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "120",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Never Give Up",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "",
+          "text": "You can use this attack only if you have at least 3 more Prize cards remaining than your opponent. Attach all Lightning Energy cards from your discard pile to your Pokémon in any way you like."
+        },
+        {
+          "name": "Head Bolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "110",
+          "text": ""
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedRetreatCost": 2,
+      "set": {
+        "id": "sm10",
+        "name": "Unbroken Bonds",
+        "series": "",
+        "printedTotal": 214,
+        "total": 234,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sm/sm10/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sm/sm10/logo.webp"
+        }
+      },
+      "number": "55",
+      "artist": "Shin Nagasawa",
+      "rarity": "Rare",
+      "flavorText": "As electricity builds up inside its body, it becomes more aggressive. One theory is that the electricity buildup is actually causing stress.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sm/sm10/55/low.webp",
+        "large": "https://assets.tcgdex.net/en/sm/sm10/55/high.webp"
+      }
+    },
+    {
+      "id": "me02.5-056",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "130",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Quick Blow",
+          "cost": [
+            "Lightning"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "20+",
+          "text": "Flip a coin. If heads, this attack does 50 more damage."
+        },
+        {
+          "name": "Strong Volt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "150",
+          "text": "Discard a {L} Energy from this Pokémon."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "me02.5",
+        "name": "Ascended Heroes",
+        "series": "",
+        "printedTotal": 217,
+        "total": 295,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/me/me02.5/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/me/me02.5/logo.webp"
+        }
+      },
+      "number": "056",
+      "artist": "Iori Suzuki",
+      "rarity": "Uncommon",
+      "flavorText": "When its electricity builds, its muscles are stimulated, and it becomes more aggressive than usual.",
+      "legalities": {
+        "standard": "Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/me/me02.5/056/low.webp",
+        "large": "https://assets.tcgdex.net/en/me/me02.5/056/high.webp"
+      }
+    },
+    {
+      "id": "sm11-57",
+      "name": "Alolan Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "110",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Electro Rain",
+          "cost": [
+            "Lightning"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "",
+          "text": "Discard any amount of Lightning Energy from this Pokémon. Then, for each Energy you discarded in this way, choose 1 of your opponent’s Pokémon and do 30 damage to it. (You can choose the same Pokémon more than once.) This damage isn’t affected by Weakness or Resistance."
+        },
+        {
+          "name": "Electric Ball",
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "90",
+          "text": ""
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "sm11",
+        "name": "Unified Minds",
+        "series": "",
+        "printedTotal": 236,
+        "total": 258,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sm/sm11/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sm/sm11/logo.webp"
+        }
+      },
+      "number": "57",
+      "artist": "Kouki Saitou",
+      "rarity": "Rare",
+      "flavorText": "It focuses psychic energy into its tail and rides it like it's surfing. Another name for this Pokémon is \"hodad.\"",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sm/sm11/57/low.webp",
+        "large": "https://assets.tcgdex.net/en/sm/sm11/57/high.webp"
+      }
+    },
+    {
+      "id": "A3-058",
+      "name": "Alolan Raichu ex",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "140",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Psychic",
+          "cost": [
+            "Colorless",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "60+",
+          "text": "This attack does 30 more damage for each Energy attached to your opponent's Active Pokémon."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "+20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "A3",
+        "name": "Celestial Guardians",
+        "series": "",
+        "printedTotal": 155,
+        "total": 239,
+        "images": {
+          "symbol": "",
+          "logo": "https://assets.tcgdex.net/en/tcgp/A3/logo.webp"
+        }
+      },
+      "number": "058",
+      "artist": "PLANETA CG Works",
+      "rarity": "Four Diamond",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/tcgp/A3/058/low.webp",
+        "large": "https://assets.tcgdex.net/en/tcgp/A3/058/high.webp"
+      }
+    },
+    {
+      "id": "ecard1-61",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "80",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Plasma",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "10",
+          "text": "If there are any Lightning Energy cards in your discard pile, flip a coin. If heads, attach 1 of them to Raichu."
+        },
+        {
+          "name": "Shock Bolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "60",
+          "text": "Discard all Lightning Energy cards attached to Raichu or this attack does nothing."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "x2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "ecard1",
+        "name": "Expedition Base Set",
+        "series": "",
+        "printedTotal": 165,
+        "total": 165,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/ecard/ecard1/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/ecard/ecard1/logo.webp"
+        }
+      },
+      "number": "61",
+      "artist": "Atsuko Nishida",
+      "rarity": "Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/ecard/ecard1/61/low.webp",
+        "large": "https://assets.tcgdex.net/en/ecard/ecard1/61/high.webp"
+      }
+    },
+    {
+      "id": "sv02-064",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "140",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu ex",
+      "attacks": [
+        {
+          "name": "Electrocharge",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "",
+          "text": "Search your deck for up to 2 Basic {L} Energy cards and attach them to this Pokémon. Then, shuffle your deck."
+        },
+        {
+          "name": "Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "200",
+          "text": "Discard all Energy from this Pokémon."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "sv02",
+        "name": "Paldea Evolved",
+        "series": "",
+        "printedTotal": 193,
+        "total": 279,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sv/sv02/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sv/sv02/logo.webp"
+        }
+      },
+      "number": "064",
+      "artist": "Teeziro",
+      "rarity": "Uncommon",
+      "flavorText": "Its tail discharges electricity into the ground, protecting it from getting shocked.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sv/sv02/064/low.webp",
+        "large": "https://assets.tcgdex.net/en/sv/sv02/064/high.webp"
+      }
+    },
+    {
+      "id": "swsh1-66",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "130",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Pain-Full Punch",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "40",
+          "text": ""
+        },
+        {
+          "name": "Mach Bolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "120",
+          "text": ""
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "swsh1",
+        "name": "Sword & Shield",
+        "series": "",
+        "printedTotal": 202,
+        "total": 216,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/swsh/swsh1/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/swsh/swsh1/logo.webp"
+        }
+      },
+      "number": "66",
+      "artist": "Hasuno",
+      "rarity": "Rare",
+      "flavorText": "Its long tail serves as a ground to protect itself from its own high-voltage power.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/swsh/swsh1/66/low.webp",
+        "large": "https://assets.tcgdex.net/en/swsh/swsh1/66/high.webp"
+      }
+    },
+    {
+      "id": "sm12-67",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "120",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Nuzzle",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "",
+          "text": "Flip a coin. If heads, your opponent’s Active Pokémon is now Paralyzed."
+        },
+        {
+          "name": "Powerful Spark",
+          "cost": [
+            "Lightning"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "20×",
+          "text": "This attack does 20 damage times the amount of Lightning Energy attached to all of your Pokémon."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedRetreatCost": 2,
+      "set": {
+        "id": "sm12",
+        "name": "Cosmic Eclipse",
+        "series": "",
+        "printedTotal": 236,
+        "total": 271,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sm/sm12/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sm/sm12/logo.webp"
+        }
+      },
+      "number": "67",
+      "artist": "AKIRA EGAWA",
+      "rarity": "Rare",
+      "flavorText": "As electricity builds up inside its body, it becomes more aggressive. One theory is that the electricity buildup is actually causing stress.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sm/sm12/67/low.webp",
+        "large": "https://assets.tcgdex.net/en/sm/sm12/67/high.webp"
+      }
+    },
+    {
+      "id": "sm3.5-75",
+      "name": "Raichu GX",
+      "supertype": "Pokémon",
+      "subtypes": [],
+      "hp": "210",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Powerful Spark",
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "20+",
+          "text": "This attack does 20 more damage times the amount of Lightning Energy attached to your Pokémon."
+        },
+        {
+          "name": "Thunder",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "160",
+          "text": "This Pokémon does 30 damage to itself."
+        },
+        {
+          "name": "Voltail GX",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "120",
+          "text": "Your opponent’s Active Pokémon is now Paralyzed. (You can’t use more than 1 GX attack in a game.)"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "sm3.5",
+        "name": "Shining Legends",
+        "series": "",
+        "printedTotal": 73,
+        "total": 78,
+        "images": {
+          "symbol": "",
+          "logo": ""
+        }
+      },
+      "number": "75",
+      "artist": "5ban Graphics",
+      "rarity": "Secret Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "",
+        "large": ""
+      }
+    },
+    {
+      "id": "pl3-77",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Quick Attack",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "10+",
+          "text": "Flip a coin. If heads, this attack does 10 damage plus 30 more damage."
+        },
+        {
+          "name": "Gigashock",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "60",
+          "text": "Does 10 damage to 2 of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "+20"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "convertedRetreatCost": 0,
+      "set": {
+        "id": "pl3",
+        "name": "Supreme Victors",
+        "series": "",
+        "printedTotal": 147,
+        "total": 153,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/pl/pl3/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/pl/pl3/logo.webp"
+        }
+      },
+      "number": "77",
+      "artist": "Takao Unno",
+      "rarity": "Uncommon",
+      "flavorText": "Its tail discharges electricity into the ground, protecting it from getting shocked.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/pl/pl3/77/low.webp",
+        "large": "https://assets.tcgdex.net/en/pl/pl3/77/high.webp"
+      }
+    },
+    {
+      "id": "hgss3-83",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "100",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Mega Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "120",
+          "text": "Discard all Energy attached to Raichu."
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Voltage Increase",
+          "text": "As often as you like during your turn (before your attack), you may move a Lightning Energy attached to 1 of your Pokémon to Raichu. This power can't be used if Raichu is affected by a Special Condition.",
+          "type": "Poke-POWER"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "hgss3",
+        "name": "Undaunted",
+        "series": "",
+        "printedTotal": 90,
+        "total": 91,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/hgss/hgss3/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/hgss/hgss3/logo.webp"
+        }
+      },
+      "number": "83",
+      "artist": "Takashi Yamaguchi",
+      "rarity": "Rare PRIME",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/hgss/hgss3/83/low.webp",
+        "large": "https://assets.tcgdex.net/en/hgss/hgss3/83/high.webp"
+      }
+    },
+    {
+      "id": "base5-83",
+      "name": "Dark Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "70",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Surprise Thunder",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "30",
+          "text": "Flip a coin. If heads, flip another coin. If the second coin is heads, this attack does 20 damage to each of your opponent's Benched Pokémon. If the second coin is tails, this attack does 10 damage to each of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "base5",
+        "name": "Team Rocket",
+        "series": "",
+        "printedTotal": 82,
+        "total": 83,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/base/base5/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/base/base5/logo.webp"
+        }
+      },
+      "number": "83",
+      "artist": "Mitsuhiro Arita",
+      "rarity": "Rare",
+      "flavorText": "Stores up electricity in its body, then suddenly releases it to surprise and shock everyone.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/base/base5/83/low.webp",
+        "large": "https://assets.tcgdex.net/en/base/base5/83/high.webp"
+      }
+    },
+    {
+      "id": "A1-095",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "100",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "140",
+          "text": "Discard all Energy from this Pokémon."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "+20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "A1",
+        "name": "Genetic Apex",
+        "series": "",
+        "printedTotal": 226,
+        "total": 286,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/tcgp/A1/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/tcgp/A1/logo.webp"
+        }
+      },
+      "number": "095",
+      "artist": "AKIRA EGAWA",
+      "rarity": "Three Diamond",
+      "flavorText": "Its tail discharges electricity into the ground, protecting it from getting shocked.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/tcgp/A1/095/low.webp",
+        "large": "https://assets.tcgdex.net/en/tcgp/A1/095/high.webp"
+      }
+    },
+    {
+      "id": "ex9-97",
+      "name": "Raichu ex",
+      "supertype": "Pokémon",
+      "subtypes": [],
+      "hp": "100",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Power Short",
+          "cost": [
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "",
+          "text": "Choose 1 of your opponent's Pokémon. This attack does 30 damage to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.) If that Pokémon has Poké-Powers, this attack does 30 damage plus 20 more damage."
+        },
+        {
+          "name": "Pika Bolt",
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 4,
+          "damage": "70",
+          "text": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Rai-shield",
+          "text": "Damage done to any of your Raichu ex in play by attacks from your opponent's Pokémon-ex is reduced by 30 (after applying Weakness and Resistance). You can't use more than 1 Rai-shield Poké-Body each turn.",
+          "type": "Poke-BODY"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "convertedRetreatCost": 0,
+      "set": {
+        "id": "ex9",
+        "name": "Emerald",
+        "series": "",
+        "printedTotal": 106,
+        "total": 107,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/ex/ex9/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/ex/ex9/logo.webp"
+        }
+      },
+      "number": "97",
+      "artist": "Mitsuhiro Arita",
+      "rarity": "Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/ex/ex9/97/low.webp",
+        "large": "https://assets.tcgdex.net/en/ex/ex9/97/high.webp"
+      }
+    },
+    {
+      "id": "ex2-98",
+      "name": "Raichu ex",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "100",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Dazzle Blast",
+          "cost": [
+            "Lightning"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "20",
+          "text": "Flip a coin. If heads, the Defending Pokémon is now Confused."
+        },
+        {
+          "name": "Mega Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "120",
+          "text": "Discard all Energy cards attached to Raichu ex."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "ex2",
+        "name": "Sandstorm",
+        "series": "",
+        "printedTotal": 100,
+        "total": 100,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/ex/ex2/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/ex/ex2/logo.webp"
+        }
+      },
+      "number": "98",
+      "artist": "Ryo Ueda",
+      "rarity": "Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/ex/ex2/98/low.webp",
+        "large": "https://assets.tcgdex.net/en/ex/ex2/98/high.webp"
+      }
+    },
+    {
+      "id": "dp7-99",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "LEVEL-UP"
+      ],
+      "hp": "110",
+      "types": [
+        "Lightning"
+      ],
+      "attacks": [
+        {
+          "name": "Voltage Shoot",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "",
+          "text": "Discard 2 Lightning Energy cards from your hand and choose 1 of your opponent's Pokémon. This attack does 80 to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Link Lightning",
+          "text": "Once during your turn, when you put Raichu LV.X onto Raichu and use Voltage Shoot, you may use another attack of Raichu afterward. This power can't be used if Raichu is affected by a Special Condition.",
+          "type": "Poke-BODY"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "set": {
+        "id": "dp7",
+        "name": "Stormfront",
+        "series": "",
+        "printedTotal": 100,
+        "total": 106,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/dp/dp7/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/dp/dp7/logo.webp"
+        }
+      },
+      "number": "99",
+      "artist": "Ryo Ueda",
+      "rarity": "Rare Holo LV.X",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/dp/dp7/99/low.webp",
+        "large": "https://assets.tcgdex.net/en/dp/dp7/99/high.webp"
+      }
+    },
+    {
+      "id": "neo4-111",
+      "name": "Shining Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Basic"
+      ],
+      "hp": "70",
+      "types": [
+        "Lightning"
+      ],
+      "attacks": [
+        {
+          "name": "Thundersquall",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Water",
+            "Water"
+          ],
+          "convertedEnergyCost": 4,
+          "damage": "40",
+          "text": "If your opponent has any Benched Pokémon, choose 1 of them and this attack does 10 damage to that Pokémon for each Energy attached to Shining Raichu. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "neo4",
+        "name": "Neo Destiny",
+        "series": "",
+        "printedTotal": 105,
+        "total": 113,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/neo/neo4/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/neo/neo4/logo.webp"
+        }
+      },
+      "number": "111",
+      "artist": "Hironobu Yoshida",
+      "rarity": "Rare",
+      "flavorText": "If the electricity in its cheeks runs out, it sticks its tail straight up and uses it to collect energy from the air.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/neo/neo4/111/low.webp",
+        "large": "https://assets.tcgdex.net/en/neo/neo4/111/high.webp"
+      }
+    },
+    {
+      "id": "sv04.5-132",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "120",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Thunder",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "180",
+          "text": "This Pokémon also does 50 damage to itself."
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Electrical Grounding",
+          "text": "When 1 of your Pokémon is Knocked Out by damage from an attack from your opponent's Pokémon, you may move a {L} Energy from that Pokémon to this Pokémon.",
+          "type": "Ability"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "sv04.5",
+        "name": "Paldean Fates",
+        "series": "",
+        "printedTotal": 91,
+        "total": 245,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sv/sv04.5/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sv/sv04.5/logo.webp"
+        }
+      },
+      "number": "132",
+      "artist": "Sanosuke Sakuma",
+      "rarity": "Shiny rare",
+      "flavorText": "Its tail discharges electricity into the ground, protecting it from getting shocked.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sv/sv04.5/132/low.webp",
+        "large": "https://assets.tcgdex.net/en/sv/sv04.5/132/high.webp"
+      }
+    },
+    {
+      "id": "swsh9-158",
+      "name": "Raichu V",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Basic"
+      ],
+      "hp": "200",
+      "types": [
+        "Lightning"
+      ],
+      "attacks": [
+        {
+          "name": "Fast Charge",
+          "cost": [
+            "Lightning"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "",
+          "text": "If you go first, you can use this attack during your first turn. Search your deck for a Lightning Energy card and attach it to this Pokémon. Then, shuffle your deck."
+        },
+        {
+          "name": "Dynamic Spark",
+          "cost": [
+            "Lightning",
+            "Lightning"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "60×",
+          "text": "You may discard any amount of Lightning Energy from your Pokémon. This attack does 60 damage for each card you discarded in this way."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "swsh9",
+        "name": "Brilliant Stars",
+        "series": "",
+        "printedTotal": 172,
+        "total": 186,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/swsh/swsh9/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/swsh/swsh9/logo.webp"
+        }
+      },
+      "number": "158",
+      "artist": "MUGENUP",
+      "rarity": "Ultra Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/swsh/swsh9/158/low.webp",
+        "large": "https://assets.tcgdex.net/en/swsh/swsh9/158/high.webp"
+      }
+    },
+    {
+      "id": "A3-185",
+      "name": "Alolan Raichu ex",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "140",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Psychic",
+          "cost": [
+            "Colorless",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "60+",
+          "text": "This attack does 30 more damage for each Energy attached to your opponent's Active Pokémon."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "+20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "A3",
+        "name": "Celestial Guardians",
+        "series": "",
+        "printedTotal": 155,
+        "total": 239,
+        "images": {
+          "symbol": "",
+          "logo": "https://assets.tcgdex.net/en/tcgp/A3/logo.webp"
+        }
+      },
+      "number": "185",
+      "artist": "PLANETA CG Works",
+      "rarity": "Two Star",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/tcgp/A3/185/low.webp",
+        "large": "https://assets.tcgdex.net/en/tcgp/A3/185/high.webp"
+      }
+    },
+    {
+      "id": "A3-203",
+      "name": "Alolan Raichu ex",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "140",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Psychic",
+          "cost": [
+            "Colorless",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "60+",
+          "text": "This attack does 30 more damage for each Energy attached to your opponent's Active Pokémon."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "+20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "A3",
+        "name": "Celestial Guardians",
+        "series": "",
+        "printedTotal": 155,
+        "total": 239,
+        "images": {
+          "symbol": "",
+          "logo": "https://assets.tcgdex.net/en/tcgp/A3/logo.webp"
+        }
+      },
+      "number": "203",
+      "artist": "Yoshimi Miyoshi",
+      "rarity": "Two Star",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/tcgp/A3/203/low.webp",
+        "large": "https://assets.tcgdex.net/en/tcgp/A3/203/high.webp"
+      }
+    },
+    {
+      "id": "sv02-211",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "140",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu ex",
+      "attacks": [
+        {
+          "name": "Electrocharge",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "",
+          "text": "Search your deck for up to 2 Basic {L} Energy cards and attach them to this Pokémon. Then, shuffle your deck."
+        },
+        {
+          "name": "Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "200",
+          "text": "Discard all Energy from this Pokémon."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "sv02",
+        "name": "Paldea Evolved",
+        "series": "",
+        "printedTotal": 193,
+        "total": 279,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sv/sv02/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sv/sv02/logo.webp"
+        }
+      },
+      "number": "211",
+      "artist": "Toshinao Aoki",
+      "rarity": "Illustration rare",
+      "flavorText": "Its tail discharges electricity into the ground, protecting it from getting shocked.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sv/sv02/211/low.webp",
+        "large": "https://assets.tcgdex.net/en/sv/sv02/211/high.webp"
+      }
+    },
+    {
+      "id": "sm11-220",
+      "name": "Raichu & Alolan Raichu GX",
+      "supertype": "Pokémon",
+      "subtypes": [],
+      "hp": "260",
+      "types": [
+        "Lightning"
+      ],
+      "attacks": [
+        {
+          "name": "Tandem Shock",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "80+",
+          "text": "If this Pokémon was on the Bench and became your Active Pokémon this turn, this attack does 80 more damage, and your opponent’s Active Pokémon is now Paralyzed."
+        },
+        {
+          "name": "Lightning Ride GX",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "150+",
+          "text": "Switch this Pokémon with 1 of your Benched Pokémon. If this Pokémon has at least 2 extra Lightning Energy attached to it (in addition to this attack’s cost), this attack does 100 more damage. (You can’t use more than 1 GX attack in a game.)"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedRetreatCost": 2,
+      "set": {
+        "id": "sm11",
+        "name": "Unified Minds",
+        "series": "",
+        "printedTotal": 236,
+        "total": 258,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sm/sm11/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sm/sm11/logo.webp"
+        }
+      },
+      "number": "220",
+      "artist": "ConceptLab",
+      "rarity": "Ultra Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sm/sm11/220/low.webp",
+        "large": "https://assets.tcgdex.net/en/sm/sm11/220/high.webp"
+      }
+    },
+    {
+      "id": "sm11-221",
+      "name": "Raichu & Alolan Raichu GX",
+      "supertype": "Pokémon",
+      "subtypes": [],
+      "hp": "260",
+      "types": [
+        "Lightning"
+      ],
+      "attacks": [
+        {
+          "name": "Tandem Shock",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "80+",
+          "text": "If this Pokémon was on the Bench and became your Active Pokémon this turn, this attack does 80 more damage, and your opponent’s Active Pokémon is now Paralyzed."
+        },
+        {
+          "name": "Lightning Ride GX",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "150+",
+          "text": "Switch this Pokémon with 1 of your Benched Pokémon. If this Pokémon has at least 2 extra Lightning Energy attached to it (in addition to this attack’s cost), this attack does 100 more damage. (You can’t use more than 1 GX attack in a game.)"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedRetreatCost": 2,
+      "set": {
+        "id": "sm11",
+        "name": "Unified Minds",
+        "series": "",
+        "printedTotal": 236,
+        "total": 258,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sm/sm11/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sm/sm11/logo.webp"
+        }
+      },
+      "number": "221",
+      "artist": "tetsuya koizumi",
+      "rarity": "Ultra Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sm/sm11/221/low.webp",
+        "large": "https://assets.tcgdex.net/en/sm/sm11/221/high.webp"
+      }
+    },
+    {
+      "id": "sm11-241",
+      "name": "Raichu & Alolan Raichu GX",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Basic"
+      ],
+      "hp": "260",
+      "types": [
+        "Lightning"
+      ],
+      "attacks": [
+        {
+          "name": "Tandem Shock",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "80+",
+          "text": "If this Pokémon was on the Bench and became your Active Pokémon this turn, this attack does 80 more damage, and your opponent’s Active Pokémon is now Paralyzed."
+        },
+        {
+          "name": "Lightning Ride GX",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "150+",
+          "text": "Switch this Pokémon with 1 of your Benched Pokémon. If this Pokémon has at least 2 extra Lightning Energy attached to it (in addition to this attack’s cost), this attack does 100 more damage. (You can’t use more than 1 GX attack in a game.)"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedRetreatCost": 2,
+      "set": {
+        "id": "sm11",
+        "name": "Unified Minds",
+        "series": "",
+        "printedTotal": 236,
+        "total": 258,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sm/sm11/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sm/sm11/logo.webp"
+        }
+      },
+      "number": "241",
+      "artist": "ConceptLab",
+      "rarity": "Secret Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sm/sm11/241/low.webp",
+        "large": "https://assets.tcgdex.net/en/sm/sm11/241/high.webp"
+      }
+    },
+    {
+      "id": "bwp-BW78",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "100",
+      "types": [
+        "Lightning"
+      ],
+      "attacks": [
+        {
+          "name": "Quick Attack",
+          "cost": [
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "30",
+          "text": "Flip a coin. If heads, this attack does 20 more damage."
+        },
+        {
+          "name": "Thunder Blast",
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "90",
+          "text": "Discard an Energy attached to this Pokémon."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "bwp",
+        "name": "BW Black Star Promos",
+        "series": "",
+        "printedTotal": 101,
+        "total": 101,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/bw/bwp/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/bw/bwp/logo.webp"
+        }
+      },
+      "number": "BW78",
+      "artist": "Mizue",
+      "rarity": "Common",
+      "flavorText": "Its tail discharges electricity into the ground, protecting it from getting shocked.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/bw/bwp/BW78/low.webp",
+        "large": "https://assets.tcgdex.net/en/bw/bwp/BW78/high.webp"
+      }
+    },
+    {
+      "id": "dpp-DP21",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Electromagnetic Induction",
+          "cost": [],
+          "convertedEnergyCost": 0,
+          "damage": "",
+          "text": "Search your deck for up to 2 Lightning Energy cards and attach them to 1 of your Pokémon. Shuffle your deck afterward."
+        },
+        {
+          "name": "Explosive Thunder",
+          "cost": [
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "30x",
+          "text": "Discard all basic Lightning Energy cards attached to Raichu. This attack does 30 damage times the number of Lightning Energy cards you discarded."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "+20"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "dpp",
+        "name": "DP Black Star Promos",
+        "series": "",
+        "printedTotal": 56,
+        "total": 56,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/dp/dpp/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/dp/dpp/logo.webp"
+        }
+      },
+      "number": "DP21",
+      "artist": "Daisuke Ito",
+      "rarity": "Common",
+      "flavorText": "It turns aggressive if it has too much electricity in its body. It discharges power through its tail.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/dp/dpp/DP21/low.webp",
+        "large": "https://assets.tcgdex.net/en/dp/dpp/DP21/high.webp"
+      }
+    },
+    {
+      "id": "ecard3-H25",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "80",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Zzzap",
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "",
+          "text": "This attack does 20 damage to each Pokémon with a Poké-Body or Poké-Power (yours and your opponent's). (Don't apply Weakness or Resistance.)"
+        },
+        {
+          "name": "Lightning Storm",
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "50",
+          "text": "Flip a coin. If tails, put 2 damage counters on Raichu."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "x2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "ecard3",
+        "name": "Skyridge",
+        "series": "",
+        "printedTotal": 144,
+        "total": 182,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/ecard/ecard3/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/ecard/ecard3/logo.webp"
+        }
+      },
+      "number": "H25",
+      "artist": "Yuka Morii",
+      "rarity": "Holo Rare",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Not Legal"
+      },
+      "images": {
+        "small": "",
+        "large": ""
+      }
+    },
+    {
+      "id": "g1-RC9",
+      "name": "Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "90",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Circle Circuit",
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "20×",
+          "text": "This attack does 20 damage times the number of your Benched Pokémon."
+        },
+        {
+          "name": "Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "100",
+          "text": "Discard all Energy attached to this Pokémon."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "convertedRetreatCost": 0,
+      "set": {
+        "id": "g1",
+        "name": "Generations",
+        "series": "",
+        "printedTotal": 83,
+        "total": 117,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/xy/g1/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/xy/g1/logo.webp"
+        }
+      },
+      "number": "RC9",
+      "artist": "Aya Kusube",
+      "rarity": "Common",
+      "flavorText": "The plan for today is to do nothing. My awesome tail is all curled up, and my ears are tired, too.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/xy/g1/RC9/low.webp",
+        "large": "https://assets.tcgdex.net/en/xy/g1/RC9/high.webp"
+      }
+    },
+    {
+      "id": "smp-SM213",
+      "name": "Raichu GX",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "210",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Thunderbolt",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "120",
+          "text": ""
+        },
+        {
+          "name": "Spark Ball GX",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "200",
+          "text": "(You can’t use more than 1 GX attack in a game.)"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "smp",
+        "name": "SM Black Star Promos",
+        "series": "",
+        "printedTotal": 248,
+        "total": 248,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sm/smp/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sm/smp/logo.webp"
+        }
+      },
+      "number": "SM213",
+      "artist": "5ban Graphics",
+      "rarity": "Promo",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sm/smp/SM213/low.webp",
+        "large": "https://assets.tcgdex.net/en/sm/smp/SM213/high.webp"
+      }
+    },
+    {
+      "id": "smp-SM65",
+      "name": "Alolan Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "110",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Quick Attack",
+          "cost": [
+            "Lightning"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "10+",
+          "text": "Flip a coin. If heads, this attack does 30 more damage."
+        },
+        {
+          "name": "Electric Surfer",
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "70",
+          "text": ""
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "smp",
+        "name": "SM Black Star Promos",
+        "series": "",
+        "printedTotal": 248,
+        "total": 248,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sm/smp/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sm/smp/logo.webp"
+        }
+      },
+      "number": "SM65",
+      "artist": "5ban Graphics",
+      "rarity": "Promo",
+      "flavorText": "It only evolves to this form in the Alola region. According to researchers, its diet is one of the causes of this change.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sm/smp/SM65/low.webp",
+        "large": "https://assets.tcgdex.net/en/sm/smp/SM65/high.webp"
+      }
+    },
+    {
+      "id": "smp-SM72",
+      "name": "Alolan Raichu",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Stage1"
+      ],
+      "hp": "110",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Psychic",
+          "cost": [
+            "Colorless",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "70+",
+          "text": "This attack does 20 more damage times the amount of Energy attached to your opponent’s Active Pokémon."
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Surge Surfer",
+          "text": "If there is any Stadium card in play, this Pokémon has no Retreat Cost.",
+          "type": "Ability"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedRetreatCost": 2,
+      "set": {
+        "id": "smp",
+        "name": "SM Black Star Promos",
+        "series": "",
+        "printedTotal": 248,
+        "total": 248,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sm/smp/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sm/smp/logo.webp"
+        }
+      },
+      "number": "SM72",
+      "artist": "Akira Komayama",
+      "rarity": "Promo",
+      "flavorText": "It only evolves to this form in the Alola region. According to researchers, its diet is one of the causes of this change.",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://assets.tcgdex.net/en/sm/smp/SM72/low.webp",
+        "large": "https://assets.tcgdex.net/en/sm/smp/SM72/high.webp"
+      }
+    },
+    {
+      "id": "smp-SM90",
+      "name": "Raichu GX",
+      "supertype": "Pokémon",
+      "subtypes": [],
+      "hp": "210",
+      "types": [
+        "Lightning"
+      ],
+      "evolvesFrom": "Pikachu",
+      "attacks": [
+        {
+          "name": "Powerful Spark",
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "20+",
+          "text": "This attack does 20 more damage times the amount of Lightning Energy attached to your Pokémon."
+        },
+        {
+          "name": "Thunder",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "160",
+          "text": "This Pokémon does 30 damage to itself."
+        },
+        {
+          "name": "Voltail GX",
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "120",
+          "text": "Your opponent’s Active Pokémon is now Paralyzed. (You can’t use more than 1 GX attack in a game.)"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "smp",
+        "name": "SM Black Star Promos",
+        "series": "",
+        "printedTotal": 248,
+        "total": 248,
+        "images": {
+          "symbol": "https://assets.tcgdex.net/univ/sm/smp/symbol.webp",
+          "logo": "https://assets.tcgdex.net/en/sm/smp/logo.webp"
+        }
+      },
+      "number": "SM90",
+      "artist": "5ban Graphics",
+      "rarity": "Promo",
+      "legalities": {
+        "standard": "Not Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "",
+        "large": ""
+      }
+    }
+  ],
+  "sets": [
+    {
+      "id": "pop9",
+      "name": "POP Series 9",
+      "series": "",
+      "printedTotal": 17,
+      "total": 17,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/pop/pop9/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/pop/pop9/logo.webp"
+      }
+    },
+    {
+      "id": "lc",
+      "name": "Legendary Collection",
+      "series": "",
+      "printedTotal": 110,
+      "total": 110,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/lc/lc/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/lc/lc/logo.webp"
+      }
+    },
+    {
+      "id": "dp7",
+      "name": "Stormfront",
+      "series": "",
+      "printedTotal": 100,
+      "total": 106,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/dp/dp7/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/dp/dp7/logo.webp"
+      }
+    },
+    {
+      "id": "hgss1",
+      "name": "HeartGold SoulSilver",
+      "series": "",
+      "printedTotal": 123,
+      "total": 124,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/hgss/hgss1/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/hgss/hgss1/logo.webp"
+      }
+    },
+    {
+      "id": "gym2",
+      "name": "Gym Challenge",
+      "series": "",
+      "printedTotal": 132,
+      "total": 132,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/gym/gym2/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/gym/gym2/logo.webp"
+      }
+    },
+    {
+      "id": "ex16",
+      "name": "Power Keepers",
+      "series": "",
+      "printedTotal": 108,
+      "total": 108,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/ex/ex16/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/ex/ex16/logo.webp"
+      }
+    },
+    {
+      "id": "ex6",
+      "name": "FireRed & LeafGreen",
+      "series": "",
+      "printedTotal": 112,
+      "total": 116,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/ex/ex6/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/ex/ex6/logo.webp"
+      }
+    },
+    {
+      "id": "ex4",
+      "name": "Team Magma vs Team Aqua",
+      "series": "",
+      "printedTotal": 95,
+      "total": 97,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/ex/ex4/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/ex/ex4/logo.webp"
+      }
+    },
+    {
+      "id": "base1",
+      "name": "Base Set",
+      "series": "",
+      "printedTotal": 102,
+      "total": 102,
+      "images": {
+        "symbol": "",
+        "logo": "https://assets.tcgdex.net/en/base/base1/logo.webp"
+      }
+    },
+    {
+      "id": "base3",
+      "name": "Fossil",
+      "series": "",
+      "printedTotal": 62,
+      "total": 62,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/base/base3/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/base/base3/logo.webp"
+      }
+    },
+    {
+      "id": "dp2",
+      "name": "Mysterious Treasures",
+      "series": "",
+      "printedTotal": 123,
+      "total": 124,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/dp/dp2/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/dp/dp2/logo.webp"
+      }
+    },
+    {
+      "id": "ex13",
+      "name": "Holon Phantoms",
+      "series": "",
+      "printedTotal": 110,
+      "total": 111,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/ex/ex13/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/ex/ex13/logo.webp"
+      }
+    },
+    {
+      "id": "base4",
+      "name": "Base Set 2",
+      "series": "",
+      "printedTotal": 130,
+      "total": 130,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/base/base4/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/base/base4/logo.webp"
+      }
+    },
+    {
+      "id": "tk-sm-r",
+      "name": "SM trainer Kit (Alolan Raichu)",
+      "series": "",
+      "printedTotal": 30,
+      "total": 30,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/tk/tk-sm-r/symbol.webp",
+        "logo": ""
+      }
+    },
+    {
+      "id": "mfb",
+      "name": "My First Battle",
+      "series": "",
+      "printedTotal": 48,
+      "total": 48,
+      "images": {
+        "symbol": "",
+        "logo": ""
+      }
+    },
+    {
+      "id": "sv04.5",
+      "name": "Paldean Fates",
+      "series": "",
+      "printedTotal": 91,
+      "total": 245,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/sv/sv04.5/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/sv/sv04.5/logo.webp"
+      }
+    },
+    {
+      "id": "tk-hs-r",
+      "name": "HS trainer Kit (Raichu)",
+      "series": "",
+      "printedTotal": 30,
+      "total": 30,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/tk/tk-hs-r/symbol.webp",
+        "logo": ""
+      }
+    },
+    {
+      "id": "sm115",
+      "name": "Hidden Fates",
+      "series": "",
+      "printedTotal": 68,
+      "total": 69,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/sm/sm115/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/sm/sm115/logo.webp"
+      }
+    },
+    {
+      "id": "neo3",
+      "name": "Neo Revelation",
+      "series": "",
+      "printedTotal": 64,
+      "total": 66,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/neo/neo3/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/neo/neo3/logo.webp"
+      }
+    },
+    {
+      "id": "ecard1",
+      "name": "Expedition Base Set",
+      "series": "",
+      "printedTotal": 165,
+      "total": 165,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/ecard/ecard1/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/ecard/ecard1/logo.webp"
+      }
+    },
+    {
+      "id": "sv03.5",
+      "name": "151",
+      "series": "",
+      "printedTotal": 165,
+      "total": 207,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/sv/sv03.5/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/sv/sv03.5/logo.webp"
+      }
+    },
+    {
+      "id": "A1a",
+      "name": "Mythical Island",
+      "series": "",
+      "printedTotal": 68,
+      "total": 86,
+      "images": {
+        "symbol": "",
+        "logo": "https://assets.tcgdex.net/en/tcgp/A1a/logo.webp"
+      }
+    },
+    {
+      "id": "A2a",
+      "name": "Triumphant Light",
+      "series": "",
+      "printedTotal": 75,
+      "total": 96,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/tcgp/A2a/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/tcgp/A2a/logo.webp"
+      }
+    },
+    {
+      "id": "g1",
+      "name": "Generations",
+      "series": "",
+      "printedTotal": 83,
+      "total": 117,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/xy/g1/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/xy/g1/logo.webp"
+      }
+    },
+    {
+      "id": "ecard3",
+      "name": "Skyridge",
+      "series": "",
+      "printedTotal": 144,
+      "total": 182,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/ecard/ecard3/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/ecard/ecard3/logo.webp"
+      }
+    },
+    {
+      "id": "pl4",
+      "name": "Arceus",
+      "series": "",
+      "printedTotal": 99,
+      "total": 111,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/pl/pl4/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/pl/pl4/logo.webp"
+      }
+    },
+    {
+      "id": "xy3",
+      "name": "Furious Fists",
+      "series": "",
+      "printedTotal": 111,
+      "total": 114,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/xy/xy3/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/xy/xy3/logo.webp"
+      }
+    },
+    {
+      "id": "gym1",
+      "name": "Gym Heroes",
+      "series": "",
+      "printedTotal": 132,
+      "total": 132,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/gym/gym1/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/gym/gym1/logo.webp"
+      }
+    },
+    {
+      "id": "sm3.5",
+      "name": "Shining Legends",
+      "series": "",
+      "printedTotal": 73,
+      "total": 78,
+      "images": {
+        "symbol": "",
+        "logo": ""
+      }
+    },
+    {
+      "id": "pl2",
+      "name": "Rising Rivals",
+      "series": "",
+      "printedTotal": 111,
+      "total": 120,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/pl/pl2/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/pl/pl2/logo.webp"
+      }
+    },
+    {
+      "id": "sm4",
+      "name": "Crimson Invasion",
+      "series": "",
+      "printedTotal": 111,
+      "total": 125,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/sm/sm4/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/sm/sm4/logo.webp"
+      }
+    },
+    {
+      "id": "hgss3",
+      "name": "Undaunted",
+      "series": "",
+      "printedTotal": 90,
+      "total": 91,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/hgss/hgss3/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/hgss/hgss3/logo.webp"
+      }
+    },
+    {
+      "id": "xy12",
+      "name": "Evolutions",
+      "series": "",
+      "printedTotal": 108,
+      "total": 113,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/xy/xy12/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/xy/xy12/logo.webp"
+      }
+    },
+    {
+      "id": "bw4",
+      "name": "Next Destinies",
+      "series": "",
+      "printedTotal": 99,
+      "total": 103,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/bw/bw4/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/bw/bw4/logo.webp"
+      }
+    },
+    {
+      "id": "sm3",
+      "name": "Burning Shadows",
+      "series": "",
+      "printedTotal": 147,
+      "total": 169,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/sm/sm3/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/sm/sm3/logo.webp"
+      }
+    },
+    {
+      "id": "xy1",
+      "name": "XY",
+      "series": "",
+      "printedTotal": 146,
+      "total": 146,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/xy/xy1/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/xy/xy1/logo.webp"
+      }
+    },
+    {
+      "id": "P-A",
+      "name": "Promos-A",
+      "series": "",
+      "printedTotal": 0,
+      "total": 100,
+      "images": {
+        "symbol": "",
+        "logo": "https://assets.tcgdex.net/en/tcgp/P-A/logo.webp"
+      }
+    },
+    {
+      "id": "dp5",
+      "name": "Majestic Dawn",
+      "series": "",
+      "printedTotal": 100,
+      "total": 100,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/dp/dp5/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/dp/dp5/logo.webp"
+      }
+    },
+    {
+      "id": "swsh9",
+      "name": "Brilliant Stars",
+      "series": "",
+      "printedTotal": 172,
+      "total": 186,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/swsh/swsh9/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/swsh/swsh9/logo.webp"
+      }
+    },
+    {
+      "id": "xy8",
+      "name": "BREAKthrough",
+      "series": "",
+      "printedTotal": 162,
+      "total": 165,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/xy/xy8/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/xy/xy8/logo.webp"
+      }
+    },
+    {
+      "id": "swsh12",
+      "name": "Silver Tempest",
+      "series": "",
+      "printedTotal": 195,
+      "total": 215,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/swsh/swsh12/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/swsh/swsh12/logo.webp"
+      }
+    },
+    {
+      "id": "swsh7",
+      "name": "Evolving Skies",
+      "series": "",
+      "printedTotal": 203,
+      "total": 237,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/swsh/swsh7/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/swsh/swsh7/logo.webp"
+      }
+    },
+    {
+      "id": "B2",
+      "name": "Fantastical Parade",
+      "series": "",
+      "printedTotal": 155,
+      "total": 234,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/tcgp/B2/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/tcgp/B2/logo.webp"
+      }
+    },
+    {
+      "id": "sv05",
+      "name": "Temporal Forces",
+      "series": "",
+      "printedTotal": 162,
+      "total": 218,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/sv/sv05/symbol.webp",
+        "logo": ""
+      }
+    },
+    {
+      "id": "swsh11",
+      "name": "Lost Origin",
+      "series": "",
+      "printedTotal": 196,
+      "total": 217,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/swsh/swsh11/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/swsh/swsh11/logo.webp"
+      }
+    },
+    {
+      "id": "sm11",
+      "name": "Unified Minds",
+      "series": "",
+      "printedTotal": 236,
+      "total": 258,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/sm/sm11/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/sm/sm11/logo.webp"
+      }
+    },
+    {
+      "id": "sm10",
+      "name": "Unbroken Bonds",
+      "series": "",
+      "printedTotal": 214,
+      "total": 234,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/sm/sm10/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/sm/sm10/logo.webp"
+      }
+    },
+    {
+      "id": "me02.5",
+      "name": "Ascended Heroes",
+      "series": "",
+      "printedTotal": 217,
+      "total": 295,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/me/me02.5/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/me/me02.5/logo.webp"
+      }
+    },
+    {
+      "id": "A3",
+      "name": "Celestial Guardians",
+      "series": "",
+      "printedTotal": 155,
+      "total": 239,
+      "images": {
+        "symbol": "",
+        "logo": "https://assets.tcgdex.net/en/tcgp/A3/logo.webp"
+      }
+    },
+    {
+      "id": "sv02",
+      "name": "Paldea Evolved",
+      "series": "",
+      "printedTotal": 193,
+      "total": 279,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/sv/sv02/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/sv/sv02/logo.webp"
+      }
+    },
+    {
+      "id": "swsh1",
+      "name": "Sword & Shield",
+      "series": "",
+      "printedTotal": 202,
+      "total": 216,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/swsh/swsh1/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/swsh/swsh1/logo.webp"
+      }
+    },
+    {
+      "id": "sm12",
+      "name": "Cosmic Eclipse",
+      "series": "",
+      "printedTotal": 236,
+      "total": 271,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/sm/sm12/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/sm/sm12/logo.webp"
+      }
+    },
+    {
+      "id": "pl3",
+      "name": "Supreme Victors",
+      "series": "",
+      "printedTotal": 147,
+      "total": 153,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/pl/pl3/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/pl/pl3/logo.webp"
+      }
+    },
+    {
+      "id": "base5",
+      "name": "Team Rocket",
+      "series": "",
+      "printedTotal": 82,
+      "total": 83,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/base/base5/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/base/base5/logo.webp"
+      }
+    },
+    {
+      "id": "A1",
+      "name": "Genetic Apex",
+      "series": "",
+      "printedTotal": 226,
+      "total": 286,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/tcgp/A1/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/tcgp/A1/logo.webp"
+      }
+    },
+    {
+      "id": "ex9",
+      "name": "Emerald",
+      "series": "",
+      "printedTotal": 106,
+      "total": 107,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/ex/ex9/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/ex/ex9/logo.webp"
+      }
+    },
+    {
+      "id": "ex2",
+      "name": "Sandstorm",
+      "series": "",
+      "printedTotal": 100,
+      "total": 100,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/ex/ex2/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/ex/ex2/logo.webp"
+      }
+    },
+    {
+      "id": "neo4",
+      "name": "Neo Destiny",
+      "series": "",
+      "printedTotal": 105,
+      "total": 113,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/neo/neo4/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/neo/neo4/logo.webp"
+      }
+    },
+    {
+      "id": "bwp",
+      "name": "BW Black Star Promos",
+      "series": "",
+      "printedTotal": 101,
+      "total": 101,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/bw/bwp/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/bw/bwp/logo.webp"
+      }
+    },
+    {
+      "id": "dpp",
+      "name": "DP Black Star Promos",
+      "series": "",
+      "printedTotal": 56,
+      "total": 56,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/dp/dpp/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/dp/dpp/logo.webp"
+      }
+    },
+    {
+      "id": "smp",
+      "name": "SM Black Star Promos",
+      "series": "",
+      "printedTotal": 248,
+      "total": 248,
+      "images": {
+        "symbol": "https://assets.tcgdex.net/univ/sm/smp/symbol.webp",
+        "logo": "https://assets.tcgdex.net/en/sm/smp/logo.webp"
+      }
+    }
+  ]
+}

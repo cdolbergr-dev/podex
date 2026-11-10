@@ -1,26 +1,276 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f3f0ea;
+  --foreground: #1c1917;
+  --muted: #78716c;
+  --faint: #a8a29e;
+  --border: #e4dfd6;
+  --surface: #fffcf8;
+  --heart: #9f1239;
+  --heart-soft: #f8ecee;
+  --soft: #57534e;
+  --surface-hover: #ffffff;
+  --panel: #f7f4ef;
+  --art: #ebe6de;
+  --skeleton: #e7e1d8;
+  --skeleton-soft: #efeae3;
+  --selection: #e7e5e4;
+  color-scheme: light;
+  /* Body scroll lock (card modal) must not shift the page sideways. */
+  scrollbar-gutter: stable;
+}
+
+/* Dark theme follows the system setting. Warm near-blacks keep the paper feel of the light theme. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #151311;
+    --foreground: #f3efe8;
+    --muted: #a8a29e;
+    --faint: #78716c;
+    --border: #2c2824;
+    --surface: #1d1a17;
+    --heart: #fb7185;
+    --heart-soft: #3b1d25;
+    --soft: #d6d3d1;
+    --surface-hover: #27231f;
+    --panel: #201d1a;
+    --art: #1f1c19;
+    --skeleton: #2a2622;
+    --skeleton-soft: #23201c;
+    --selection: #3f3a35;
+    color-scheme: dark;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-border: var(--border);
+  --color-surface: var(--surface);
+  --color-heart: var(--heart);
+  --color-heart-soft: var(--heart-soft);
+  --color-soft: var(--soft);
+  --color-surface-hover: var(--surface-hover);
+  --color-panel: var(--panel);
+  --color-art: var(--art);
+  --color-skeleton: var(--skeleton);
+  --color-skeleton-soft: var(--skeleton-soft);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--selection);
+}
+
+.podex-dialog {
+  width: min(calc(100% - 2rem), 28rem);
+  max-height: min(85vh, 40rem);
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  color: var(--foreground);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+}
+
+.podex-dialog::backdrop {
+  background: rgb(28 25 23 / 0.32);
+}
+
+@media (max-width: 767px) {
+  .podex-sheet {
+    width: 100%;
+    max-width: none;
+    margin-top: auto;
+    margin-bottom: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+@keyframes podex-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.22);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.heart-pop {
+  animation: podex-pop 280ms ease-out;
+}
+
+@supports (view-transition-name: none) {
+  @media (prefers-reduced-motion: no-preference) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none;
+      z-index: 0;
+    }
+
+    /* Shared card morph must sit above sticky header, grid, and modal scrim. */
+    ::view-transition-group(*) {
+      animation-duration: 0.32s;
+      animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 200;
+    }
+
+    ::view-transition-image-pair(*) {
+      isolation: isolate;
+      z-index: 200;
+    }
+
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      z-index: 200;
+    }
+  }
+}
+
+/* Opened-card tilt (CardTilt): pointer-driven 3D rotation with a light sheen + faint holo. */
+.card-tilt {
+  perspective: 1000px;
+}
+
+.card-tilt-inner {
+  position: relative;
+  border-radius: var(--radius-lg);
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.card-tilt[data-tilting] .card-tilt-inner {
+  transition-duration: 0.12s;
+}
+
+.card-tilt-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background:
+    radial-gradient(
+      circle at var(--sheen-x, 50%) var(--sheen-y, 50%),
+      rgb(255 255 255 / 0.32),
+      transparent 55%
+    ),
+    linear-gradient(
+      115deg,
+      transparent 20%,
+      rgb(255 0 128 / 0.07) calc(var(--sheen-x, 50%) - 10%),
+      rgb(0 200 255 / 0.08) var(--sheen-x, 50%),
+      rgb(255 230 0 / 0.07) calc(var(--sheen-x, 50%) + 10%),
+      transparent 80%
+    );
+  mix-blend-mode: soft-light;
+}
+
+.card-tilt[data-tilting] .card-tilt-inner::after {
+  opacity: 1;
+}
+
+/* Never tilt while the card morphs — the view transition would capture the rotation. */
+body[data-card-transition] .card-tilt-inner,
+body[data-card-closing] .card-tilt-inner {
+  transform: none;
+  transition: none;
+}
+
+body[data-card-transition] .card-tilt-inner::after,
+body[data-card-closing] .card-tilt-inner::after {
+  opacity: 0;
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-tilt-inner {
+    transform: none;
+  }
+}
+
+/* Stepping to the previous/next card in the modal: a short directional slide-in. */
+@keyframes card-nav-in {
+  from {
+    opacity: 0;
+    translate: var(--card-nav-offset) 0;
+  }
+}
+
+[data-nav-enter] {
+  animation: card-nav-in 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-nav-enter="next"] {
+  --card-nav-offset: 28px;
+}
+
+[data-nav-enter="prev"] {
+  --card-nav-offset: -28px;
+}
+
+/* App install suggestion slides up from the bottom edge. */
+@keyframes install-prompt-in {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+}
+
+.install-prompt-in {
+  animation: install-prompt-in 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Card modal backdrop fades in alongside the open morph (see CardModalOverlay). */
+@keyframes card-modal-scrim-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.card-modal-scrim-in {
+  animation: card-modal-scrim-in 0.24s ease-out;
+}
+
+/* Closed while the card was still opening — keep every modal hidden until it is dismissed. */
+body[data-card-dismiss-pending] :is([data-podex-card-modal], [data-podex-card-modal-preflight]) {
+  visibility: hidden;
+}
+
+/* While a card is opening, keep explore content under the modal + transition layers. */
+body[data-open-card] #content {
+  z-index: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

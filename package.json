@@ -4,12 +4,23 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "tsx scripts/build-catalog.ts",
     "build": "next build",
+    "build:catalog": "tsx scripts/build-catalog.ts --force",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "db:migrate": "tsx scripts/db-migrate.ts",
+    "sync-catalog": "tsx scripts/sync-catalog.ts",
+    "db:backfill-dates": "tsx scripts/backfill-release-dates.ts",
+    "db:backfill-evolution": "tsx scripts/backfill-evolution-order.ts",
+    "build:sample-catalog": "tsx scripts/build-sample-catalog.ts",
+    "build:app-icons": "tsx scripts/build-app-icons.ts"
   },
   "dependencies": {
-    "next": "16.4.0",
+    "lucide-react": "^1.55.0",
+    "mysql2": "^3.15.3",
+    "next": "16.4.5",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
@@ -19,8 +30,9 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.4.0",
+    "eslint-config-next": "16.4.5",
     "tailwindcss": "^4",
+    "tsx": "^4.20.6",
     "typescript": "^5"
   }
 }
