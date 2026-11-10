@@ -4,7 +4,7 @@ import type { Dictionary } from "@/lib/i18n/dictionaries/en";
 const da: Dictionary = {
   meta: {
     description: "Et roligt katalog til at gennemse Pokémon-kort og gemme dem, du vil vende tilbage til.",
-    headlineLead: "Hvert kort.",
+    headlineLead: "Alle kort.",
     headlineRest: "Dine favoritter.",
     tagline: "Udforsk Pokémon-kortenes verden.",
     setsTitle: "Sæt",
