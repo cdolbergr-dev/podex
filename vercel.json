@@ -1,9 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "crons": [
-    {
+  "schedules": {
+    "rebuild-catalog": {
+      "schedule": "0 4 * * *",
       "path": "/api/cron/rebuild-catalog",
-      "schedule": "0 4 * * *"
+      "requestMethod": "GET"
     }
-  ]
+  }
 }
