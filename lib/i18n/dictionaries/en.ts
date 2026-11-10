@@ -330,6 +330,7 @@ const en = {
     install: "Install",
   },
   sets: {
+    allSets: "All sets",
     summary: (name: string, date: string | null, count: string) =>
       `${name}${date ? ` was released on ${date} and` : ""} has ${count} cards.`,
     title: "Sets",

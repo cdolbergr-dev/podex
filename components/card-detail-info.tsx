@@ -6,6 +6,7 @@ import { FavoriteButton } from "@/components/favorite-button";
 import { OwnedButton } from "@/components/owned-button";
 import { cardNumberLabel, legalFormatLabel } from "@/lib/format";
 import { dexLabel } from "@/lib/generations";
+import { setPath } from "@/lib/set-path";
 import { slugify } from "@/lib/slug";
 import type { Card } from "@/types/catalog";
 
@@ -49,7 +50,7 @@ export function CardDetailInfo({ card, prices }: { card: Card; prices?: ReactNod
 
           <dl className="mt-8 grid grid-cols-1 gap-y-3 text-sm sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-y-3.5">
             <Fact label={t.card.set}>
-              <LocaleLink href={`/?set=${encodeURIComponent(card.set.id)}`} className="underline decoration-border underline-offset-4 hover:decoration-foreground">
+              <LocaleLink href={setPath(card.set)} className="underline decoration-border underline-offset-4 hover:decoration-foreground">
                 {card.set.name}
               </LocaleLink>
             </Fact>

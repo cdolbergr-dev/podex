@@ -338,6 +338,7 @@ const es: Dictionary = {
     install: "Instalar",
   },
   sets: {
+    allSets: "Todas las expansiones",
     summary: (name, date, count) => `${name}${date ? ` salió el ${date} y` : ""} tiene ${count} cartas.`,
     title: "Expansiones",
     intro: "Abre una expansión para ver sus cartas.",

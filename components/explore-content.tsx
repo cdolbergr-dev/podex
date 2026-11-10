@@ -8,7 +8,10 @@ import { longerSetIds, setCardTotal } from "@/lib/owned";
 import { buildExploreHref, parseExploreParams } from "@/lib/explore-params";
 import { formatCount, formatReleaseDate } from "@/lib/format";
 import { getDictionary, getLocale } from "@/lib/i18n/server";
-import { DEFAULT_PAGE_SIZE, MAX_RESTORED_PAGES } from "@/lib/tcg/constants";
+import { DEFAULT_PAGE_SIZE, DEFAULT_SORT, MAX_RESTORED_PAGES } from "@/lib/tcg/constants";
+import { localizePath } from "@/lib/i18n/config";
+import { setPath } from "@/lib/set-path";
+import { permanentRedirect } from "next/navigation";
 import { catalogErrorMessage } from "@/lib/tcg/errors";
 import { getFilterMeta, searchCards } from "@/lib/tcg/service";
 
@@ -34,6 +37,10 @@ export async function ExploreContent({
   const listKey = buildExploreHref(params);
   const narrowed = Boolean(params.q || params.set || params.type || params.rarity);
   const activeSet = params.set ? meta.sets.find((set) => set.id === params.set) : undefined;
+  // A bare set filter (old /?set=… links) now has its own page.
+  if (activeSet && !params.q && !params.type && !params.rarity && params.sort === DEFAULT_SORT) {
+    permanentRedirect(localizePath(locale, setPath(activeSet)));
+  }
 
   return (
     <div className="min-w-0">

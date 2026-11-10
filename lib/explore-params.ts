@@ -64,7 +64,7 @@ export function safeReturnPath(value: string | undefined): string {
     if (url.origin !== "https://podex.local") return "/";
     const path = stripLocale(url.pathname);
     const listPage = ["/", "/favorites", "/favorites/shared", "/sets", "/pokemon", "/artists"].includes(path);
-    if (!listPage && !/^\/(pokemon|artists)\/[a-z0-9-]+$/.test(path)) {
+    if (!listPage && !/^\/(pokemon|artists|sets)\/[a-z0-9-]+$/.test(path)) {
       return "/";
     }
     return `${path}${url.search}`;

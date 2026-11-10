@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { LOCALES, localizePath, type Locale } from "@/lib/i18n/config";
+import { setPath } from "@/lib/set-path";
 import { siteUrl } from "@/lib/site";
 import { getSitemapCollections } from "@/lib/tcg/collections";
 import { getAllCardIds, getSitemapSets } from "@/lib/tcg/service";
@@ -42,7 +43,7 @@ export default async function sitemap(props: { id: Promise<string> }): Promise<M
       localized(`/artists/${slug}`, { changeFrequency: "monthly", priority: 0.5 }),
     ),
     ...sets.flatMap((set) =>
-      localized(`/?set=${encodeURIComponent(set.id)}`, { changeFrequency: "weekly", priority: 0.6 }),
+      localized(setPath(set), { changeFrequency: "weekly", priority: 0.7 }),
     ),
     ...cardIds.flatMap((id) =>
       localized(`/cards/${encodeURIComponent(id)}`, { changeFrequency: "monthly", priority: 0.5 }),

@@ -326,6 +326,7 @@ const da: Dictionary = {
     install: "Installér",
   },
   sets: {
+    allSets: "Alle sæt",
     summary: (name, date, count) => `${name}${date ? ` udkom ${date} og` : ""} har ${count} kort.`,
     title: "Sæt",
     intro: "Åbn en udvidelse for at se dens kort.",

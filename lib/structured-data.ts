@@ -1,9 +1,10 @@
 import { brand } from "@/lib/brand";
 import { localizePath, type Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/dictionaries/en";
+import { setPath } from "@/lib/set-path";
 import { siteUrl } from "@/lib/site";
 import type { ArtistSummary, PokemonSummary } from "@/lib/tcg/catalog-index";
-import type { Card } from "@/types/catalog";
+import type { Card, CardSet } from "@/types/catalog";
 
 /**
  * schema.org data (JSON-LD) that tells search engines and AI assistants what a page is about:
@@ -78,7 +79,7 @@ export function cardJsonLd(card: Card, locale: Locale, t: Dictionary): Json {
         isPartOf: {
           "@type": "CreativeWorkSeries",
           name: card.set.name,
-          url: absolute(locale, `/?set=${encodeURIComponent(card.set.id)}`),
+          url: absolute(locale, setPath(card.set)),
         },
         about:
           card.nationalPokedexNumbers?.map((dex) => ({ "@type": "Thing", name: card.name, url: absolute(locale, `/pokemon/${dex}`) })) ??
@@ -87,7 +88,7 @@ export function cardJsonLd(card: Card, locale: Locale, t: Dictionary): Json {
       },
       breadcrumbs([
         { name: brand.name, url: absolute(locale, "/") },
-        { name: card.set.name, url: absolute(locale, `/?set=${encodeURIComponent(card.set.id)}`) },
+        { name: card.set.name, url: absolute(locale, setPath(card.set)) },
         { name: card.name, url },
       ]),
     ],
@@ -142,6 +143,36 @@ export function artistJsonLd(artist: ArtistSummary, cards: Card[], description: 
         { name: brand.name, url: absolute(locale, "/") },
         { name: t.artists.title, url: absolute(locale, "/artists") },
         { name: artist.name, url },
+      ]),
+    ],
+  };
+}
+
+export function setJsonLd(set: CardSet, cards: Card[], description: string, locale: Locale, t: Dictionary): Json {
+  const url = absolute(locale, setPath(set));
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": url,
+        url,
+        name: set.name,
+        description,
+        inLanguage: locale,
+        image: set.images.logo || undefined,
+        about: {
+          "@type": "CreativeWorkSeries",
+          name: set.name,
+          datePublished: set.releaseDate?.replace(/\//g, "-"),
+          isPartOf: set.series ? { "@type": "CreativeWorkSeries", name: set.series } : undefined,
+        },
+        mainEntity: cardList(cards, locale),
+      },
+      breadcrumbs([
+        { name: brand.name, url: absolute(locale, "/") },
+        { name: t.sets.title, url: absolute(locale, "/sets") },
+        { name: set.name, url },
       ]),
     ],
   };

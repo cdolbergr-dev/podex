@@ -3,6 +3,7 @@ import { SetMark } from "@/components/set-mark";
 import { LocaleLink } from "@/components/i18n-provider";
 import { CollectionSummary, SetTileProgress } from "@/components/set-progress";
 import { longerSetIds, setCardTotal } from "@/lib/owned";
+import { setPath } from "@/lib/set-path";
 import { formatCount, formatReleaseDate, groupSetsBySeries } from "@/lib/format";
 import type { Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/dictionaries/en";
@@ -49,7 +50,7 @@ function SetTile({ set, locale, t, longer }: { set: CardSet; locale: Locale; t: 
 
   return (
     <LocaleLink
-      href={`/?set=${encodeURIComponent(set.id)}`}
+      href={setPath(set)}
       className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_32px_-24px_rgba(28,25,23,0.45)] motion-reduce:transform-none"
     >
       <div className="flex h-28 items-center justify-center bg-panel px-8 py-5">

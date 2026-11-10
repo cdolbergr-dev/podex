@@ -21,12 +21,13 @@ ${brand.name} is a catalog of about 24,000 Pokémon TCG cards from 1999 to today
 ## Main pages
 
 - [Explore all cards](${siteUrl}/): search by name, set or card number; filter by set, energy type and rarity (e.g. ${siteUrl}/?q=charizard&type=Fire)
-- [Sets](${siteUrl}/sets): every expansion with release dates and card counts; a set's cards are at ${siteUrl}/?set={setId}
+- [Sets](${siteUrl}/sets): every expansion with release dates and card counts; each set has a page with all its cards, e.g. ${siteUrl}/sets/base-set
 - [Pokémon](${siteUrl}/pokemon): every Pokémon by Pokédex number, each with its card history (first and newest printing, number of cards, evolutions) and every card it appears on
 - [Artists](${siteUrl}/artists): every card illustrator, each with a page listing the cards they drew
 
 ## Address patterns
 
+- Set: ${siteUrl}/sets/{set-name} (e.g. ${siteUrl}/sets/base-set)
 - Card: ${siteUrl}/cards/{cardId}, where cardId is "{setId}-{number}" (e.g. ${siteUrl}/cards/base1-4 is Charizard from Base Set)
 - Pokémon: ${siteUrl}/pokemon/{name} (e.g. ${siteUrl}/pokemon/pikachu); ${siteUrl}/pokemon/{pokedexNumber} redirects there
 - Artist: ${siteUrl}/artists/{name} (e.g. ${siteUrl}/artists/mitsuhiro-arita)
