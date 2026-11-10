@@ -9,6 +9,7 @@ import {
   hasStoredFavorites,
   listsFromBackup,
   readFavoriteLists,
+  readOwnedCards,
   writeFavoriteLists,
 } from "@/lib/favorites-storage";
 import { requestPersistentStorage } from "@/lib/storage-persistence";
@@ -27,7 +28,7 @@ function mirroredThisSession(): boolean {
 async function mirrorToServer() {
   if (!hasStoredFavorites()) return;
   const lists = readFavoriteLists();
-  const data = await encodeFavoriteLists(lists);
+  const data = await encodeFavoriteLists(lists, readOwnedCards());
   const response = await fetch(ENDPOINT, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -42,7 +43,7 @@ async function mirrorToServer() {
       // ignore
     }
   }
-  if (lists.some((list) => list.cardIds.length > 0)) void requestPersistentStorage();
+  if (lists.some((list) => list.cardIds.length > 0) || readOwnedCards().length > 0) void requestPersistentStorage();
 }
 
 let restoreAttempt: Promise<number> | null = null;
@@ -58,10 +59,10 @@ async function restoreFromServer(): Promise<number> {
   const response = await fetch(ENDPOINT, { cache: "no-store" });
   if (response.status !== 200) return 0;
   const { data } = (await response.json()) as { data?: string };
-  const lists = data ? await decodeFavoriteLists(data) : null;
-  if (!lists || countBackupCards(lists) === 0 || hasStoredFavorites()) return 0;
-  writeFavoriteLists(listsFromBackup(lists));
-  return countBackupCards(lists);
+  const backup = data ? await decodeFavoriteLists(data) : null;
+  if (!backup || countBackupCards(backup) === 0 || hasStoredFavorites()) return 0;
+  writeFavoriteLists(listsFromBackup(backup.lists), backup.owned);
+  return countBackupCards(backup);
 }
 
 /**

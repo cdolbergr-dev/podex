@@ -37,6 +37,32 @@ function memoryCatalog(mode: DataMode) {
   return mode === "static" ? getStaticCatalog() : sampleCatalog;
 }
 
+let databaseCards: { at: number; cards: Promise<Card[]> } | null = null;
+
+/**
+ * Every card in the catalog, for indexes built in memory (Pokémon, artists). The database is
+ * read in one pass and kept for six hours per server instance; live mode has no full list.
+ */
+export function loadAllCards(mode: DataMode = getDataMode()): Promise<Card[]> {
+  if (mode === "sample" || mode === "static") return Promise.resolve(memoryCatalog(mode).cards);
+  if (mode === "live") return Promise.resolve([]);
+  if (!databaseCards || Date.now() - databaseCards.at > 6 * 3_600_000) {
+    const cards = (async () => {
+      const ids = await getDatabaseCardIds();
+      const chunks: Card[][] = [];
+      for (let index = 0; index < ids.length; index += 2000) {
+        chunks.push(await getDatabaseCardsByIds(ids.slice(index, index + 2000)));
+      }
+      return chunks.flat();
+    })();
+    databaseCards = { at: Date.now(), cards };
+    cards.catch(() => {
+      databaseCards = null;
+    });
+  }
+  return databaseCards.cards;
+}
+
 /** Tag on every cached catalog read; revalidated after each catalog sync. */
 export const CATALOG_CACHE_TAG = "catalog";
 

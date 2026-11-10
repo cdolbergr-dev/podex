@@ -4,7 +4,8 @@ import { CardDetailArtworkBridge } from "@/components/card-detail-artwork-contex
 import { CardTransitionLink } from "@/components/card-transition-link";
 import { CardDetailInfo } from "@/components/card-detail-info";
 import { CardPricesPanel, CardPricesSkeleton } from "@/components/card-prices-panel";
-import { getDictionary } from "@/lib/i18n/server";
+import { getDkkRates } from "@/lib/exchange-rates";
+import { getDictionary, getLocale } from "@/lib/i18n/server";
 import { catalogErrorMessage } from "@/lib/tcg/errors";
 import { getCard, getCardPrices } from "@/lib/tcg/service";
 import type { Card } from "@/types/catalog";
@@ -64,5 +65,11 @@ export async function CardDetail({
 }
 
 async function CardPrices({ id }: { id: string }) {
-  return <CardPricesPanel prices={await getCardPrices(id)} />;
+  const locale = await getLocale();
+  // Danish visitors see kroner; everyone else the market's own currency.
+  const [prices, dkk] = await Promise.all([
+    getCardPrices(id),
+    locale === "da" ? getDkkRates().catch(() => null) : null,
+  ]);
+  return <CardPricesPanel prices={prices} dkk={dkk} />;
 }

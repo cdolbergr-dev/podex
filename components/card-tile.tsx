@@ -4,6 +4,7 @@ import { Artwork } from "@/components/artwork";
 import { useI18n } from "@/components/i18n-provider";
 import { CardTransitionLink } from "@/components/card-transition-link";
 import { FavoriteButton } from "@/components/favorite-button";
+import { OwnedButton } from "@/components/owned-button";
 import { cardHref } from "@/lib/explore-params";
 import { cardMetaLabel } from "@/lib/format";
 import type { Card } from "@/types/catalog";
@@ -14,10 +15,13 @@ export function CardTile({
   card,
   returnTo,
   priority = false,
+  showOwned = false,
 }: {
   card: Card;
   returnTo?: string;
   priority?: boolean;
+  /** Keep the "I own this" chip visible (set checklists), not only on hover. */
+  showOwned?: boolean;
 }) {
   const { t } = useI18n();
   const href = cardHref(card.id, returnTo);
@@ -45,6 +49,9 @@ export function CardTile({
             cardId={card.id}
           />
         </CardTransitionLink>
+        <div className="absolute top-0.5 left-0.5">
+          <OwnedButton id={card.id} name={card.name} alwaysVisible={showOwned} />
+        </div>
         <div className="absolute top-0.5 right-0.5">
           <FavoriteButton id={card.id} name={card.name} />
         </div>

@@ -9,6 +9,8 @@
   --surface: #fffcf8;
   --heart: #9f1239;
   --heart-soft: #f8ecee;
+  --owned: #166534;
+  --owned-soft: #e8f1ea;
   --soft: #57534e;
   --surface-hover: #ffffff;
   --panel: #f7f4ef;
@@ -32,6 +34,8 @@
     --surface: #1d1a17;
     --heart: #fb7185;
     --heart-soft: #3b1d25;
+    --owned: #4ade80;
+    --owned-soft: #17281c;
     --soft: #d6d3d1;
     --surface-hover: #27231f;
     --panel: #201d1a;
@@ -52,6 +56,8 @@
   --color-surface: var(--surface);
   --color-heart: var(--heart);
   --color-heart-soft: var(--heart-soft);
+  --color-owned: var(--owned);
+  --color-owned-soft: var(--owned-soft);
   --color-soft: var(--soft);
   --color-surface-hover: var(--surface-hover);
   --color-panel: var(--panel);

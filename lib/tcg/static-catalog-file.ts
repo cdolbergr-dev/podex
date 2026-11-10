@@ -4,8 +4,11 @@ import type { Card, CardSet } from "@/types/catalog";
 /** Where the downloaded catalog lives in the project (and in each server function's bundle). */
 export const STATIC_CATALOG_PATH = "catalog/catalog.json.gz";
 
+/** Bumped when cards gain fields (2: Pokédex numbers); older copies are only a fallback. */
+export const STATIC_CATALOG_VERSION = 2;
+
 export type StaticCatalogFile = {
-  version: 1;
+  version: 1 | 2;
   /** ISO time the catalog was downloaded from TCGdex. */
   builtAt: string;
   sets: CardSet[];
@@ -19,7 +22,7 @@ export function encodeStaticCatalog(catalog: StaticCatalogFile): Buffer {
 export function decodeStaticCatalog(buffer: Buffer): StaticCatalogFile | null {
   try {
     const parsed = JSON.parse(gunzipSync(buffer).toString("utf8")) as Partial<StaticCatalogFile>;
-    if (parsed.version !== 1 || !Array.isArray(parsed.cards) || !Array.isArray(parsed.sets)) return null;
+    if ((parsed.version !== 1 && parsed.version !== 2) || !Array.isArray(parsed.cards) || !Array.isArray(parsed.sets)) return null;
     return parsed as StaticCatalogFile;
   } catch {
     return null;

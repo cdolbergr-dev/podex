@@ -1,6 +1,8 @@
 import { Layers } from "lucide-react";
 import { SetMark } from "@/components/set-mark";
 import { LocaleLink } from "@/components/i18n-provider";
+import { CollectionSummary, SetTileProgress } from "@/components/set-progress";
+import { longerSetIds, setCardTotal } from "@/lib/owned";
 import { formatCount, formatReleaseDate, groupSetsBySeries } from "@/lib/format";
 import type { Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/dictionaries/en";
@@ -10,9 +12,11 @@ import type { CardSet } from "@/types/catalog";
 export async function SetBrowser({ sets }: { sets: CardSet[] }) {
   const [locale, t] = await Promise.all([getLocale(), getDictionary()]);
   const groups = groupSetsBySeries(sets, t.sets.other);
+  const longer = new Map(sets.map((set) => [set.id, longerSetIds(set, sets)]));
 
   return (
     <div className="space-y-12">
+      <CollectionSummary sets={sets.map((set) => ({ id: set.id, longer: longer.get(set.id) ?? [] }))} />
       {groups.map((group) => (
         <section key={group.series} aria-labelledby={`series-${group.series}`}>
           <h2 id={`series-${group.series}`} className="text-sm text-muted">
@@ -21,7 +25,7 @@ export async function SetBrowser({ sets }: { sets: CardSet[] }) {
           <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {group.sets.map((set) => (
               <li key={set.id}>
-                <SetTile set={set} locale={locale} t={t} />
+                <SetTile set={set} locale={locale} t={t} longer={longer.get(set.id) ?? []} />
               </li>
             ))}
           </ul>
@@ -39,7 +43,7 @@ function setCountLabel(set: CardSet, locale: Locale, t: Dictionary): string | nu
   return count ? t.sets.cards(formatCount(count, locale)) : null;
 }
 
-function SetTile({ set, locale, t }: { set: CardSet; locale: Locale; t: Dictionary }) {
+function SetTile({ set, locale, t, longer }: { set: CardSet; locale: Locale; t: Dictionary; longer: string[] }) {
   const released = formatReleaseDate(set.releaseDate, locale);
   const count = setCountLabel(set, locale, t);
 
@@ -63,6 +67,7 @@ function SetTile({ set, locale, t }: { set: CardSet; locale: Locale; t: Dictiona
           <p className="mt-0.5 truncate text-xs leading-5 text-muted">
             {[released, count].filter(Boolean).join(" · ") || t.sets.detailsUnavailable}
           </p>
+          <SetTileProgress setId={set.id} total={setCardTotal(set)} longer={longer} />
         </div>
         {set.images.logo && set.images.symbol ? (
           <SetMark src={set.images.symbol} alt="" sizes="24px" align="center" className="mt-0.5 size-5 shrink-0" />

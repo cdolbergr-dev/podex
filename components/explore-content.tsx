@@ -3,6 +3,8 @@ import { ExploreResults } from "@/components/explore-results";
 import { FilterBar } from "@/components/filter-bar";
 import { RetryButton } from "@/components/retry-button";
 import { SearchField } from "@/components/search-field";
+import { SetProgress } from "@/components/set-progress";
+import { longerSetIds, setCardTotal } from "@/lib/owned";
 import { buildExploreHref, parseExploreParams } from "@/lib/explore-params";
 import { formatCount } from "@/lib/format";
 import { getDictionary, getLocale } from "@/lib/i18n/server";
@@ -31,12 +33,17 @@ export async function ExploreContent({
   const count = formatCount(result.totalCount, locale);
   const listKey = buildExploreHref(params);
   const narrowed = Boolean(params.q || params.set || params.type || params.rarity);
+  const activeSet = params.set ? meta.sets.find((set) => set.id === params.set) : undefined;
 
   return (
     <div className="min-w-0">
       <SearchField params={params} />
 
       <FilterBar params={params} sets={meta.sets} rarities={meta.rarities} />
+
+      {activeSet ? (
+        <SetProgress setId={activeSet.id} total={setCardTotal(activeSet)} longer={longerSetIds(activeSet, meta.sets)} />
+      ) : null}
 
       {result.correctedQuery ? (
         <p className="mt-8 text-sm text-muted">

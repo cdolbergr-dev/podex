@@ -7,7 +7,9 @@ import {
   FAVORITES_CHANGE_EVENT,
   newListId,
   parseFavoriteSnapshot,
+  parseOwnedSnapshot,
   readFavoriteLists,
+  readOwnedCards,
   readFavoriteSnapshot,
   writeFavoriteLists,
   type FavoriteList,
@@ -39,6 +41,12 @@ type FavoritesContextValue = {
    * are created. Returns how many cards were added.
    */
   mergeLists: (incoming: { name: string; cardIds: string[] }[]) => number;
+  /** Cards marked "I own this" (separate from the lists). */
+  owned: string[];
+  isOwned: (id: string) => boolean;
+  toggleOwned: (id: string) => void;
+  /** Marks cards as owned; returns how many weren't already. */
+  addOwned: (ids: string[]) => number;
 };
 
 const FavoritesContext = createContext<FavoritesContextValue | null>(null);
@@ -89,6 +97,29 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
   const ready = snapshot !== PENDING_SNAPSHOT;
   const lists = useMemo(() => parseFavoriteSnapshot(ready ? snapshot : EMPTY_SNAPSHOT), [ready, snapshot]);
   const ids = useMemo(() => [...new Set(lists.flatMap((list) => list.cardIds))], [lists]);
+  const owned = useMemo(() => (ready ? parseOwnedSnapshot(snapshot) : []), [ready, snapshot]);
+  const ownedSet = useMemo(() => new Set(owned), [owned]);
+
+  const toggleOwned = useCallback((cardId: string) => {
+    try {
+      const current = readOwnedCards();
+      const next = current.includes(cardId) ? current.filter((id) => id !== cardId) : [...current, cardId];
+      writeFavoriteLists(readFavoriteLists(), next);
+    } catch {
+      // Leave storage unchanged if the browser blocks it.
+    }
+  }, []);
+
+  const addOwned = useCallback((add: string[]) => {
+    try {
+      const current = readOwnedCards();
+      const fresh = [...new Set(add)].filter((id) => !current.includes(id));
+      if (fresh.length > 0) writeFavoriteLists(readFavoriteLists(), [...current, ...fresh]);
+      return fresh.length;
+    } catch {
+      return 0;
+    }
+  }, []);
 
   const toggleInList = useCallback((listId: string, cardId: string) => {
     updateLists((current) =>
@@ -197,8 +228,28 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
       addMany,
       clear,
       mergeLists,
+      owned,
+      isOwned: (id: string) => ownedSet.has(id),
+      toggleOwned,
+      addOwned,
     }),
-    [lists, ids, ready, toggle, toggleInList, createList, renameList, deleteList, addMany, clear, mergeLists],
+    [
+      lists,
+      ids,
+      ready,
+      toggle,
+      toggleInList,
+      createList,
+      renameList,
+      deleteList,
+      addMany,
+      clear,
+      mergeLists,
+      owned,
+      ownedSet,
+      toggleOwned,
+      addOwned,
+    ],
   );
 
   return <FavoritesContext.Provider value={value}>{children}</FavoritesContext.Provider>;

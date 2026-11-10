@@ -3,7 +3,10 @@
 import type { ReactNode } from "react";
 import { LocaleLink, useI18n } from "@/components/i18n-provider";
 import { FavoriteButton } from "@/components/favorite-button";
+import { OwnedButton } from "@/components/owned-button";
 import { cardNumberLabel, legalFormatLabel } from "@/lib/format";
+import { dexLabel } from "@/lib/generations";
+import { slugify } from "@/lib/slug";
 import type { Card } from "@/types/catalog";
 
 /**
@@ -28,7 +31,10 @@ export function CardDetailInfo({ card, prices }: { card: Card; prices?: ReactNod
           </p>
           <div className="mt-2 flex flex-wrap items-start justify-between gap-4">
             <h1 className="text-4xl font-medium tracking-tight text-balance sm:text-5xl">{card.name}</h1>
-            <FavoriteButton id={card.id} name={card.name} variant="label" />
+            <div className="flex flex-wrap gap-2">
+              <OwnedButton id={card.id} name={card.name} variant="label" />
+              <FavoriteButton id={card.id} name={card.name} variant="label" />
+            </div>
           </div>
 
           {card.types.length > 0 ? (
@@ -55,7 +61,29 @@ export function CardDetailInfo({ card, prices }: { card: Card; prices?: ReactNod
               <Fact label={t.card.evolvesTo}>{card.evolvesTo.join(", ")}</Fact>
             ) : null}
             {retreat !== null ? <Fact label={t.card.retreat}>{retreat}</Fact> : null}
-            {card.artist ? <Fact label={t.card.illustrator}>{card.artist}</Fact> : null}
+            {card.nationalPokedexNumbers && card.nationalPokedexNumbers.length > 0 ? (
+              <Fact label={t.card.pokedex}>
+                {card.nationalPokedexNumbers.map((dex, index) => (
+                  <span key={dex}>
+                    {index > 0 ? ", " : ""}
+                    <LocaleLink href={`/pokemon/${dex}`} className={linkClass}>
+                      {dexLabel(dex)}
+                    </LocaleLink>
+                  </span>
+                ))}
+              </Fact>
+            ) : null}
+            {card.artist ? (
+              <Fact label={t.card.illustrator}>
+                {slugify(card.artist) ? (
+                  <LocaleLink href={`/artists/${slugify(card.artist)}`} className={linkClass}>
+                    {card.artist}
+                  </LocaleLink>
+                ) : (
+                  card.artist
+                )}
+              </Fact>
+            ) : null}
             {formats ? <Fact label={t.card.legalIn}>{formats}</Fact> : null}
           </dl>
 
@@ -147,6 +175,8 @@ export function CardDetailInfo({ card, prices }: { card: Card; prices?: ReactNod
     </>
   );
 }
+
+const linkClass = "underline decoration-border underline-offset-4 hover:decoration-foreground";
 
 function Fact({ label, children }: { label: string; children: ReactNode }) {
   return (

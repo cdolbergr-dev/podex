@@ -23,7 +23,9 @@ const SavedCount = dynamic(() => import("@/components/saved-count").then((mod) =
 
 const LINKS = [
   { href: "/", key: "explore" },
+  { href: "/pokemon", key: "pokemon" },
   { href: "/sets", key: "sets" },
+  { href: "/artists", key: "artists" },
   { href: "/favorites", key: "favorites" },
 ] as const;
 

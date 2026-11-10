@@ -161,7 +161,7 @@ export function ExploreResults({
 
   return (
     <>
-      <CardGrid cards={cards} returnTo={returnTo} />
+      <CardGrid cards={cards} returnTo={returnTo} showOwned={Boolean(params.set)} />
       {hasMore || failed ? (
         <div className="mt-12 flex flex-col items-center gap-3 text-sm">
           <button

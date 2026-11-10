@@ -4,7 +4,7 @@ import { ArrowRight, RotateCcw } from "lucide-react";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { useFavorites } from "@/components/favorites-provider";
 import { LocaleLink, useI18n } from "@/components/i18n-provider";
-import { countBackupCards, decodeFavoriteLists, type BackupList } from "@/lib/favorites-backup";
+import { countBackupCards, decodeFavoriteLists, type FavoriteBackup } from "@/lib/favorites-backup";
 
 const subscribeHash = (onChange: () => void) => {
   window.addEventListener("hashchange", onChange);
@@ -14,12 +14,12 @@ const subscribeHash = (onChange: () => void) => {
 type State =
   | { status: "reading" }
   | { status: "invalid" }
-  | { status: "ready"; lists: BackupList[] }
-  | { status: "restored"; lists: BackupList[]; added: number };
+  | { status: "ready"; backup: FavoriteBackup }
+  | { status: "restored"; backup: FavoriteBackup; added: number };
 
 /** Restores lists from a "Back up all lists" link. The data is in the URL hash, client-only. */
 export function RestoreFavorites() {
-  const { ready, mergeLists } = useFavorites();
+  const { ready, mergeLists, addOwned } = useFavorites();
   const { t, formatNumber, listName } = useI18n();
   const hash = useSyncExternalStore(subscribeHash, () => window.location.hash.slice(1), () => null);
   const [state, setState] = useState<State>({ status: "reading" });
@@ -27,8 +27,8 @@ export function RestoreFavorites() {
   useEffect(() => {
     if (hash === null) return;
     let cancelled = false;
-    void (hash ? decodeFavoriteLists(hash) : Promise.resolve(null)).then((lists) => {
-      if (!cancelled) setState(lists ? { status: "ready", lists } : { status: "invalid" });
+    void (hash ? decodeFavoriteLists(hash) : Promise.resolve(null)).then((backup) => {
+      if (!cancelled) setState(backup ? { status: "ready", backup } : { status: "invalid" });
     });
     return () => {
       cancelled = true;
@@ -54,14 +54,14 @@ export function RestoreFavorites() {
         <div className="mt-3">
           <p className="text-sm leading-6 text-muted">
             {t.restore.summary(
-              formatNumber(state.lists.length),
-              state.lists.length,
-              formatNumber(countBackupCards(state.lists)),
-              countBackupCards(state.lists),
+              formatNumber(state.backup.lists.length),
+              state.backup.lists.length,
+              formatNumber(countBackupCards(state.backup)),
+              countBackupCards(state.backup),
             )}
           </p>
           <ul className="mt-5 divide-y divide-border rounded-2xl border border-border bg-surface">
-            {state.lists.map((list, index) => (
+            {state.backup.lists.map((list, index) => (
               <li key={`${list.name}-${index}`} className="flex items-center justify-between gap-4 px-4 py-3 text-sm">
                 <span className="min-w-0 truncate">{listName(list.name)}</span>
                 <span className="tabular-nums text-faint">
@@ -69,6 +69,14 @@ export function RestoreFavorites() {
                 </span>
               </li>
             ))}
+            {state.backup.owned.length > 0 ? (
+              <li className="flex items-center justify-between gap-4 px-4 py-3 text-sm">
+                <span className="min-w-0 truncate">{t.owned.owned}</span>
+                <span className="tabular-nums text-faint">
+                  {t.owned.backupOwned(formatNumber(state.backup.owned.length), state.backup.owned.length)}
+                </span>
+              </li>
+            ) : null}
           </ul>
           <div className="mt-6">
             {state.status === "restored" ? (
@@ -90,11 +98,17 @@ export function RestoreFavorites() {
               <button
                 type="button"
                 disabled={!ready}
-                onClick={() => setState({ status: "restored", lists: state.lists, added: mergeLists(state.lists) })}
+                onClick={() =>
+                  setState({
+                    status: "restored",
+                    backup: state.backup,
+                    added: mergeLists(state.backup.lists) + addOwned(state.backup.owned),
+                  })
+                }
                 className="inline-flex h-11 cursor-pointer items-center gap-2 rounded-full bg-foreground px-5 text-sm text-surface hover:opacity-90 disabled:cursor-default disabled:opacity-60"
               >
                 <RotateCcw aria-hidden="true" className="size-4" />
-                {t.restore.restoreButton(state.lists.length)}
+                {t.restore.restoreButton(state.backup.lists.length)}
               </button>
             )}
           </div>

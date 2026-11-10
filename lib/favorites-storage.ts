@@ -5,6 +5,8 @@ export const LEGACY_FAVORITES_STORAGE_KEY = "podex.favorites";
 export const FAVORITES_CHANGE_EVENT = "podex-favorites-change";
 
 export const DEFAULT_LIST_NAME = "Favorites";
+/** Upper bound on cards marked as owned (a full collection, with room to spare). */
+export const MAX_OWNED_CARDS = 30_000;
 export const MAX_LIST_NAME_LENGTH = 40;
 
 export type FavoriteList = {
@@ -13,8 +15,13 @@ export type FavoriteList = {
   cardIds: string[];
 };
 
-function isCardId(value: unknown): value is string {
+export function isCardId(value: unknown): value is string {
   return typeof value === "string" && value.length > 0 && value.length < 80;
+}
+
+/** Unique, valid card ids from untrusted input. */
+export function cleanCardIds(value: unknown, max = MAX_OWNED_CARDS): string[] {
+  return Array.isArray(value) ? [...new Set(value.filter(isCardId))].slice(0, max) : [];
 }
 
 export function cleanListName(name: string): string {
@@ -76,6 +83,16 @@ export function parseFavoriteSnapshot(snapshot: string): FavoriteList[] {
   }
 }
 
+/** Cards marked "I own this", stored next to the lists in the same entry. */
+export function parseOwnedSnapshot(snapshot: string): string[] {
+  if (snapshot.startsWith("legacy:")) return [];
+  try {
+    return cleanCardIds((JSON.parse(snapshot) as { owned?: unknown }).owned);
+  } catch {
+    return [];
+  }
+}
+
 /** False when this browser holds no favorites data at all (never saved, or wiped). */
 export function hasStoredFavorites(): boolean {
   try {
@@ -106,8 +123,18 @@ export function readFavoriteLists(): FavoriteList[] {
   }
 }
 
-export function writeFavoriteLists(lists: FavoriteList[]): void {
-  window.localStorage.setItem(FAVORITE_LISTS_STORAGE_KEY, JSON.stringify({ version: 1, lists }));
+export function readOwnedCards(): string[] {
+  if (typeof window === "undefined") return [];
+  try {
+    return parseOwnedSnapshot(readFavoriteSnapshot());
+  } catch {
+    return [];
+  }
+}
+
+/** Writes lists and owned cards together; omitting `owned` keeps the stored ones. */
+export function writeFavoriteLists(lists: FavoriteList[], owned: string[] = readOwnedCards()): void {
+  window.localStorage.setItem(FAVORITE_LISTS_STORAGE_KEY, JSON.stringify({ version: 1, lists, owned }));
   // The lists key is now the source of truth; drop the legacy array so it can't resurface.
   window.localStorage.removeItem(LEGACY_FAVORITES_STORAGE_KEY);
   window.dispatchEvent(new Event(FAVORITES_CHANGE_EVENT));

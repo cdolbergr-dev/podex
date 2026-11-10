@@ -17,6 +17,7 @@ import {
   decodeStaticCatalog,
   encodeStaticCatalog,
   STATIC_CATALOG_PATH,
+  STATIC_CATALOG_VERSION,
   type StaticCatalogFile,
 } from "../lib/tcg/static-catalog-file";
 import {
@@ -63,7 +64,7 @@ async function download(): Promise<StaticCatalogFile> {
     }
   });
   applySetReleaseDates(cards, sets);
-  return { version: 1, builtAt: new Date().toISOString(), sets, cards };
+  return { version: STATIC_CATALOG_VERSION, builtAt: new Date().toISOString(), sets, cards };
 }
 
 async function main() {
@@ -76,7 +77,8 @@ async function main() {
   const previous = readCatalog(cachePath) ?? readCatalog(outputPath);
   const ageHours = previous ? (Date.now() - Date.parse(previous.builtAt)) / 3_600_000 : Infinity;
 
-  if (previous && ageHours < maxAgeHours && !process.argv.includes("--force")) {
+  const current = previous?.version === STATIC_CATALOG_VERSION;
+  if (previous && current && ageHours < maxAgeHours && !process.argv.includes("--force")) {
     write(previous);
     console.log(`build-catalog: reusing cached catalog (${describe(previous)}).`);
     return;

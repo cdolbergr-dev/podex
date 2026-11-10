@@ -45,7 +45,8 @@ function relativeDay(at: number, t: Dictionary, locale: Locale): string {
  * offers a one-link backup of every list.
  */
 export function FavoritesSafeguards() {
-  const { lists, count } = useFavorites();
+  const { lists, owned, count: savedCount } = useFavorites();
+  const count = savedCount + owned.length;
   const { locale, t, href } = useI18n();
   const [environment, setEnvironment] = useState<Environment | null>(null);
   const [encoded, setEncoded] = useState<string | null>(null);
@@ -75,13 +76,13 @@ export function FavoritesSafeguards() {
   // Prepared ahead of the click: Safari only allows sharing/copying during the click itself.
   useEffect(() => {
     let cancelled = false;
-    void encodeFavoriteLists(lists).then((value) => {
+    void encodeFavoriteLists(lists, owned).then((value) => {
       if (!cancelled) setEncoded(value);
     });
     return () => {
       cancelled = true;
     };
-  }, [lists]);
+  }, [lists, owned]);
 
   useEffect(() => {
     if (status === "idle") return;
@@ -91,7 +92,7 @@ export function FavoritesSafeguards() {
 
   if (!environment) return null;
 
-  const outOfDate = lastBackup !== null && lastBackup.fingerprint !== fingerprintLists(lists);
+  const outOfDate = lastBackup !== null && lastBackup.fingerprint !== fingerprintLists(lists, owned);
 
   async function backUp() {
     if (!encoded) return;
@@ -99,7 +100,7 @@ export function FavoritesSafeguards() {
     if (isTouchDevice() && typeof navigator.share === "function") {
       try {
         await navigator.share({ title: t.safeguards.backupShareTitle, url });
-        rememberBackup(lists);
+        rememberBackup(lists, owned);
         setStatus("shared");
         return;
       } catch (error) {
@@ -108,10 +109,10 @@ export function FavoritesSafeguards() {
     }
     try {
       await navigator.clipboard.writeText(url);
-      rememberBackup(lists);
+      rememberBackup(lists, owned);
       setStatus("copied");
     } catch {
-      if (window.prompt(t.safeguards.backupPrompt, url) !== null) rememberBackup(lists);
+      if (window.prompt(t.safeguards.backupPrompt, url) !== null) rememberBackup(lists, owned);
     }
   }
 

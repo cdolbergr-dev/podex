@@ -137,6 +137,9 @@ export function mapTcgdexCard(value: unknown): Card | null {
     artist: trim(card.illustrator) ?? trim(card.artist),
     rarity: trim(card.rarity),
     flavorText: trim(card.description) ?? trim(card.flavorText),
+    nationalPokedexNumbers: Array.isArray(card.dexId)
+      ? card.dexId.filter((item): item is number => typeof item === "number" && item > 0)
+      : undefined,
     legalities: legal
       ? {
           standard: legalityLabel(legal.standard),

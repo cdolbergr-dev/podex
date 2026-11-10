@@ -3,9 +3,19 @@
 import { ArrowUpRight } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
 import { INTL_LOCALES, type Locale } from "@/lib/i18n/config";
+import type { DkkRates } from "@/lib/exchange-rates";
 import type { CardPrices } from "@/types/catalog";
 
-function money(value: number, currency: "USD" | "EUR", locale: Locale): string {
+function money(value: number, currency: "USD" | "EUR", locale: Locale, dkk: DkkRates | null): string {
+  if (dkk) {
+    const kroner = value * (currency === "EUR" ? dkk.eur : dkk.usd);
+    // Converted amounts are approximate; whole kroner read better than øre.
+    return `≈ ${new Intl.NumberFormat(INTL_LOCALES[locale], {
+      style: "currency",
+      currency: "DKK",
+      maximumFractionDigits: kroner < 10 ? 2 : 0,
+    }).format(kroner)}`;
+  }
   return new Intl.NumberFormat(INTL_LOCALES[locale], { style: "currency", currency }).format(value);
 }
 
@@ -28,7 +38,7 @@ function PricesSection({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function CardPricesPanel({ prices }: { prices: CardPrices | null }) {
+export function CardPricesPanel({ prices, dkk = null }: { prices: CardPrices | null; dkk?: DkkRates | null }) {
   const { locale, t } = useI18n();
   if (!prices) {
     return (
@@ -48,7 +58,7 @@ export function CardPricesPanel({ prices }: { prices: CardPrices | null }) {
             <dt className="text-muted">
               {t.prices.tcgplayer} <span className="text-faint">·</span> {t.prices.variants[variant.label] ?? variant.label}
             </dt>
-            <dd className="text-right font-medium tabular-nums">{money(variant.price, "USD", locale)}</dd>
+            <dd className="text-right font-medium tabular-nums">{money(variant.price, "USD", locale, dkk)}</dd>
           </div>
         ))}
         {prices.cardmarket ? (
@@ -57,9 +67,9 @@ export function CardPricesPanel({ prices }: { prices: CardPrices | null }) {
               {t.prices.cardmarketTrend}
             </dt>
             <dd className="text-right font-medium tabular-nums">
-              {money(prices.cardmarket.trend, "EUR", locale)}
+              {money(prices.cardmarket.trend, "EUR", locale, dkk)}
               {prices.cardmarket.avg30 ? (
-                <span className="ml-2 font-normal text-faint">{t.prices.avg30(money(prices.cardmarket.avg30, "EUR", locale))}</span>
+                <span className="ml-2 font-normal text-faint">{t.prices.avg30(money(prices.cardmarket.avg30, "EUR", locale, dkk))}</span>
               ) : null}
             </dd>
           </div>
@@ -67,6 +77,7 @@ export function CardPricesPanel({ prices }: { prices: CardPrices | null }) {
       </dl>
       <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-faint">
         <span>{updated ? t.prices.updatedVia(updated) : t.prices.via}</span>
+        {dkk ? <span>{t.prices.converted}</span> : null}
         {prices.tcgplayer?.url ? (
           <a
             href={prices.tcgplayer.url}
