@@ -7,6 +7,7 @@ import { CardSkeletonGrid } from "@/components/skeletons";
 import { getDictionary } from "@/lib/i18n/server";
 import { setCardTotal } from "@/lib/owned";
 import { setPath } from "@/lib/set-path";
+import { siteUrl } from "@/lib/site";
 import { getSets } from "@/lib/tcg/service";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -32,6 +33,7 @@ async function CollectionContent() {
   const sets = await getSets().catch(() => []);
   return (
     <CollectionView
+      siteUrl={siteUrl}
       sets={sets.map((set) => ({ id: set.id, name: set.name, path: setPath(set), total: setCardTotal(set) }))}
     />
   );

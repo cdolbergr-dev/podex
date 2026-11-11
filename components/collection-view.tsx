@@ -1,5 +1,6 @@
 "use client";
 
+import { Download } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { CardGrid } from "@/components/card-grid";
 import { EmptyState, ErrorPanel } from "@/components/empty-state";
@@ -9,14 +10,15 @@ import { LocaleLink, useI18n } from "@/components/i18n-provider";
 import { CardSkeletonGrid } from "@/components/skeletons";
 import { loadFavoriteCards } from "@/lib/actions";
 import { MAX_SHARED_CARDS } from "@/lib/card-ids";
+import { collectionCsv, downloadFile } from "@/lib/collection-csv";
 import { setIdOfCard } from "@/lib/owned";
 import type { Card } from "@/types/catalog";
 
 export type CollectionSet = { id: string; name: string; path: string; total: number };
 
 /** Owned cards, newest set first and by number within a set, plus progress per started set. */
-export function CollectionView({ sets }: { sets: CollectionSet[] }) {
-  const { t, formatNumber } = useI18n();
+export function CollectionView({ sets, siteUrl }: { sets: CollectionSet[]; siteUrl: string }) {
+  const { locale, t, formatNumber } = useI18n();
   const { owned, ready } = useFavorites();
   const [shown, setShown] = useState(false);
   const [cards, setCards] = useState<Map<string, Card>>(new Map());
@@ -74,6 +76,27 @@ export function CollectionView({ sets }: { sets: CollectionSet[] }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [missingKey, ready, shown]);
 
+  const [exportState, setExportState] = useState<"idle" | "working" | "failed">("idle");
+
+  /** Every owned card, fetched in pages (not just the ones shown), as one spreadsheet. */
+  async function exportCsv() {
+    setExportState("working");
+    try {
+      const all = new Map(cards);
+      const todo = ordered.filter((id) => !all.has(id));
+      for (let index = 0; index < todo.length; index += MAX_SHARED_CARDS) {
+        const result = await loadFavoriteCards(todo.slice(index, index + MAX_SHARED_CARDS));
+        for (const card of result.cards) all.set(card.id, card);
+      }
+      const rows = ordered.flatMap((id) => all.get(id) ?? []);
+      const date = new Date().toISOString().slice(0, 10);
+      downloadFile(collectionCsv(rows, locale, t, siteUrl), `podex-${t.collection.exportFilename}-${date}.csv`);
+      setExportState("idle");
+    } catch {
+      setExportState("failed");
+    }
+  }
+
   const settled = shown && ready;
   const failed = failedKey !== null && failedKey === missingKey;
   const loading = settled && missing.length > 0 && !failed;
@@ -81,7 +104,25 @@ export function CollectionView({ sets }: { sets: CollectionSet[] }) {
 
   return (
     <div>
-      <h1 className="text-3xl font-medium tracking-tight sm:text-4xl">{t.collection.title}</h1>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <h1 className="text-3xl font-medium tracking-tight sm:text-4xl">{t.collection.title}</h1>
+        {settled && owned.length > 0 ? (
+          <button
+            type="button"
+            onClick={exportCsv}
+            disabled={exportState === "working"}
+            className="inline-flex h-10 cursor-pointer items-center gap-2 rounded-full border border-border bg-surface px-4 text-sm hover:bg-surface-hover disabled:cursor-default disabled:opacity-60"
+          >
+            <Download aria-hidden="true" className="size-4" />
+            <span aria-live="polite">{exportState === "working" ? t.collection.exporting : t.collection.export}</span>
+          </button>
+        ) : null}
+      </div>
+      {exportState === "failed" ? (
+        <p role="alert" className="mt-2 text-sm text-heart">
+          {t.collection.exportFailed}
+        </p>
+      ) : null}
       <p className="mt-2 text-sm text-muted">
         {settled && owned.length > 0
           ? t.owned.collectionSummary(formatNumber(owned.length), owned.length, groups.length)

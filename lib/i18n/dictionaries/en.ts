@@ -224,6 +224,11 @@ const en = {
     setsHeading: "Sets you’ve started",
     showMore: "Show more cards",
     loadFailed: "Your collection could not be loaded.",
+    export: "Export to CSV/Excel",
+    exporting: "Preparing…",
+    exportFailed: "Export failed. Try again.",
+    exportFilename: "my-collection",
+    csvColumns: ["Set", "Release date", "Number", "Name", "Rarity", "Type", "Illustrator", "Card ID", "Link"] as string[],
   },
   owned: {
     own: "I own this",

@@ -230,6 +230,11 @@ const es: Dictionary = {
     setsHeading: "Expansiones que has empezado",
     showMore: "Mostrar más cartas",
     loadFailed: "No se pudo cargar tu colección.",
+    export: "Exportar a CSV/Excel",
+    exporting: "Preparando…",
+    exportFailed: "No se pudo exportar. Inténtalo de nuevo.",
+    exportFilename: "mi-coleccion",
+    csvColumns: ["Expansión", "Fecha de lanzamiento", "Número", "Nombre", "Rareza", "Tipo", "Ilustrador", "ID de la carta", "Enlace"],
   },
   owned: {
     own: "La tengo",

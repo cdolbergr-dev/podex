@@ -223,6 +223,11 @@ const da: Dictionary = {
     setsHeading: "Sæt, du er i gang med",
     showMore: "Vis flere kort",
     loadFailed: "Din samling kunne ikke indlæses.",
+    export: "Eksportér til CSV/Excel",
+    exporting: "Forbereder…",
+    exportFailed: "Eksporten mislykkedes. Prøv igen.",
+    exportFilename: "min-samling",
+    csvColumns: ["Sæt", "Udgivelsesdato", "Nummer", "Navn", "Sjældenhed", "Type", "Illustrator", "Kort-id", "Link"],
   },
   owned: {
     own: "Jeg har det",
