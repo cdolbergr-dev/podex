@@ -2,7 +2,7 @@
 
 ## Profile
 
-- **Username:** `podexcards` (matches podexcards.com)
+- **Username:** `podexcardsdotcom` ([instagram.com/podexcardsdotcom](https://www.instagram.com/podexcardsdotcom/))
 - **Name:** `Podex · Pokémon card catalog` (the name field is searchable on Instagram)
 - **Profile picture:** [profile-picture.png](profile-picture.png) (1080×1080; Instagram crops it to a circle)
 - **Website:** `https://podexcards.com`
@@ -100,12 +100,19 @@ letting other people connect their accounts.
 
 ### 6. Add the account and generate the access token
 
+First, the business portfolio has to own the Instagram profile, or the token dialog says
+"Instagram Pro account required". Open <https://business.facebook.com/settings>, select the
+**Podex Cards** portfolio, go to **Business assets** → **Instagram profiles** → **Add** and log in
+as podexcardsdotcom. (Creating a portfolio fails with "Facebook account too new" for brand-new
+Facebook accounts; wait an hour or a day and try again.)
+
 1. On the same page, open **Generate access tokens** and click **Add account**. Enter
-   `podexcards` to invite it as an **Instagram Tester**.
+   `podexcardsdotcom` and pick the **Instagram Tester** role.
 2. Accept the invitation. Open <https://www.instagram.com> in a browser (not the app), log in as
-   podexcards, and go to **Settings** → **Website permissions** → **Apps and websites** →
+   podexcardsdotcom, and go to **Settings** → **Website permissions** → **Apps and websites** →
    **Tester invites** → **Accept**.
-3. Back in the Meta app, click **Generate token** next to podexcards, log in when asked and
+3. Back in the Meta app, click **Generate token** next to podexcardsdotcom. In the dialog, pick
+   the **Podex Cards** portfolio and the podexcardsdotcom account, skip the ad account, and
    **copy the token right away**. Meta shows it only once.
    - Treat it like a password. Don't paste it into chats, issues or the code.
 
@@ -117,7 +124,7 @@ Run this in Terminal, with your token pasted in place of `PASTE_TOKEN_HERE`:
 curl -s "https://graph.facebook.com/v27.0/me/assigned_instagram_accounts?fields=id,username&access_token=PASTE_TOKEN_HERE"
 ```
 
-The response looks like `{"data":[{"id":"17841400000000000","username":"podexcards"}]}`. The
+The response looks like `{"data":[{"id":"17841400000000000","username":"podexcardsdotcom"}]}`. The
 number in **`id`** is `INSTAGRAM_USER_ID`.
 
 If you get an error or an empty `data` list, the token was copied incompletely, or the account
@@ -133,8 +140,9 @@ In Vercel → the podex project → **Settings** → **Environment Variables**, 
 | `INSTAGRAM_USER_ID` | the `id` from step 7 |
 | `INSTAGRAM_ACCESS_TOKEN` | the token from step 6 |
 
-If you couldn't choose **Never** in step 5, note the token's expiry date in your calendar. Before
-it runs out, generate a new token (step 6.3) and replace the value in Vercel.
+The default Unified login configuration gives a system-user token that never expires. If yours
+shows an expiry date in step 5, put it in your calendar and generate a new token (step 6.3)
+before it runs out.
 
 ### 9. Deploy and test
 
