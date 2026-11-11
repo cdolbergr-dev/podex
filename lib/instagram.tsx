@@ -8,7 +8,7 @@ import { siteUrl } from "@/lib/site";
 import type { CardOfTheDay } from "@/lib/tcg/collections";
 
 /** Instagram API with Instagram Login (no Facebook Page needed). */
-const GRAPH = "https://graph.instagram.com/v24.0";
+const GRAPH = "https://graph.instagram.com/v27.0";
 
 /** Instagram's portrait feed size. */
 export const POST_SIZE = { width: 1080, height: 1350 };
