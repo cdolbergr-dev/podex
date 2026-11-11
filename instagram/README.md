@@ -19,7 +19,7 @@
 `/api/cron/instagram` runs every day at 16:00 UTC (Vercel Schedule "instagram" in `vercel.json`).
 It posts the image from `/api/instagram/card-of-the-day` with a caption built in
 `lib/instagram.tsx`, through the
-[Instagram API with Instagram Login](https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/).
+[Instagram API with Unified Login](https://developers.facebook.com/documentation/instagram-platform/instagram-api-with-unified-login/get-started).
 This setup needs no Facebook Page and costs nothing.
 
 The job won't post if the account already posted in the last 20 hours. That way a repeated
@@ -71,72 +71,72 @@ The API can only post to professional accounts.
 You need a Facebook account to sign in to Meta for Developers. Your personal one is fine; it
 isn't shown anywhere on Instagram.
 
-1. Go to <https://developers.facebook.com/apps> and log in. If this is your first time, click
-   **Get started** and finish the developer registration (it confirms your email address and
-   asks what you do; pick **Developer**).
-2. Click **Create App** in the upper-right corner.
-3. **App details:** app name `Podex Instagram`, contact email: yours. Click **Next**.
-4. **Use case:** pick **Other**, then **Next**.
-5. **App type:** pick **Business**, then **Next**. Only business apps can add the Instagram
-   product.
-6. Skip connecting a business portfolio; that's only for publishing the app to other users.
-7. Click **Create app**. You may need to enter your Facebook password again.
-8. On the app's dashboard, scroll to the **Instagram** product and click **Set up**.
-   **API setup with Instagram login** is added automatically.
+1. Go to <https://developers.facebook.com>, click **Login** in the upper-right corner and log in
+   with Facebook. Log in first: while you're logged out, the apps page only shows "Sorry, the link
+   you followed may be broken". If this is your first time, click **Get started** and finish the
+   developer registration (it confirms your email address and asks what you do; pick
+   **Developer**). Then open <https://developers.facebook.com/apps>.
+2. Click **Create App**. Give it a name (for example `Podex Cards`), pick the use case
+   **Manage messaging & content on Instagram**, and attach it to your business portfolio when
+   asked. **API setup with Unified login** only shows up for apps that a business portfolio owns.
+3. Leave **App Mode** on **Development**. While the app only posts to your own account, the
+   default Standard Access is enough and no App Review is needed.
 
-### 5. Add the account and generate the access token
+### 5. Create a Unified login configuration
 
-1. In the app's left menu, open **Instagram** → **API setup with Instagram business login**.
-2. Under **1. Generate access tokens**, click **Add account**.
-3. A popup asks you to log in to Instagram. Log in as **podexcards**, not your personal
-   account, and allow the permissions it asks for.
-   - If the account doesn't appear afterwards, open **App Roles** → **Roles**, add podexcards as
-     an **Instagram Tester**, then accept the invitation in the Instagram app
-     (Settings and activity → **Website permissions** → **Apps and websites** → **Tester invites**).
-4. Back in API setup, click **Generate token** next to podexcards, log in again if asked, tick
-   the box to confirm and **copy the access token**.
-   - This token is long-lived: it's valid for 60 days, and the daily job renews it.
+1. In the app's left menu, open **Instagram** → **API setup with Unified login**. (If the menu
+   looks different: **Use cases** → **Manage messaging & content on Instagram** → **Customize** →
+   **API setup with Unified login**.)
+2. Under **Configure your app**, click **Create new configuration**.
+3. Permissions: keep the defaults. They include `instagram_basic` and
+   `instagram_content_publish`, which the posting job needs. You can skip the ad account.
+4. If it asks how long the access token should last, choose **Never** (or the longest option).
+   The configuration preview shows the token type and expiration.
+5. Click **Use this configuration**, enter `https://podexcards.com/` as the **Redirect URL** and
+   click **Save**. The **Login URL** it shows afterwards isn't needed.
+
+Skip the other steps on that page (webhooks, a login button, exchanging codes). They're for
+letting other people connect their accounts.
+
+### 6. Add the account and generate the access token
+
+1. On the same page, open **Generate access tokens** and click **Add account**. Enter
+   `podexcards` to invite it as an **Instagram Tester**.
+2. Accept the invitation. Open <https://www.instagram.com> in a browser (not the app), log in as
+   podexcards, and go to **Settings** → **Website permissions** → **Apps and websites** →
+   **Tester invites** → **Accept**.
+3. Back in the Meta app, click **Generate token** next to podexcards, log in when asked and
+   **copy the token right away**. Meta shows it only once.
    - Treat it like a password. Don't paste it into chats, issues or the code.
-5. You can skip **3. Set up Instagram business login** (redirect URLs and so on); it's only for
-   letting other people log in to the app.
 
-Leave the app in **development mode**. While the app only posts to accounts that have a role on
-it, the default Standard Access is enough, according to Meta's overview, and no App Review is
-needed.
-
-### 6. Find the Instagram user ID
+### 7. Find the Instagram account ID
 
 Run this in Terminal, with your token pasted in place of `PASTE_TOKEN_HERE`:
 
 ```bash
-curl -s "https://graph.instagram.com/v27.0/me?fields=user_id,username&access_token=PASTE_TOKEN_HERE"
+curl -s "https://graph.facebook.com/v27.0/me/assigned_instagram_accounts?fields=id,username&access_token=PASTE_TOKEN_HERE"
 ```
 
-The response looks like `{"user_id":"17841400000000000","username":"podexcards","id":"..."}`.
-The number in **`user_id`** is `INSTAGRAM_USER_ID`. Don't use `id`; that's a different ID that
-only applies inside your app.
+The response looks like `{"data":[{"id":"17841400000000000","username":"podexcards"}]}`. The
+number in **`id`** is `INSTAGRAM_USER_ID`.
 
-If you get an error instead, the token was copied incompletely or for the wrong account. Generate
-it again.
+If you get an error or an empty `data` list, the token was copied incompletely, or the account
+wasn't accepted as a tester. Do step 6 again.
 
-### 7. Add the values to Vercel
+### 8. Add the values to Vercel
 
 In Vercel → the podex project → **Settings** → **Environment Variables**, add these for the
 **Production** environment, marked as **Sensitive**:
 
 | Name | Value |
 | --- | --- |
-| `INSTAGRAM_USER_ID` | the `user_id` from step 6 |
-| `INSTAGRAM_ACCESS_TOKEN` | the token from step 5 |
-| `VERCEL_API_TOKEN` (optional) | a token from Vercel → Account Settings → **Tokens** → **Create** |
-| `VERCEL_PROJECT_ID` (optional) | Project → Settings → **General** → Project ID |
+| `INSTAGRAM_USER_ID` | the `id` from step 7 |
+| `INSTAGRAM_ACCESS_TOKEN` | the token from step 6 |
 
-Every run renews the Instagram token for another 60 days. Instagram usually returns the same
-token, but if it returns a new one, the two optional variables let the job save it to Vercel.
-Without them, the job works until the stored token runs out. In that case, generate a new token
-(step 5) and replace the value.
+If you couldn't choose **Never** in step 5, note the token's expiry date in your calendar. Before
+it runs out, generate a new token (step 6.3) and replace the value in Vercel.
 
-### 8. Deploy and test
+### 9. Deploy and test
 
 1. Redeploy, so the new variables take effect: Vercel → **Deployments** → ⋯ on the latest →
    **Redeploy**.
@@ -146,6 +146,3 @@ Without them, the job works until the stored token runs out. In that case, gener
    - `"skipped": "already posted today"`: the account posted in the last 20 hours.
    - `"ok": false` with an `error`: Instagram's error message, for example an expired token or a
      missing permission.
-
-A new token can't be renewed during its first 24 hours, so the first run may show an `error`
-under `refresh`. That's expected and doesn't stop the post.

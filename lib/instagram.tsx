@@ -7,8 +7,11 @@ import { ogColors, ogImageUrl } from "@/lib/og";
 import { siteUrl } from "@/lib/site";
 import type { CardOfTheDay } from "@/lib/tcg/collections";
 
-/** Instagram API with Instagram Login (no Facebook Page needed). */
-const GRAPH = "https://graph.instagram.com/v27.0";
+/**
+ * Instagram API with Unified Login (no Facebook Page needed). The token is a system-user token
+ * from the app's Unified login configuration, so it lasts as long as that configuration says.
+ */
+const GRAPH = "https://graph.facebook.com/v27.0";
 
 /** Instagram's portrait feed size. */
 export const POST_SIZE = { width: 1080, height: 1350 };
@@ -98,8 +101,8 @@ export function cardOfTheDayCaption({ card, pokemon, history, species }: CardOfT
 
 type GraphError = { error?: { message?: string } };
 
-async function graph<T>(path: string, init?: RequestInit, base = GRAPH): Promise<T> {
-  const response = await fetch(`${base}${path}`, { ...init, cache: "no-store" });
+async function graph<T>(path: string, init?: RequestInit): Promise<T> {
+  const response = await fetch(`${GRAPH}${path}`, { ...init, cache: "no-store" });
   const body = (await response.json().catch(() => ({}))) as T & GraphError;
   if (!response.ok) throw new Error(`Instagram ${path.split("?")[0]}: ${body.error?.message ?? response.status}`);
   return body;
@@ -129,41 +132,4 @@ export async function publishImage(userId: string, token: string, imageUrl: stri
   }
   const post = await graph<{ id: string }>(`/${userId}/media_publish`, form({ creation_id: container.id }));
   return post.id;
-}
-
-/**
- * Long-lived tokens last 60 days; refreshing one (allowed once it is a day old) starts a new 60
- * days. If Instagram hands back a different token, it is saved to the Vercel project so the next
- * deployment (the daily catalog rebuild) uses it. Returns the token to use for this run.
- */
-export async function refreshToken(token: string): Promise<{ token: string; expiresInDays?: number; saved?: boolean; error?: string }> {
-  try {
-    const refreshed = await graph<{ access_token: string; expires_in: number }>(
-      `/refresh_access_token?grant_type=ig_refresh_token&access_token=${encodeURIComponent(token)}`,
-      undefined,
-      "https://graph.instagram.com",
-    );
-    const expiresInDays = Math.round(refreshed.expires_in / 86_400);
-    if (refreshed.access_token === token) return { token, expiresInDays };
-    return { token: refreshed.access_token, expiresInDays, saved: await saveTokenToVercel(refreshed.access_token) };
-  } catch (error) {
-    // Too soon after the last refresh, or already expired; posting will tell which.
-    return { token, error: error instanceof Error ? error.message : String(error) };
-  }
-}
-
-async function saveTokenToVercel(token: string): Promise<boolean> {
-  const apiToken = process.env.VERCEL_API_TOKEN?.trim();
-  const project = process.env.VERCEL_PROJECT_ID?.trim();
-  if (!apiToken || !project) return false;
-  const team = process.env.VERCEL_TEAM_ID?.trim();
-  const response = await fetch(
-    `https://api.vercel.com/v10/projects/${encodeURIComponent(project)}/env?upsert=true${team ? `&teamId=${encodeURIComponent(team)}` : ""}`,
-    {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiToken}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ key: "INSTAGRAM_ACCESS_TOKEN", value: token, type: "encrypted", target: ["production"] }),
-    },
-  );
-  return response.ok;
 }
