@@ -3,6 +3,7 @@
 import { isValidCardId, MAX_SHARED_CARDS } from "@/lib/card-ids";
 import { parseExploreParams } from "@/lib/explore-params";
 import { DEFAULT_PAGE_SIZE } from "@/lib/tcg/constants";
+import { matchScan, type ScanMatch, type ScanQuery } from "@/lib/tcg/scan-match";
 import { getCardsByIds, searchCards } from "@/lib/tcg/service";
 import type { Card, ExploreParams, FavoriteCardsResult } from "@/types/catalog";
 
@@ -27,4 +28,14 @@ export async function loadMoreExploreCards(params: ExploreParams, page: number):
   const safePage = Number.isInteger(page) && page > 1 ? Math.min(page, 10000) : 2;
   const result = await searchCards({ ...query, page: safePage, pageSize: DEFAULT_PAGE_SIZE });
   return result.cards;
+}
+
+/** Catalog lookup for the card scanner (the reading itself happens in the browser). */
+export async function matchScannedCard(query: ScanQuery): Promise<ScanMatch> {
+  const clean = (value: unknown, max: number) => (typeof value === "string" ? value.slice(0, max) : "");
+  return matchScan({
+    number: clean(query?.number, 12),
+    total: clean(query?.total, 6) || undefined,
+    nameText: clean(query?.nameText, 120),
+  });
 }

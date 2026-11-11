@@ -27,6 +27,7 @@ const LINKS = [
   { href: "/sets", key: "sets" },
   { href: "/artists", key: "artists" },
   { href: "/favorites", key: "favorites" },
+  { href: "/scan", key: "scan" },
 ] as const;
 
 export function SiteHeader() {

@@ -63,7 +63,7 @@ export function safeReturnPath(value: string | undefined): string {
     const url = new URL(value, "https://podex.local");
     if (url.origin !== "https://podex.local") return "/";
     const path = stripLocale(url.pathname);
-    const listPage = ["/", "/favorites", "/favorites/shared", "/collection", "/sets", "/pokemon", "/artists"].includes(path);
+    const listPage = ["/", "/favorites", "/favorites/shared", "/collection", "/scan", "/sets", "/pokemon", "/artists"].includes(path);
     if (!listPage && !/^\/(pokemon|artists|sets)\/[a-z0-9-]+$/.test(path)) {
       return "/";
     }
@@ -78,6 +78,7 @@ export function returnLabel(path: string, t: Dictionary): string {
   if (path.startsWith("/favorites/shared")) return t.card.backToShared;
   if (path.startsWith("/favorites")) return t.card.backToFavorites;
   if (path.startsWith("/collection")) return t.card.backToCollection;
+  if (path.startsWith("/scan")) return t.card.backToScan;
   if (path.startsWith("/sets")) return t.card.backToSets;
   if (path.startsWith("/pokemon")) return t.card.backToPokemon;
   if (path.startsWith("/artists")) return t.card.backToArtist;

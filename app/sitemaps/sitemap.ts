@@ -36,6 +36,7 @@ export default async function sitemap(props: { id: Promise<string> }): Promise<M
     ...localized("/sets", { changeFrequency: "weekly", priority: 0.8 }),
     ...localized("/pokemon", { changeFrequency: "weekly", priority: 0.8 }),
     ...localized("/artists", { changeFrequency: "weekly", priority: 0.6 }),
+    ...localized("/scan", { changeFrequency: "monthly", priority: 0.5 }),
     ...collections.pokemon.flatMap((slug) =>
       localized(`/pokemon/${slug}`, { changeFrequency: "weekly", priority: 0.7 }),
     ),
