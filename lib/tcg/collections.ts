@@ -153,11 +153,15 @@ export async function getPokemonSlugByDex(dex: number): Promise<string | null> {
   return cachedPokemonSlug(getDataMode(), dex);
 }
 
+/** The card of the day's date, "YYYY-MM-DD" in Danish time. */
+export function cardOfTheDayDate(now = new Date()): string {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Copenhagen" }).format(now);
+}
+
 /** Today's featured card; the day turns over at midnight Danish time. */
 export async function getCardOfTheDay(): Promise<CardOfTheDay | null> {
   await connection();
-  const day = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Copenhagen" }).format(new Date());
-  return cachedCardOfTheDay(getDataMode(), day);
+  return cachedCardOfTheDay(getDataMode(), cardOfTheDayDate());
 }
 
 /** For the sitemap: no request-time APIs, so it can be prerendered. */
