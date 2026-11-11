@@ -63,6 +63,10 @@ export default async function RootLayout({
   const [locale, t] = await Promise.all([getLocale(), getDictionary()]);
   return (
     <html lang={locale} className={`${geistSans.variable} h-full antialiased`}>
+      <head>
+        {/* Impact (CardNexus affiliate) site verification. Impact expects `value`, not `content`. */}
+        <meta name="impact-site-verification" {...{ value: "58a320ea-3248-4fa6-b0d3-d368b7bd1a27" }} />
+      </head>
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <a
           href="#content"
