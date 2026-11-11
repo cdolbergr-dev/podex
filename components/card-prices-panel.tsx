@@ -6,9 +6,9 @@ import { INTL_LOCALES, type Locale } from "@/lib/i18n/config";
 import type { DkkRates } from "@/lib/exchange-rates";
 import type { CardPrices } from "@/types/catalog";
 
-function money(value: number, currency: "USD" | "EUR", locale: Locale, dkk: DkkRates | null): string {
+function money(value: number, locale: Locale, dkk: DkkRates | null): string {
   if (dkk) {
-    const kroner = value * (currency === "EUR" ? dkk.eur : dkk.usd);
+    const kroner = value * dkk.eur;
     // Converted amounts are approximate; whole kroner read better than øre.
     return `≈ ${new Intl.NumberFormat(INTL_LOCALES[locale], {
       style: "currency",
@@ -16,7 +16,7 @@ function money(value: number, currency: "USD" | "EUR", locale: Locale, dkk: DkkR
       maximumFractionDigits: kroner < 10 ? 2 : 0,
     }).format(kroner)}`;
   }
-  return new Intl.NumberFormat(INTL_LOCALES[locale], { style: "currency", currency }).format(value);
+  return new Intl.NumberFormat(INTL_LOCALES[locale], { style: "currency", currency: "EUR" }).format(value);
 }
 
 function updatedLabel(value: string | undefined, locale: Locale): string | null {
@@ -52,42 +52,39 @@ export function CardPricesPanel({ prices, dkk = null }: { prices: CardPrices | n
 
   return (
     <PricesSection>
-      <dl className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-6 gap-y-2.5 text-sm">
-        {prices.tcgplayer?.variants.map((variant) => (
-          <div key={variant.label} className="contents">
-            <dt className="text-muted">
-              {t.prices.tcgplayer} <span className="text-faint">·</span> {t.prices.variants[variant.label] ?? variant.label}
-            </dt>
-            <dd className="text-right font-medium tabular-nums">{money(variant.price, "USD", locale, dkk)}</dd>
-          </div>
-        ))}
-        {prices.cardmarket ? (
+      {prices.cardmarket ? (
+        <dl className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-6 gap-y-2.5 text-sm">
           <div className="contents">
             <dt className="text-muted">
               {t.prices.cardmarketTrend}
             </dt>
             <dd className="text-right font-medium tabular-nums">
-              {money(prices.cardmarket.trend, "EUR", locale, dkk)}
+              {money(prices.cardmarket.trend, locale, dkk)}
               {prices.cardmarket.avg30 ? (
-                <span className="ml-2 font-normal text-faint">{t.prices.avg30(money(prices.cardmarket.avg30, "EUR", locale, dkk))}</span>
+                <span className="ml-2 font-normal text-faint">{t.prices.avg30(money(prices.cardmarket.avg30, locale, dkk))}</span>
               ) : null}
             </dd>
           </div>
-        ) : null}
-      </dl>
+        </dl>
+      ) : (
+        <p className="text-sm text-muted">{t.prices.none}</p>
+      )}
       <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-faint">
         <span>{updated ? t.prices.updatedVia(updated) : t.prices.via}</span>
         {dkk ? <span>{t.prices.converted}</span> : null}
-        {prices.tcgplayer?.url ? (
-          <a
-            href={prices.tcgplayer.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-0.5 underline decoration-border underline-offset-4 hover:text-foreground"
-          >
-            {t.prices.viewOnTcgplayer}
-            <ArrowUpRight aria-hidden="true" className="size-3" />
-          </a>
+        {prices.cardnexus ? (
+          <span className="inline-flex items-center gap-1.5">
+            <a
+              href={prices.cardnexus.url}
+              target="_blank"
+              rel={prices.cardnexus.affiliate ? "sponsored noopener noreferrer" : "noopener noreferrer"}
+              className="inline-flex items-center gap-0.5 underline decoration-border underline-offset-4 hover:text-foreground"
+            >
+              {t.prices.buyOnCardnexus}
+              <ArrowUpRight aria-hidden="true" className="size-3" />
+            </a>
+            {prices.cardnexus.affiliate ? <span>({t.prices.affiliateLink})</span> : null}
+          </span>
         ) : null}
       </p>
     </PricesSection>

@@ -142,22 +142,14 @@ const da: Dictionary = {
   prices: {
     heading: "Markedspris",
     none: "Ingen aktuel markedspris for dette kort.",
-    tcgplayer: "TCGplayer",
     cardmarketTrend: "Cardmarket · Trend",
     avg30: (value) => `30 dages gns. ${value}`,
     updatedVia: (date) => `Opdateret ${date} · via TCGdex`,
     via: "Via TCGdex",
     converted: "Omregnet til kroner efter ECB’s kurs",
-    viewOnTcgplayer: "Se på TCGplayer",
+    buyOnCardnexus: "Køb på CardNexus",
+    affiliateLink: "Annoncelink",
     loading: "Indlæser markedspriser",
-    variants: {
-      Normal: "Normal",
-      Holofoil: "Holofoil",
-      "Reverse holo": "Reverse holo",
-      "1st Edition": "1. udgave",
-      "1st Edition holo": "1. udgave holo",
-      "Unlimited holo": "Unlimited holo",
-    },
   },
   pokemon: {
     summary: (name, cards, sets, first, year, artists) =>

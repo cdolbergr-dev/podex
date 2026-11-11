@@ -40,7 +40,7 @@ ${popular.map((slug) => `- [${slug[0].toUpperCase()}${slug.slice(1)}](${siteUrl}
 ## Optional
 
 - [Sitemap](${siteUrl}/sitemap.xml): every page in every language
-- Card details include market prices from TCGplayer and Cardmarket via TCGdex where available
+- Card details include Cardmarket market prices via TCGdex and a link to buy on CardNexus where available
 `;
 
   return new Response(text, {

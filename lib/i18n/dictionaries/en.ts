@@ -142,22 +142,14 @@ const en = {
   prices: {
     heading: "Market price",
     none: "No recent market price for this card.",
-    tcgplayer: "TCGplayer",
     cardmarketTrend: "Cardmarket · Trend",
     avg30: (value: string) => `30d avg ${value}`,
     updatedVia: (date: string) => `Updated ${date} · via TCGdex`,
     via: "Via TCGdex",
     converted: "Converted to Danish kroner at the ECB rate",
-    viewOnTcgplayer: "View on TCGplayer",
+    buyOnCardnexus: "Buy on CardNexus",
+    affiliateLink: "Affiliate link",
     loading: "Loading market prices",
-    variants: {
-      Normal: "Normal",
-      Holofoil: "Holofoil",
-      "Reverse holo": "Reverse holo",
-      "1st Edition": "1st Edition",
-      "1st Edition holo": "1st Edition holo",
-      "Unlimited holo": "Unlimited holo",
-    } as Record<string, string>,
   },
   pokemon: {
     summary: (name: string, cards: string, sets: string, first: string, year: string, artists: string) =>

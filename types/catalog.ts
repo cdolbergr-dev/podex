@@ -81,15 +81,11 @@ export type Card = {
   };
 };
 
-export type CardPriceVariant = {
-  label: string;
-  price: number;
-};
-
 /** Market prices fetched from TCGdex at view time (not stored in the catalog). */
 export type CardPrices = {
-  tcgplayer?: { currency: "USD"; variants: CardPriceVariant[]; url?: string };
   cardmarket?: { currency: "EUR"; trend: number; avg30?: number };
+  /** Where to buy the card on CardNexus; `affiliate` when it carries our partner tracking. */
+  cardnexus?: { url: string; affiliate: boolean };
   updated?: string;
 };
 
