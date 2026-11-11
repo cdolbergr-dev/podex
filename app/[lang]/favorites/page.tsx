@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { FavoritesView } from "@/components/favorites-view";
 import { PageContainer } from "@/components/page-container";
+import { SavedTabs } from "@/components/saved-tabs";
 import { CardSkeletonGrid } from "@/components/skeletons";
 import { languageAlternates } from "@/lib/i18n/alternates";
 import { getDictionary, getLocale } from "@/lib/i18n/server";
@@ -19,6 +20,7 @@ export default function FavoritesPage() {
   return (
     <main className="pb-20">
       <PageContainer className="pt-10 sm:pt-14">
+        <SavedTabs active="favorites" />
         {/* The selected list is read from the URL (useSearchParams) on the client. */}
         <Suspense fallback={<FavoritesFallback />}>
           <FavoritesView />

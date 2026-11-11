@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { ExpandableText } from "@/components/expandable-text";
 import { LocaleLink } from "@/components/i18n-provider";
 import { pokemonSubtitle } from "@/components/pokemon-history";
 import { formatReleaseDate } from "@/lib/format";
@@ -46,9 +47,15 @@ export async function CardOfTheDay() {
         </p>
         <p className="mt-2 text-xs text-muted tabular-nums">{pokemonSubtitle(pokemon, species, locale, t)}</p>
         {text?.entry ? (
-          <p lang={text === species?.es ? "es" : "en"} className="mt-1 line-clamp-2 text-xs leading-5 text-soft sm:line-clamp-3">
-            {text.entry}
-          </p>
+          <div className="mt-1">
+            <ExpandableText
+              text={text.entry}
+              lang={text === species?.es ? "es" : "en"}
+              moreLabel={t.cardOfTheDay.readMore}
+              lessLabel={t.cardOfTheDay.showLess}
+              className="text-xs leading-5 text-soft"
+            />
+          </div>
         ) : null}
         {history.first ? (
           <p className="mt-1 truncate text-xs text-faint">

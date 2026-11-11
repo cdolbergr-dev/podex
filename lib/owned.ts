@@ -16,6 +16,11 @@ export function countOwnedInSet(owned: string[], setId: string, longer: string[]
   return count;
 }
 
+/** The set a card id belongs to: the longest set id it starts with (see longerSetIds). */
+export function setIdOfCard(cardId: string, setIdsLongestFirst: string[]): string | null {
+  return setIdsLongestFirst.find((setId) => cardId.startsWith(`${setId}-`)) ?? null;
+}
+
 export function setCardTotal(set: CardSet): number {
   return set.total || set.printedTotal || 0;
 }

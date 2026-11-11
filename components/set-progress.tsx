@@ -1,7 +1,7 @@
 "use client";
 
 import { useFavorites } from "@/components/favorites-provider";
-import { useI18n } from "@/components/i18n-provider";
+import { LocaleLink, useI18n } from "@/components/i18n-provider";
 import { countOwnedInSet } from "@/lib/owned";
 
 function useOwnedInSet(setId: string, longer: string[]) {
@@ -59,6 +59,10 @@ export function CollectionSummary({ sets }: { sets: { id: string; longer: string
   if (!ready || owned.length === 0) return null;
   const started = sets.filter((set) => countOwnedInSet(owned, set.id, set.longer) > 0).length;
   return (
-    <p className="text-sm text-owned">{t.owned.collectionSummary(formatNumber(owned.length), owned.length, started)}</p>
+    <p className="text-sm">
+      <LocaleLink href="/collection" className="text-owned underline decoration-owned/30 underline-offset-4 hover:decoration-owned">
+        {t.owned.collectionSummary(formatNumber(owned.length), owned.length, started)}
+      </LocaleLink>
+    </p>
   );
 }

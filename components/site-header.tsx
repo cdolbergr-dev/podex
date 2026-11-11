@@ -148,6 +148,8 @@ function LanguagePicker() {
 
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
+  // "My collection" sits beside favorites (tabs), so it highlights Favorites.
+  if (href === "/favorites" && pathname.startsWith("/collection")) return true;
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
