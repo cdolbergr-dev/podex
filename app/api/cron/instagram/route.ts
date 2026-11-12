@@ -39,12 +39,15 @@ export async function GET(request: Request) {
     // The story follows the post. If it fails, the post still stands and the error is reported.
     const story = await publishImage(userId, token, `${imageUrl}&format=story`, { media_type: "STORIES" })
       .then((storyId) => ({ storyId }))
-      .catch((error: unknown) => ({ storyError: error instanceof Error ? error.message : String(error) }));
+      .catch((error: unknown) => {
+        const storyError = error instanceof Error ? error.message : String(error);
+        console.error(`instagram cron (story): ${storyError}`);
+        return { storyError };
+      });
     return NextResponse.json({ ok: true, postId, ...story, card: featured.card.id });
   } catch (error) {
-    return NextResponse.json(
-      { ok: false, error: error instanceof Error ? error.message : String(error) },
-      { status: 502 },
-    );
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`instagram cron: ${message}`); // shows up in the run's Vercel logs
+    return NextResponse.json({ ok: false, error: message }, { status: 502 });
   }
 }

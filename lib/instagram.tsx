@@ -117,12 +117,16 @@ export function cardOfTheDayCaption({ card, pokemon, history, species }: CardOfT
     .join("\n");
 }
 
-type GraphError = { error?: { message?: string } };
+type GraphError = { error?: { message?: string; code?: number; error_subcode?: number } };
 
 async function graph<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${GRAPH}${path}`, { ...init, cache: "no-store" });
   const body = (await response.json().catch(() => ({}))) as T & GraphError;
-  if (!response.ok) throw new Error(`Instagram ${path.split("?")[0]}: ${body.error?.message ?? response.status}`);
+  if (!response.ok) {
+    const { message, code, error_subcode } = body.error ?? {};
+    const codes = [code, error_subcode].filter(Boolean).join("/");
+    throw new Error(`Instagram ${path.split("?")[0]}: ${message ?? response.status}${codes ? ` (code ${codes})` : ""}`);
+  }
   return body;
 }
 
