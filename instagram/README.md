@@ -22,6 +22,11 @@ It posts the image from `/api/instagram/card-of-the-day` with a caption built in
 [Instagram API with Unified Login](https://developers.facebook.com/documentation/instagram-platform/instagram-api-with-unified-login/get-started).
 This setup needs no Facebook Page and costs nothing.
 
+Right after the post, the job publishes a story (`?format=story`, 1080×1920) that shows the card
+and its page on the site, for example `podexcards.com/cards/sm8-106`. Instagram's API can't add
+link stickers (or any stickers) to stories, so the address is printed on the image rather than
+tappable. If the story fails, the post still stands and the job's response has a `storyError`.
+
 The job won't post if the account already posted in the last 20 hours. That way a repeated
 schedule run, or a post you made by hand, doesn't lead to a double post.
 
@@ -150,7 +155,7 @@ before it runs out.
    **Redeploy**.
 2. Check the image: open <https://podexcards.com/api/instagram/card-of-the-day>.
 3. Post once by running the "instagram" schedule from the Vercel dashboard. The response is JSON:
-   - `"ok": true` with a `postId`: the post is live on the profile.
+   - `"ok": true` with a `postId` and a `storyId`: the post and the story are live.
    - `"skipped": "already posted today"`: the account posted in the last 20 hours.
    - `"ok": false` with an `error`: Instagram's error message, for example an expired token or a
      missing permission.
