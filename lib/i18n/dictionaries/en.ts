@@ -38,6 +38,7 @@ const en = {
     before: (brand: string) => `${brand} uses the`,
     link: "TCGdex API",
     after: "and shows card data for identification. Names, artwork, and game text remain the property of their rights holders.",
+    instagram: (brand: string) => `Follow ${brand} on Instagram`,
   },
   common: {
     skipToContent: "Skip to content",
@@ -205,6 +206,7 @@ const en = {
     title: "Card of the day",
     viewCard: "View card",
     allCardsOf: (name: string) => `All ${name} cards`,
+    instagram: "Daily on Instagram",
   },
   collection: {
     title: "My collection",

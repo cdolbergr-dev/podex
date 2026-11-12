@@ -1,3 +1,4 @@
+import { InstagramIcon } from "@/components/instagram-icon";
 import { brand } from "@/lib/brand";
 import { getDictionary } from "@/lib/i18n/server";
 
@@ -6,6 +7,15 @@ export async function SiteFooter() {
   return (
     <footer className="mt-auto border-t border-border">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <a
+          href={brand.instagram}
+          target="_blank"
+          rel="me noopener"
+          className="mb-4 inline-flex items-center gap-1.5 text-xs font-medium text-muted hover:text-foreground"
+        >
+          <InstagramIcon className="size-4" />
+          {t.footer.instagram(brand.name)}
+        </a>
         <p className="max-w-2xl text-xs leading-5 text-faint">
           {t.footer.before(brand.name)}{" "}
           <a href="https://tcgdex.dev/" className="underline decoration-border underline-offset-2 hover:text-muted">

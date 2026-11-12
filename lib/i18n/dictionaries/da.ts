@@ -39,6 +39,7 @@ const da: Dictionary = {
     before: (brand) => `${brand} bruger`,
     link: "TCGdex API",
     after: "og viser kortdata til identifikation. Navne, illustrationer og spiltekst tilhører fortsat rettighedshaverne.",
+    instagram: (brand) => `Følg ${brand} på Instagram`,
   },
   common: {
     skipToContent: "Gå til indhold",
@@ -204,6 +205,7 @@ const da: Dictionary = {
     title: "Dagens kort",
     viewCard: "Se kortet",
     allCardsOf: (name) => `Alle ${name}-kort`,
+    instagram: "Hver dag på Instagram",
   },
   collection: {
     title: "Min samling",

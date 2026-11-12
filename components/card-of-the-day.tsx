@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { ExpandableText } from "@/components/expandable-text";
+import { InstagramIcon } from "@/components/instagram-icon";
 import { LocaleLink } from "@/components/i18n-provider";
 import { pokemonSubtitle } from "@/components/pokemon-history";
+import { brand } from "@/lib/brand";
 import { formatReleaseDate } from "@/lib/format";
 import { getDictionary, getLocale } from "@/lib/i18n/server";
 import { getCardOfTheDay } from "@/lib/tcg/collections";
@@ -63,13 +65,24 @@ export async function CardOfTheDay() {
             {firstYear ? ` (${firstYear})` : ""}
           </p>
         ) : null}
-        <LocaleLink
-          href={`/pokemon/${pokemon.slug}`}
-          className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-foreground hover:underline"
-        >
-          {t.cardOfTheDay.allCardsOf(pokemon.name)}
-          <ArrowRight aria-hidden="true" className="size-3" />
-        </LocaleLink>
+        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
+          <LocaleLink
+            href={`/pokemon/${pokemon.slug}`}
+            className="inline-flex items-center gap-1 text-xs font-medium text-foreground hover:underline"
+          >
+            {t.cardOfTheDay.allCardsOf(pokemon.name)}
+            <ArrowRight aria-hidden="true" className="size-3" />
+          </LocaleLink>
+          <a
+            href={brand.instagram}
+            target="_blank"
+            rel="noopener"
+            className="inline-flex items-center gap-1 text-xs text-muted hover:text-foreground hover:underline"
+          >
+            <InstagramIcon className="size-3" />
+            {t.cardOfTheDay.instagram}
+          </a>
+        </div>
       </div>
     </section>
   );

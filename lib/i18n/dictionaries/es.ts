@@ -41,6 +41,7 @@ const es: Dictionary = {
     before: (brand) => `${brand} usa la`,
     link: "API de TCGdex",
     after: "y muestra datos de las cartas para identificarlas. Los nombres, las ilustraciones y el texto de juego pertenecen a sus titulares.",
+    instagram: (brand) => `Sigue a ${brand} en Instagram`,
   },
   common: {
     skipToContent: "Ir al contenido",
@@ -211,6 +212,7 @@ const es: Dictionary = {
     title: "Carta del día",
     viewCard: "Ver carta",
     allCardsOf: (name) => `Todas las cartas de ${name}`,
+    instagram: "Cada día en Instagram",
   },
   collection: {
     title: "Mi colección",

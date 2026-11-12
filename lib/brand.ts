@@ -8,4 +8,6 @@ export const brand = {
   tagline: "Discover the world of Pokémon cards.",
   description:
     "A quiet catalog for browsing Pokémon cards and keeping the ones you want to come back to.",
+  /** Posts the card of the day every day (app/api/cron/instagram). */
+  instagram: "https://www.instagram.com/podexcardsdotcom/",
 } as const;

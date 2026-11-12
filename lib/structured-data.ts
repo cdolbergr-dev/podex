@@ -47,6 +47,7 @@ export function websiteJsonLd(locale: Locale, t: Dictionary): Json {
     url: absolute(locale, "/"),
     description: t.meta.description,
     inLanguage: locale,
+    publisher: { "@type": "Organization", name: brand.name, url: siteUrl, sameAs: [brand.instagram] },
     potentialAction: {
       "@type": "SearchAction",
       target: { "@type": "EntryPoint", urlTemplate: `${absolute(locale, "/")}?q={search_term_string}` },
