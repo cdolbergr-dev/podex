@@ -17,7 +17,7 @@ export async function CardModalPage({ params, searchParams }: CardModalPageProps
     <CardModalOverlay returnTo={returnTo} cardId={id}>
       <CardDetailTransitionLayout id={id} returnTo={returnTo} presentation="modal">
         <Suspense fallback={<CardDetailInfoFallback id={id} />}>
-          <CardDetail id={id} returnTo={returnTo} />
+          <CardDetail id={id} />
         </Suspense>
       </CardDetailTransitionLayout>
     </CardModalOverlay>

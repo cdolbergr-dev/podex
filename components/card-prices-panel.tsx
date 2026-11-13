@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n-provider";
 import { INTL_LOCALES, type Locale } from "@/lib/i18n/config";
 import type { DkkRates } from "@/lib/exchange-rates";
@@ -102,4 +103,29 @@ export function CardPricesSkeleton() {
       </div>
     </PricesSection>
   );
+}
+
+/**
+ * Fetches a card's prices in the browser (app/api/cards/[id]/prices), so the card page itself
+ * holds no per-hour data and can stay cached. Danish visitors see kroner.
+ */
+export function CardPricesLoader({ id }: { id: string }) {
+  const { locale } = useI18n();
+  const [loaded, setLoaded] = useState<{ id: string; prices: CardPrices | null; dkk: DkkRates | null } | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    fetch(`/api/cards/${encodeURIComponent(id)}/prices`)
+      .then((response) => (response.ok ? response.json() : { prices: null, dkk: null }))
+      .catch(() => ({ prices: null, dkk: null }))
+      .then((data: { prices: CardPrices | null; dkk: DkkRates | null }) => {
+        if (active) setLoaded({ id, prices: data.prices, dkk: data.dkk });
+      });
+    return () => {
+      active = false;
+    };
+  }, [id]);
+
+  if (loaded?.id !== id) return <CardPricesSkeleton />;
+  return <CardPricesPanel prices={loaded.prices} dkk={locale === "da" ? loaded.dkk : null} />;
 }

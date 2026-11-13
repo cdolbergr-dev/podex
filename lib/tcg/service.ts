@@ -3,7 +3,7 @@ import { connection } from "next/server";
 import { RARITIES } from "@/lib/tcg/constants";
 import { suggestQuery, vocabularyFrom } from "@/lib/tcg/search-terms";
 import { getTcgdexCardPrices } from "@/lib/tcg/tcgdex/pricing";
-import { getDataMode, getDataSourceInfo } from "@/lib/tcg/config";
+import { catalogCacheLife, getDataMode, getDataSourceInfo } from "@/lib/tcg/config";
 import {
   getDatabaseCard,
   getDatabaseCardIds,
@@ -74,7 +74,7 @@ export type FilterMeta = {
 async function cachedSearch(mode: DataMode, query: ExploreParams): Promise<Omit<CardSearchResult, "source">> {
   "use cache";
   cacheTag(CATALOG_CACHE_TAG);
-  cacheLife(mode === "database" ? "hours" : "hours");
+  catalogCacheLife(mode, "hours");
 
   if (mode === "sample" || mode === "static") {
     const result = memoryCatalog(mode).search(query);
@@ -93,7 +93,7 @@ async function cachedSearch(mode: DataMode, query: ExploreParams): Promise<Omit<
 async function cachedCard(mode: DataMode, id: string): Promise<Card | null> {
   "use cache";
   cacheTag(CATALOG_CACHE_TAG);
-  cacheLife("hours");
+  catalogCacheLife(mode, "hours");
   if (mode === "database") return getDatabaseCard(id);
   return mode === "live" ? getLiveCard(id) : memoryCatalog(mode).card(id);
 }
@@ -101,7 +101,7 @@ async function cachedCard(mode: DataMode, id: string): Promise<Card | null> {
 async function cachedCardsByIds(mode: DataMode, ids: string[]): Promise<Card[]> {
   "use cache";
   cacheTag(CATALOG_CACHE_TAG);
-  cacheLife("hours");
+  catalogCacheLife(mode, "hours");
   if (mode === "database") return getDatabaseCardsByIds(ids);
   return mode === "live" ? getLiveCardsByIds(ids) : memoryCatalog(mode).cardsByIds(ids);
 }
@@ -109,7 +109,7 @@ async function cachedCardsByIds(mode: DataMode, ids: string[]): Promise<Card[]> 
 async function cachedVocabulary(mode: DataMode): Promise<string[]> {
   "use cache";
   cacheTag(CATALOG_CACHE_TAG);
-  cacheLife("days");
+  catalogCacheLife(mode, "days");
   if (mode === "database") return vocabularyFrom(await getDatabaseSearchNames());
   return mode === "live" ? [] : vocabularyFrom(memoryCatalog(mode).searchNames());
 }
@@ -117,7 +117,7 @@ async function cachedVocabulary(mode: DataMode): Promise<string[]> {
 async function cachedCardIds(mode: DataMode): Promise<string[]> {
   "use cache";
   cacheTag(CATALOG_CACHE_TAG);
-  cacheLife("days");
+  catalogCacheLife(mode, "days");
   if (mode === "database") return getDatabaseCardIds();
   // Live mode would mean paging the whole TCGdex catalog; sitemaps list sets only there.
   return mode === "live" ? [] : memoryCatalog(mode).cardIds();
@@ -126,7 +126,7 @@ async function cachedCardIds(mode: DataMode): Promise<string[]> {
 async function cachedSets(mode: DataMode): Promise<CardSet[]> {
   "use cache";
   cacheTag(CATALOG_CACHE_TAG);
-  cacheLife("days");
+  catalogCacheLife(mode, "days");
   if (mode === "database") return getDatabaseSets();
   return mode === "live" ? getLiveSets() : memoryCatalog(mode).sets;
 }
@@ -134,14 +134,13 @@ async function cachedSets(mode: DataMode): Promise<CardSet[]> {
 async function cachedRarities(mode: DataMode): Promise<string[]> {
   "use cache";
   cacheTag(CATALOG_CACHE_TAG);
-  cacheLife("days");
+  catalogCacheLife(mode, "days");
   if (mode === "database") return getDatabaseRarities();
   if (mode === "sample" || mode === "static") return memoryCatalog(mode).rarities();
   return [...RARITIES];
 }
 
 export async function searchCards(query: ExploreParams): Promise<CardSearchResult> {
-  await connection();
   const mode = getDataMode();
   const [result, source] = await Promise.all([cachedSearch(mode, query), getDataSourceInfo()]);
   if (result.totalCount > 0 || !query.q.trim()) return { ...result, source };
@@ -156,7 +155,6 @@ export async function searchCards(query: ExploreParams): Promise<CardSearchResul
 }
 
 export async function getCard(id: string): Promise<Card | null> {
-  await connection();
   return cachedCard(getDataMode(), id);
 }
 
@@ -194,12 +192,10 @@ export async function getSitemapSets(): Promise<CardSet[]> {
 }
 
 export async function getSets(): Promise<CardSet[]> {
-  await connection();
   return cachedSets(getDataMode());
 }
 
 export async function getFilterMeta(): Promise<FilterMeta> {
-  await connection();
   const mode = getDataMode();
   const [sets, rarities] = await Promise.all([cachedSets(mode), cachedRarities(mode)]);
   return { sets, rarities };

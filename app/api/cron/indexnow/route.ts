@@ -10,7 +10,7 @@ import { getStaticCatalogAddedCardIds, getStaticCatalogBuiltAt } from "@/lib/tcg
 const LIST_PAGES = ["/", "/sets", "/pokemon", "/artists"];
 
 /**
- * Daily Vercel Schedule "indexnow" (vercel.json, GET), an hour after "rebuild-catalog" so the new
+ * Weekly Vercel Schedule "indexnow" (vercel.json, Mondays, GET), an hour after "rebuild-catalog" so the new
  * deployment is live: submits the list pages and any cards new in today's catalog, in every
  * language. Skips catalogs older than a day (the rebuild didn't run or reused a cached copy).
  */

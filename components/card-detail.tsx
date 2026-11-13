@@ -1,22 +1,14 @@
-import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { CardDetailArtworkBridge } from "@/components/card-detail-artwork-context";
 import { CardTransitionLink } from "@/components/card-transition-link";
 import { CardDetailInfo } from "@/components/card-detail-info";
-import { CardPricesPanel, CardPricesSkeleton } from "@/components/card-prices-panel";
-import { getDkkRates } from "@/lib/exchange-rates";
-import { getDictionary, getLocale } from "@/lib/i18n/server";
+import { CardPricesLoader } from "@/components/card-prices-panel";
+import { getDictionary } from "@/lib/i18n/server";
 import { catalogErrorMessage } from "@/lib/tcg/errors";
-import { getCard, getCardPrices } from "@/lib/tcg/service";
+import { getCard } from "@/lib/tcg/service";
 import type { Card } from "@/types/catalog";
 
-export async function CardDetail({
-  id,
-  returnTo,
-}: {
-  id: string;
-  returnTo?: string;
-}) {
+export async function CardDetail({ id }: { id: string }) {
   let card: Card | null = null;
   let failure: string | null = null;
 
@@ -54,22 +46,8 @@ export async function CardDetail({
       />
       <CardDetailInfo
         card={card}
-        prices={
-          <Suspense fallback={<CardPricesSkeleton />}>
-            <CardPrices id={card.id} />
-          </Suspense>
-        }
+        prices={<CardPricesLoader id={card.id} />}
       />
     </>
   );
-}
-
-async function CardPrices({ id }: { id: string }) {
-  const locale = await getLocale();
-  // Danish visitors see kroner; everyone else the market's own currency.
-  const [prices, dkk] = await Promise.all([
-    getCardPrices(id),
-    locale === "da" ? getDkkRates().catch(() => null) : null,
-  ]);
-  return <CardPricesPanel prices={prices} dkk={dkk} />;
 }

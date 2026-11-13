@@ -11,9 +11,19 @@ import { formatCount, formatReleaseDate } from "@/lib/format";
 import { artistJsonLd } from "@/lib/structured-data";
 import { languageAlternates } from "@/lib/i18n/alternates";
 import { getDictionary, getLocale } from "@/lib/i18n/server";
-import { getArtistPage } from "@/lib/tcg/collections";
+import { getArtistPage, getSitemapCollections } from "@/lib/tcg/collections";
 
 type ArtistPageProps = { params: Promise<{ slug: string }> };
+
+/**
+ * One real example is prerendered at build. Cache Components needs at least one, and with it every
+ * other artist page is saved after its first render and then served from the CDN cache until
+ * the next deployment, instead of running server code on every visit.
+ */
+export async function generateStaticParams() {
+  const { artists } = await getSitemapCollections().catch(() => ({ artists: [] as string[] }));
+  return [{ slug: artists[0] ?? "ken-sugimori" }];
+}
 
 export async function generateMetadata({ params }: ArtistPageProps): Promise<Metadata> {
   const [{ slug }, locale, t] = await Promise.all([params, getLocale(), getDictionary()]);

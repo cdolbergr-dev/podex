@@ -2,10 +2,12 @@ import { NextResponse } from "next/server";
 import { isCronAuthorized } from "@/lib/cron-auth";
 
 /**
- * Daily Vercel Schedule "rebuild-catalog" (vercel.json, GET): triggers a fresh production build
- * through a deploy hook. The build downloads the latest TCGdex catalog
- * (scripts/build-catalog.ts), so the static catalog stays current without a database. Vercel
- * sends CRON_SECRET as a bearer token. A rare duplicate delivery only queues an extra rebuild.
+ * Weekly Vercel Schedule "rebuild-catalog" (vercel.json, Mondays, GET): triggers a fresh
+ * production build through a deploy hook. The build downloads the latest TCGdex catalog
+ * (scripts/build-catalog.ts), so the static catalog stays current without a database. Weekly,
+ * not daily: every deployment empties the CDN cache, and re-rendering pages for crawlers after
+ * daily rebuilds used more server time than the free plan allows. Vercel sends CRON_SECRET as a
+ * bearer token. A rare duplicate delivery only queues an extra rebuild.
  */
 export async function GET(request: Request) {
   if (!isCronAuthorized(request)) {

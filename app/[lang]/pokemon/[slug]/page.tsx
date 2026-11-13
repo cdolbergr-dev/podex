@@ -13,9 +13,19 @@ import { pokemonJsonLd } from "@/lib/structured-data";
 import { languageAlternates } from "@/lib/i18n/alternates";
 import { localizePath } from "@/lib/i18n/config";
 import { getDictionary, getLocale } from "@/lib/i18n/server";
-import { getPokemonPage, getPokemonSlugByDex } from "@/lib/tcg/collections";
+import { getPokemonPage, getPokemonSlugByDex, getSitemapCollections } from "@/lib/tcg/collections";
 
 type PokemonPageProps = { params: Promise<{ slug: string }> };
+
+/**
+ * One real example is prerendered at build. Cache Components needs at least one, and with it every
+ * other Pokémon page is saved after its first render and then served from the CDN cache until
+ * the next deployment, instead of running server code on every visit.
+ */
+export async function generateStaticParams() {
+  const { pokemon } = await getSitemapCollections().catch(() => ({ pokemon: [] as string[] }));
+  return [{ slug: pokemon[0] ?? "pikachu" }];
+}
 
 export async function generateMetadata({ params }: PokemonPageProps): Promise<Metadata> {
   const [{ slug }, locale, t] = await Promise.all([params, getLocale(), getDictionary()]);

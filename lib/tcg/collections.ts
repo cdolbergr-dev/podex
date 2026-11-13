@@ -1,7 +1,7 @@
 import { cacheLife, cacheTag } from "next/cache";
 import { connection } from "next/server";
 import { fetchPokemonSpecies, type PokemonSpecies } from "@/lib/pokeapi";
-import { getDataMode } from "@/lib/tcg/config";
+import { catalogCacheLife, getDataMode } from "@/lib/tcg/config";
 import {
   CatalogIndex,
   type ArtistHistory,
@@ -49,14 +49,14 @@ async function cachedSpecies(dex: number): Promise<PokemonSpecies | null> {
 async function cachedPokemonIndex(mode: DataMode): Promise<PokemonSummary[]> {
   "use cache";
   cacheTag(CATALOG_CACHE_TAG);
-  cacheLife("days");
+  catalogCacheLife(mode, "days");
   return (await catalogIndex(mode)).pokemon;
 }
 
 async function cachedPokemonPage(mode: DataMode, slug: string): Promise<PokemonPage | null> {
   "use cache";
   cacheTag(CATALOG_CACHE_TAG);
-  cacheLife("days");
+  catalogCacheLife(mode, "days");
   const index = await catalogIndex(mode);
   const pokemon = index.pokemonBySlug(slug);
   if (!pokemon) return null;
@@ -75,14 +75,14 @@ async function cachedPokemonPage(mode: DataMode, slug: string): Promise<PokemonP
 async function cachedArtistIndex(mode: DataMode): Promise<ArtistSummary[]> {
   "use cache";
   cacheTag(CATALOG_CACHE_TAG);
-  cacheLife("days");
+  catalogCacheLife(mode, "days");
   return (await catalogIndex(mode)).artists;
 }
 
 async function cachedArtistPage(mode: DataMode, slug: string): Promise<ArtistPage | null> {
   "use cache";
   cacheTag(CATALOG_CACHE_TAG);
-  cacheLife("days");
+  catalogCacheLife(mode, "days");
   const index = await catalogIndex(mode);
   const artist = index.artistBySlugName(slug);
   return artist ? { artist, cards: index.cardsForArtist(slug), history: index.artistHistory(slug) } : null;
@@ -91,7 +91,7 @@ async function cachedArtistPage(mode: DataMode, slug: string): Promise<ArtistPag
 async function cachedPokemonSlug(mode: DataMode, dex: number): Promise<string | null> {
   "use cache";
   cacheTag(CATALOG_CACHE_TAG);
-  cacheLife("days");
+  catalogCacheLife(mode, "days");
   return (await catalogIndex(mode)).pokemonByDex(dex)?.slug ?? null;
 }
 
@@ -128,28 +128,23 @@ async function cachedCardOfTheDay(mode: DataMode, day: string): Promise<CardOfTh
 }
 
 export async function getPokemonIndex(): Promise<PokemonSummary[]> {
-  await connection();
   return cachedPokemonIndex(getDataMode());
 }
 
 export async function getPokemonPage(slug: string): Promise<PokemonPage | null> {
-  await connection();
   return cachedPokemonPage(getDataMode(), slug);
 }
 
 export async function getArtistIndex(): Promise<ArtistSummary[]> {
-  await connection();
   return cachedArtistIndex(getDataMode());
 }
 
 export async function getArtistPage(slug: string): Promise<ArtistPage | null> {
-  await connection();
   return cachedArtistPage(getDataMode(), slug);
 }
 
 /** For /pokemon/25 → /pokemon/pikachu (card pages link by Pokédex number). */
 export async function getPokemonSlugByDex(dex: number): Promise<string | null> {
-  await connection();
   return cachedPokemonSlug(getDataMode(), dex);
 }
 

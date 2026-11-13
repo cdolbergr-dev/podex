@@ -7,7 +7,7 @@ import {
   CardDetailArtworkProvider,
   useCardDetailArtwork,
 } from "@/components/card-detail-artwork-context";
-import { CardDetailBack } from "@/components/card-detail-back";
+import { CardDetailBack, CardDetailBackFromSearch } from "@/components/card-detail-back";
 import { CardModalHandoff } from "@/components/card-modal-handoff";
 import { CardModalNavButtons } from "@/components/card-modal-nav-buttons";
 import { CardTilt } from "@/components/card-tilt";
@@ -69,7 +69,11 @@ function CardDetailTransitionShell({
     <article ref={articleRef}>
       {presentation === "page" ? <CardModalHandoff /> : null}
       <div className="flex items-center justify-between gap-4">
-        <CardDetailBack returnTo={back} cardId={id} />
+        {returnTo === undefined ? (
+          <CardDetailBackFromSearch cardId={id} />
+        ) : (
+          <CardDetailBack returnTo={back} cardId={id} />
+        )}
         {presentation === "modal" ? <CardModalNavButtons cardId={id} returnTo={back} /> : null}
       </div>
 
@@ -94,6 +98,7 @@ export function CardDetailTransitionLayout({
   children,
 }: {
   id: string;
+  /** The modal passes its "?return=" from the server; the full page leaves it out (see CardDetailBackFromSearch). */
   returnTo?: string;
   presentation?: "page" | "modal";
   children: ReactNode;

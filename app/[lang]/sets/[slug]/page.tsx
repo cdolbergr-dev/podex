@@ -19,7 +19,7 @@ import { setPath } from "@/lib/set-path";
 import { slugify } from "@/lib/slug";
 import { setJsonLd } from "@/lib/structured-data";
 import { DEFAULT_SORT } from "@/lib/tcg/constants";
-import { getSets, searchCards } from "@/lib/tcg/service";
+import { getSets, getSitemapSets, searchCards } from "@/lib/tcg/service";
 import type { CardSet } from "@/types/catalog";
 
 type SetPageProps = { params: Promise<{ slug: string }> };
@@ -35,6 +35,16 @@ async function findSet(slug: string): Promise<{ set: CardSet; sets: CardSet[]; b
 
 function summary(set: CardSet, cardCount: number, locale: Locale, t: Dictionary): string {
   return t.sets.summary(set.name, formatReleaseDate(set.releaseDate, locale), formatCount(setCardTotal(set) || cardCount, locale));
+}
+
+/**
+ * One real example is prerendered at build. Cache Components needs at least one, and with it every
+ * other set page is saved after its first render and then served from the CDN cache until
+ * the next deployment, instead of running server code on every visit.
+ */
+export async function generateStaticParams() {
+  const [set] = await getSitemapSets().catch(() => []);
+  return [{ slug: set ? slugify(set.name) : "base-set" }];
 }
 
 export async function generateMetadata({ params }: SetPageProps): Promise<Metadata> {

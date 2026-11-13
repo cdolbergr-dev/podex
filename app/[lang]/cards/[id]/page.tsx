@@ -9,12 +9,21 @@ import { DetailFallback } from "@/components/skeletons";
 import { languageAlternates } from "@/lib/i18n/alternates";
 import { getDictionary, getLocale } from "@/lib/i18n/server";
 import { cardJsonLd } from "@/lib/structured-data";
-import { getCard } from "@/lib/tcg/service";
+import { getAllCardIds, getCard } from "@/lib/tcg/service";
 
 type CardPageProps = {
   params: Promise<{ id: string }>;
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
+
+/**
+ * One real example is prerendered at build. Cache Components needs at least one, and with it every
+ * other card page is saved after its first render and then served from the CDN cache until
+ * the next deployment, instead of running server code on every visit.
+ */
+export async function generateStaticParams() {
+  const [id] = await getAllCardIds().catch(() => []);
+  return [{ id: id ?? "base1-4" }];
+}
 
 export async function generateMetadata({ params }: CardPageProps): Promise<Metadata> {
   const [{ id }, locale, t] = await Promise.all([params, getLocale(), getDictionary()]);
@@ -45,16 +54,16 @@ export default function CardPage(props: CardPageProps) {
   );
 }
 
-async function CardPageBody({ params, searchParams }: CardPageProps) {
-  const [{ id }, query] = await Promise.all([params, searchParams]);
-  const returnTo = Array.isArray(query.return) ? query.return[0] : query.return;
+/** Reads no query string or cookies, so each card page is rendered once and then served from the CDN cache. */
+async function CardPageBody({ params }: CardPageProps) {
+  const { id } = await params;
   const [card, locale, t] = await Promise.all([getCard(id).catch(() => null), getLocale(), getDictionary()]);
 
   return (
-    <CardDetailTransitionLayout id={id} returnTo={returnTo}>
+    <CardDetailTransitionLayout id={id}>
       {card ? <JsonLd data={cardJsonLd(card, locale, t)} /> : null}
       <Suspense fallback={<CardDetailInfoFallback id={id} />}>
-        <CardDetail id={id} returnTo={returnTo} />
+        <CardDetail id={id} />
       </Suspense>
     </CardDetailTransitionLayout>
   );
