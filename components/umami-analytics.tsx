@@ -17,6 +17,26 @@ import {
 const MEANINGFUL_PARAMS = ["q", "set", "type", "rarity", "sort", "list", "name"];
 
 /**
+ * Unlinked switch for the site owner: opening any page with "?umami=off" stops Umami from counting
+ * this browser (Umami's own `umami.disabled` flag, checked before every send); "?umami=on" counts
+ * it again. The parameter is removed from the address afterwards.
+ */
+function applyOptOutSwitch() {
+  const url = new URL(window.location.href);
+  const value = url.searchParams.get("umami");
+  if (value !== "off" && value !== "on") return;
+  try {
+    if (value === "off") localStorage.setItem("umami.disabled", "1");
+    else localStorage.removeItem("umami.disabled");
+  } catch {
+    return; // storage blocked (e.g. some private modes): nothing to switch
+  }
+  url.searchParams.delete("umami");
+  window.history.replaceState(window.history.state, "", url);
+  window.alert(value === "off" ? "Umami: visits from this browser are no longer counted." : "Umami: visits from this browser are counted again.");
+}
+
+/**
  * Loads Umami and reports one page view per distinct page. Automatic tracking is off because
  * "Load more" and live search rewrite the URL constantly; we report path changes and changes to
  * the meaningful filters only.
@@ -35,6 +55,7 @@ export function UmamiAnalytics() {
   const url = stripLocale(pathname) === "/favorites/shared" ? pathname : `${pathname}${query ? `?${query}` : ""}`;
 
   useEffect(() => {
+    applyOptOutSwitch();
     trackPageview(url);
   }, [url]);
 
