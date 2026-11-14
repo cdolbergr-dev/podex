@@ -45,7 +45,7 @@ pins in its **API Sandbox**, where only you can see them. To post in the sandbox
 
 1. On the app's page at <https://developers.pinterest.com/apps/>, generate a **sandbox token**.
 2. Add it in Vercel as `PINTEREST_SANDBOX_TOKEN` and redeploy. The job then pins to a sandbox
-   copy of the "Pokémon Card of the Day" board, which it creates itself, and keeps the real
+   board, "Pokémon Card of the Day (sandbox)", which it creates itself, and keeps the real
    tokens fresh in the meantime.
 
 To make pins public, click **Upgrade** on the app and request **Standard** access. Pinterest asks

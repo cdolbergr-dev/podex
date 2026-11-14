@@ -16,8 +16,11 @@ import type { CardOfTheDay } from "@/lib/tcg/collections";
 export const API = "https://api.pinterest.com/v5";
 export const SANDBOX_API = "https://api-sandbox.pinterest.com/v5";
 
-/** The board the daily pin goes to; created in the sandbox when it doesn't exist there yet. */
-const BOARD_NAME = "Pokémon Card of the Day";
+/**
+ * The sandbox copy of the daily board, created there on first use. It needs its own name: the
+ * sandbox lists none of the real boards, yet refuses names the real account already uses (code 58).
+ */
+const SANDBOX_BOARD_NAME = "Pokémon Card of the Day (sandbox)";
 const BOARD_DESCRIPTION = "A new Pokémon card every day, from every set ever printed.";
 
 /** Global Config key holding PinterestState. */
@@ -127,12 +130,12 @@ export async function listPinterestBoards(token: string, base = API): Promise<{ 
 
 /** The sandbox copy of the daily board (the sandbox has its own boards), created on first use. */
 export async function sandboxBoardId(token: string): Promise<string> {
-  const existing = (await listPinterestBoards(token, SANDBOX_API)).find((board) => board.name === BOARD_NAME);
+  const existing = (await listPinterestBoards(token, SANDBOX_API)).find((board) => board.name === SANDBOX_BOARD_NAME);
   if (existing) return existing.id;
   const created = await api<{ id: string }>(
     token,
     "/boards",
-    { method: "POST", body: JSON.stringify({ name: BOARD_NAME, description: BOARD_DESCRIPTION }) },
+    { method: "POST", body: JSON.stringify({ name: SANDBOX_BOARD_NAME, description: BOARD_DESCRIPTION }) },
     SANDBOX_API,
   );
   return created.id;
