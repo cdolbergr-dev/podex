@@ -3,6 +3,9 @@ import { tcgdexFetch } from "@/lib/tcg/tcgdex/client";
 import { mapTcgdexCard, mapTcgdexSet } from "@/lib/tcg/tcgdex/map";
 import type { Card, CardSet, ExploreParams } from "@/types/catalog";
 
+/** Share of cards that may fail in a full download before the download counts as broken. */
+const MAX_FAILED_SHARE = 0.01;
+
 type CardBrief = {
   id: string;
   localId?: string;
@@ -198,14 +201,29 @@ export async function fetchAllTcgdexCardsForSync(
   }
 
   const cards: Card[] = [];
+  const failed: string[] = [];
   const concurrency = 8;
 
   for (let index = 0; index < ids.length; index += concurrency) {
     const chunk = ids.slice(index, index + concurrency);
-    const mapped = await hydrateCards(chunk);
-    cards.push(...mapped);
+    const mapped = await Promise.all(
+      chunk.map((id) =>
+        hydrateCards([id]).catch(() => {
+          failed.push(id);
+          return [];
+        }),
+      ),
+    );
+    cards.push(...mapped.flat());
     onProgress?.(cards.length);
   }
+
+  // A few cards that still fail after tcgdexFetch's retries are left out until the next download;
+  // more than that means TCGdex is having real trouble, and the caller keeps its previous catalog.
+  if (failed.length > ids.length * MAX_FAILED_SHARE) {
+    throw new TcgRequestError(`TCGdex failed for ${failed.length} of ${ids.length} cards.`, 0);
+  }
+  if (failed.length > 0) console.warn(`TCGdex: skipped ${failed.length} cards that failed (${failed.slice(0, 5).join(", ")}…).`);
 
   return cards;
 }
