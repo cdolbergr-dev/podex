@@ -153,10 +153,15 @@ export function cardOfTheDayDate(now = new Date()): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Copenhagen" }).format(now);
 }
 
-/** Today's featured card; the day turns over at midnight Danish time. */
-export async function getCardOfTheDay(): Promise<CardOfTheDay | null> {
+/**
+ * The featured card for a day ("YYYY-MM-DD", default today); the day turns over at midnight
+ * Danish time. Future days fall back to today, so tomorrow's card can't be looked up early.
+ */
+export async function getCardOfTheDay(day?: string): Promise<CardOfTheDay | null> {
   await connection();
-  return cachedCardOfTheDay(getDataMode(), cardOfTheDayDate());
+  const today = cardOfTheDayDate();
+  const date = day && /^\d{4}-\d{2}-\d{2}$/.test(day) && day <= today ? day : today;
+  return cachedCardOfTheDay(getDataMode(), date);
 }
 
 /** For the sitemap: no request-time APIs, so it can be prerendered. */
