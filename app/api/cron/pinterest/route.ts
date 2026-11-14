@@ -2,10 +2,13 @@ import { NextResponse } from "next/server";
 import { isCronAuthorized } from "@/lib/cron-auth";
 import { hasGlobalConfig } from "@/lib/global-config";
 import {
+  API,
   cardOfTheDayPin,
   createPin,
   ensureAccessToken,
   readPinterestState,
+  SANDBOX_API,
+  sandboxBoardId,
   savePinterestState,
   type PinterestState,
 } from "@/lib/pinterest";
@@ -18,6 +21,10 @@ import { cardOfTheDayDaysToPost, getCardOfTheDay } from "@/lib/tcg/collections";
  * PINTEREST_BOARD_ID and a Global Config store (GLOBAL_CONFIG, VERCEL_API_TOKEN) holding the tokens
  * from `npm run pinterest:connect` (see pinterest/README.md). The last pinned day is kept there
  * too, so a repeated delivery doesn't pin twice, and a missed day is caught up once.
+ *
+ * While the app has Trial access, set PINTEREST_SANDBOX_TOKEN (generated on the app's page) and the
+ * pins go to Pinterest's API Sandbox instead, where only the account owner sees them. Remove it once
+ * Standard access is granted.
  */
 export async function GET(request: Request) {
   if (!isCronAuthorized(request)) {
@@ -37,22 +44,30 @@ export async function GET(request: Request) {
   try {
     state = await readPinterestState();
     if (!state?.refreshToken) return NextResponse.json({ ok: true, skipped: "not connected (npm run pinterest:connect)" });
+    // Keeps the real tokens fresh even while pins go to the sandbox.
     state = await ensureAccessToken(state);
 
-    for (const day of cardOfTheDayDaysToPost(state.lastDay ?? null)) {
+    const sandboxToken = process.env.PINTEREST_SANDBOX_TOKEN?.trim();
+    const target = sandboxToken
+      ? { sandbox: true, base: SANDBOX_API, token: sandboxToken, boardId: await sandboxBoardId(sandboxToken) }
+      : { sandbox: false, base: API, token: state.accessToken!, boardId };
+    const lastDay = target.sandbox ? state.sandboxLastDay : state.lastDay;
+
+    for (const day of cardOfTheDayDaysToPost(lastDay ?? null)) {
       const featured = await getCardOfTheDay(day);
       if (!featured) throw new Error(`No card of the day for ${day}`);
-      const pinId = await createPin(state.accessToken!, {
-        boardId,
+      const pin = {
+        boardId: target.boardId,
         imageUrl: `${siteUrl}/api/instagram/card-of-the-day?day=${day}&format=pin`,
         ...cardOfTheDayPin(featured),
-      });
-      state = { ...state, lastDay: day };
+      };
+      const pinId = await createPin(target.token, pin, target.base);
+      state = target.sandbox ? { ...state, sandboxLastDay: day } : { ...state, lastDay: day };
       pinned = true;
       posted.push({ day, pinId, card: featured.card.id });
     }
-    if (posted.length === 0) return NextResponse.json({ ok: true, skipped: "already pinned today" });
-    return NextResponse.json({ ok: true, posted });
+    if (posted.length === 0) return NextResponse.json({ ok: true, sandbox: target.sandbox, skipped: "already pinned today" });
+    return NextResponse.json({ ok: true, sandbox: target.sandbox, posted });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     console.error(`pinterest cron: ${message}`); // shows up in the run's Vercel logs

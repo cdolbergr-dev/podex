@@ -8,8 +8,17 @@ import type { CardOfTheDay } from "@/lib/tcg/collections";
  * Pinterest API v5 (pinterest/README.md has the setup). Access tokens last 30 days; refresh
  * tokens last 60 days and are replaced on every refresh ("continuous refresh"), so the current
  * pair lives in Vercel Global Config, together with the last day a pin was posted.
+ *
+ * Apps with Trial access may only create pins in Pinterest's API Sandbox, with a separate sandbox
+ * token (PINTEREST_SANDBOX_TOKEN). Pins there are visible only to the account owner, which is
+ * enough to show the integration when requesting Standard access.
  */
-const API = "https://api.pinterest.com/v5";
+export const API = "https://api.pinterest.com/v5";
+export const SANDBOX_API = "https://api-sandbox.pinterest.com/v5";
+
+/** The board the daily pin goes to; created in the sandbox when it doesn't exist there yet. */
+const BOARD_NAME = "Pokémon Card of the Day";
+const BOARD_DESCRIPTION = "A new Pokémon card every day, from every set ever printed.";
 
 /** Global Config key holding PinterestState. */
 const STATE_KEY = "pinterest";
@@ -25,6 +34,8 @@ export type PinterestState = {
   refreshExpiresAt?: string;
   /** Danish date ("YYYY-MM-DD") of the last card of the day that was pinned. */
   lastDay?: string;
+  /** The same for the sandbox, so test pins don't hold back the first real one. */
+  sandboxLastDay?: string;
 };
 
 type TokenResponse = {
@@ -96,22 +107,35 @@ export async function ensureAccessToken(state: PinterestState): Promise<Pinteres
   return next;
 }
 
-async function api<T>(token: string, path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${API}${path}`, {
+async function api<T>(token: string, path: string, init?: RequestInit, base = API): Promise<T> {
+  const response = await fetch(`${base}${path}`, {
     ...init,
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", ...init?.headers },
     cache: "no-store",
   });
   const body = (await response.json().catch(() => ({}))) as T & ApiError;
   if (!response.ok) {
-    throw new Error(`Pinterest ${path.split("?")[0]}: ${body.message ?? response.status}${body.code ? ` (code ${body.code})` : ""}`);
+    throw new Error(`Pinterest${base === SANDBOX_API ? " sandbox" : ""} ${path.split("?")[0]}: ${body.message ?? response.status}${body.code ? ` (code ${body.code})` : ""}`);
   }
   return body;
 }
 
-export async function listPinterestBoards(token: string): Promise<{ id: string; name: string }[]> {
-  const { items } = await api<{ items: { id: string; name: string }[] }>(token, "/boards?page_size=100");
+export async function listPinterestBoards(token: string, base = API): Promise<{ id: string; name: string }[]> {
+  const { items } = await api<{ items: { id: string; name: string }[] }>(token, "/boards?page_size=100", undefined, base);
   return items;
+}
+
+/** The sandbox copy of the daily board (the sandbox has its own boards), created on first use. */
+export async function sandboxBoardId(token: string): Promise<string> {
+  const existing = (await listPinterestBoards(token, SANDBOX_API)).find((board) => board.name === BOARD_NAME);
+  if (existing) return existing.id;
+  const created = await api<{ id: string }>(
+    token,
+    "/boards",
+    { method: "POST", body: JSON.stringify({ name: BOARD_NAME, description: BOARD_DESCRIPTION }) },
+    SANDBOX_API,
+  );
+  return created.id;
 }
 
 function truncate(text: string, max: number): string {
@@ -139,15 +163,21 @@ export function cardOfTheDayPin({ card, pokemon, history, species }: CardOfTheDa
   };
 }
 
-/** Creates a pin from a public image URL on the given board. */
+/** Creates a pin from a public image URL on the given board (in the sandbox when base is SANDBOX_API). */
 export async function createPin(
   token: string,
   pin: { boardId: string; imageUrl: string; title: string; description: string; alt_text: string; link: string },
+  base = API,
 ): Promise<string> {
   const { boardId, imageUrl, ...text } = pin;
-  const created = await api<{ id: string }>(token, "/pins", {
-    method: "POST",
-    body: JSON.stringify({ board_id: boardId, media_source: { source_type: "image_url", url: imageUrl }, ...text }),
-  });
+  const created = await api<{ id: string }>(
+    token,
+    "/pins",
+    {
+      method: "POST",
+      body: JSON.stringify({ board_id: boardId, media_source: { source_type: "image_url", url: imageUrl }, ...text }),
+    },
+    base,
+  );
   return created.id;
 }

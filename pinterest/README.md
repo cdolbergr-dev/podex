@@ -39,11 +39,20 @@ look for the closest one.
 3. Once the app exists, open it and, under **Redirect URIs**, add exactly `http://localhost:8085/`.
 4. Copy the **App ID** and **App secret key**.
 
-**Trial vs Standard access:** a new app gets *Trial* access, and pins made through it are visible
-only to you. To make them public, click **Upgrade** on the app and request **Standard** access.
-Pinterest asks for a short screen recording that shows the integration working: the
-`npm run pinterest:connect` sign-in, then a pin appearing on the board. Approval usually takes a
-few days. Until then the job runs fine, but nobody else sees the pins.
+**Trial vs Standard access:** a new app gets *Trial* access. With Trial access Pinterest refuses
+to create real pins ("Apps with Trial access may not create Pins in production") and only allows
+pins in its **API Sandbox**, where only you can see them. To post in the sandbox meanwhile:
+
+1. On the app's page at <https://developers.pinterest.com/apps/>, generate a **sandbox token**.
+2. Add it in Vercel as `PINTEREST_SANDBOX_TOKEN` and redeploy. The job then pins to a sandbox
+   copy of the "Pokémon Card of the Day" board, which it creates itself, and keeps the real
+   tokens fresh in the meantime.
+
+To make pins public, click **Upgrade** on the app and request **Standard** access. Pinterest asks
+for a short screen recording that shows the integration working: the `npm run pinterest:connect`
+sign-in, then the job creating a pin (in the sandbox is fine). Approval usually takes a few days.
+Once approved, delete `PINTEREST_SANDBOX_TOKEN` in Vercel and redeploy. The next run pins to the
+real board, starting with that day's card.
 
 ### 3. Global Config store (Vercel)
 
