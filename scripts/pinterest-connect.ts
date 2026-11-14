@@ -10,7 +10,7 @@ import { randomBytes } from "node:crypto";
 import { createServer } from "node:http";
 import { loadProjectEnv } from "../lib/load-env";
 import { hasGlobalConfig } from "../lib/global-config";
-import { listPinterestBoards, requestPinterestToken, savePinterestState, stateFromToken } from "../lib/pinterest";
+import { listPinterestBoards, readPinterestState, requestPinterestToken, savePinterestState, stateFromToken } from "../lib/pinterest";
 
 loadProjectEnv();
 
@@ -49,7 +49,9 @@ async function main() {
   });
 
   const token = await requestPinterestToken({ grant_type: "authorization_code", code, redirect_uri: REDIRECT_URI, continuous_refresh: "true" });
-  await savePinterestState(stateFromToken(token));
+  // Keep the last pinned days, so signing in again doesn't lead to a second pin today.
+  const previous = await readPinterestState().catch(() => null);
+  await savePinterestState(stateFromToken(token, previous ?? undefined));
   console.log("Saved the Pinterest tokens to Global Config.\n\nYour boards (put the id in PINTEREST_BOARD_ID):");
   for (const board of await listPinterestBoards(token.access_token)) console.log(`  ${board.id}  ${board.name}`);
 }
