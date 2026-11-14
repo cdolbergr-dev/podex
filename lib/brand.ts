@@ -11,6 +11,6 @@ export const brand = {
   /** Posts the card of the day every day (app/api/cron/instagram). */
   instagram: "https://www.instagram.com/podexcardsdotcom/",
   /** Who runs the site and how to reach them (privacy policy, app store listings). */
-  owner: "Christian Dolberg Rasmussen",
+  owner: "Christian Rasmussen",
   contactEmail: "hello@podexcards.com",
 } as const;
