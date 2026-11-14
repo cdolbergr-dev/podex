@@ -55,6 +55,6 @@ export const config = {
   // Everything except Next internals, API routes, root metadata/static files and static assets.
   // (Card ids can contain dots, e.g. sv03.5-199, so only real asset extensions are skipped.)
   matcher: [
-    "/((?!_next/|api/|sitemap\\.xml|robots\\.txt|manifest\\.webmanifest|sw\\.js|icons/|favicon\\.ico|icon\\.svg|apple-icon\\.png|.*\\.(?:png|jpe?g|gif|svg|webp|ico|txt|xml|js|css|map|json|woff2?)$).*)",
+    "/((?!_next/|api/|sitemap\\.xml|robots\\.txt|manifest\\.webmanifest|sw\\.js|offline\\.html|icons/|favicon\\.ico|icon\\.svg|apple-icon\\.png|.*\\.(?:png|jpe?g|gif|svg|webp|ico|txt|xml|js|css|map|json|woff2?)$).*)",
   ],
 };

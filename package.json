@@ -15,7 +15,9 @@
     "db:backfill-dates": "tsx scripts/backfill-release-dates.ts",
     "db:backfill-evolution": "tsx scripts/backfill-evolution-order.ts",
     "build:sample-catalog": "tsx scripts/build-sample-catalog.ts",
-    "build:app-icons": "tsx scripts/build-app-icons.ts"
+    "build:app-icons": "tsx scripts/build-app-icons.ts",
+    "build:screenshots": "tsx scripts/build-screenshots.ts",
+    "pinterest:connect": "tsx scripts/pinterest-connect.ts"
   },
   "dependencies": {
     "lucide-react": "^1.55.0",

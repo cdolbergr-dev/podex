@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Offline · Podex</title>
+<!-- Shown by the service worker (public/sw.js) when a page can't load without a connection.
+     Self-contained: no network requests besides the cached app icon. -->
+<style>
+  :root { --background: #f3f0ea; --foreground: #1c1917; --muted: #78716c; --border: #e4dfd6; --surface: #fffcf8; }
+  @media (prefers-color-scheme: dark) {
+    :root { --background: #151311; --foreground: #f3efe8; --muted: #a8a29e; --border: #2c2824; --surface: #1d1a17; }
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    display: flex; align-items: center; justify-content: center; padding: 24px 16px;
+    background: var(--background); color: var(--foreground);
+    font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, sans-serif;
+  }
+  main {
+    width: 100%; max-width: 380px; padding: 32px 24px; text-align: center;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 24px;
+  }
+  img { width: 56px; height: 56px; border-radius: 14px; }
+  h1 { margin: 20px 0 6px; font-size: 20px; font-weight: 600; }
+  p { margin: 0; color: var(--muted); font-size: 15px; }
+  button {
+    margin-top: 24px; height: 44px; padding: 0 24px; border: 0; border-radius: 999px; cursor: pointer;
+    background: var(--foreground); color: var(--surface); font: inherit; font-size: 15px;
+  }
+</style>
+</head>
+<body>
+<main>
+  <img src="/icons/icon-192.png" alt="">
+  <h1 id="title">You're offline</h1>
+  <p id="text">Podex needs a connection to load cards and prices. Check your connection and try again.</p>
+  <button id="retry" type="button">Try again</button>
+</main>
+<script>
+  // The page appears at the address the visitor tried to open, so its language prefix picks the text.
+  var copy = {
+    da: ["Du er offline", "Podex skal bruge forbindelse for at hente kort og priser. Tjek din forbindelse, og prøv igen.", "Prøv igen", "Offline"],
+    es: ["Estás sin conexión", "Podex necesita conexión para cargar cartas y precios. Revisa tu conexión e inténtalo de nuevo.", "Reintentar", "Sin conexión"],
+  };
+  var lang = (location.pathname.match(/^\/(da|es)(?=\/|$)/) || [])[1];
+  if (lang) {
+    document.documentElement.lang = lang;
+    document.getElementById("title").textContent = copy[lang][0];
+    document.getElementById("text").textContent = copy[lang][1];
+    document.getElementById("retry").textContent = copy[lang][2];
+    document.title = copy[lang][3] + " · Podex";
+  }
+  document.getElementById("retry").addEventListener("click", function () { location.reload(); });
+  window.addEventListener("online", function () { location.reload(); });
+</script>
+</body>
+</html>
