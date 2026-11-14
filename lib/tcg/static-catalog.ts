@@ -7,7 +7,7 @@ import { decodeStaticCatalog, STATIC_CATALOG_PATH } from "@/lib/tcg/static-catal
  * The full catalog downloaded at build time (scripts/build-catalog.ts), shipped with each server
  * function and loaded once per server instance.
  */
-let loaded: { catalog: MemoryCatalog; builtAt: string; addedCardIds: string[] } | null = null;
+let loaded: { catalog: MemoryCatalog; builtAt: string; addedCardIds: string[]; addedSetIds: string[] } | null = null;
 
 function filePath(): string {
   // A literal path lets the bundler trace exactly this file (a computed one makes it ship the
@@ -27,6 +27,7 @@ function load() {
     catalog: new MemoryCatalog(file.cards, file.sets),
     builtAt: file.builtAt,
     addedCardIds: file.addedCardIds ?? [],
+    addedSetIds: file.addedSetIds ?? [],
   };
   return loaded;
 }
@@ -42,4 +43,9 @@ export function getStaticCatalogBuiltAt(): string {
 /** Cards that first appeared in this catalog download. */
 export function getStaticCatalogAddedCardIds(): string[] {
   return load().addedCardIds;
+}
+
+/** Sets that first appeared in this catalog download. */
+export function getStaticCatalogAddedSetIds(): string[] {
+  return load().addedSetIds;
 }

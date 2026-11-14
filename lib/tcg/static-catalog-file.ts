@@ -13,6 +13,8 @@ export type StaticCatalogFile = {
   builtAt: string;
   /** Cards that were new in this download (compared with the previous one), for IndexNow. */
   addedCardIds?: string[];
+  /** Sets that were new in this download, for IndexNow (app/api/cron/new-sets). */
+  addedSetIds?: string[];
   sets: CardSet[];
   cards: Card[];
 };

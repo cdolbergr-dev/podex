@@ -15,6 +15,16 @@
       "schedule": "0 16 * * *",
       "path": "/api/cron/instagram",
       "requestMethod": "GET"
+    },
+    "pinterest": {
+      "schedule": "10 16 * * *",
+      "path": "/api/cron/pinterest",
+      "requestMethod": "GET"
+    },
+    "new-sets": {
+      "schedule": "0 6 * * *",
+      "path": "/api/cron/new-sets",
+      "requestMethod": "GET"
     }
   }
 }

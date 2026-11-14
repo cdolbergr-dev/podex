@@ -3,7 +3,9 @@
  * so the site needs no database. Runs before `next build` (npm "prebuild").
  *
  * - Reuses a copy younger than CATALOG_MAX_AGE_HOURS (default 20) from the build cache, so
- *   ordinary code deploys don't re-download ~24,000 cards; the daily rebuild refreshes it.
+ *   ordinary code deploys don't re-download ~24,000 cards; the weekly rebuild refreshes it.
+ *   A copy that lacks a set TCGdex now lists is never reused, so a rebuild started by
+ *   app/api/cron/new-sets always brings the new set in.
  * - If TCGdex fails, falls back to the previous copy; with none, the build fails (and Vercel
  *   keeps serving the current deployment).
  * - Skips itself when POKEMON_TCG_DATA_SOURCE selects another data source.
@@ -24,6 +26,7 @@ import {
   applySetReleaseDates,
   fetchAllTcgdexCardsForSync,
   fetchAllTcgdexSetsForSync,
+  getTcgdexSets,
 } from "../lib/tcg/tcgdex/queries";
 
 loadProjectEnv();
@@ -48,6 +51,16 @@ function write(catalog: StaticCatalogFile) {
     writeFileSync(file, buffer);
   }
   return buffer.length;
+}
+
+/** Sets TCGdex lists that the catalog lacks (one cheap request; an error counts as none). */
+async function missingSetIds(catalog: StaticCatalogFile): Promise<string[]> {
+  try {
+    const known = new Set(catalog.sets.map((set) => set.id));
+    return (await getTcgdexSets()).filter((set) => !known.has(set.id)).map((set) => set.id);
+  } catch {
+    return [];
+  }
 }
 
 function describe(catalog: StaticCatalogFile) {
@@ -79,9 +92,13 @@ async function main() {
 
   const current = previous?.version === STATIC_CATALOG_VERSION;
   if (previous && current && ageHours < maxAgeHours && !process.argv.includes("--force")) {
-    write(previous);
-    console.log(`build-catalog: reusing cached catalog (${describe(previous)}).`);
-    return;
+    const missing = await missingSetIds(previous);
+    if (missing.length === 0) {
+      write(previous);
+      console.log(`build-catalog: reusing cached catalog (${describe(previous)}).`);
+      return;
+    }
+    console.log(`build-catalog: new sets on TCGdex (${missing.join(", ")}); not reusing the cached catalog.`);
   }
 
   console.log("build-catalog: downloading the catalog from TCGdex…");
@@ -96,6 +113,8 @@ async function main() {
     if (previous) {
       const known = new Set(previous.cards.map((card) => card.id));
       fresh.addedCardIds = fresh.cards.filter((card) => !known.has(card.id)).map((card) => card.id).slice(0, 3000);
+      const knownSets = new Set(previous.sets.map((set) => set.id));
+      fresh.addedSetIds = fresh.sets.filter((set) => !knownSets.has(set.id)).map((set) => set.id);
     }
     const bytes = write(fresh);
     console.log(`build-catalog: wrote ${describe(fresh)} (${(bytes / 1024 / 1024).toFixed(1)} MB compressed).`);
