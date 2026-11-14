@@ -39,6 +39,7 @@ const en = {
     link: "TCGdex API",
     after: "and shows card data for identification. Names, artwork, and game text remain the property of their rights holders.",
     instagram: (brand: string) => `Follow ${brand} on Instagram`,
+    privacy: "Privacy policy",
   },
   common: {
     skipToContent: "Skip to content",

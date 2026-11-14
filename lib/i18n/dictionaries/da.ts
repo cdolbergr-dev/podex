@@ -40,6 +40,7 @@ const da: Dictionary = {
     link: "TCGdex API",
     after: "og viser kortdata til identifikation. Navne, illustrationer og spiltekst tilhører fortsat rettighedshaverne.",
     instagram: (brand) => `Følg ${brand} på Instagram`,
+    privacy: "Privatlivspolitik",
   },
   common: {
     skipToContent: "Gå til indhold",

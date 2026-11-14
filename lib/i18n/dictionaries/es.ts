@@ -42,6 +42,7 @@ const es: Dictionary = {
     link: "API de TCGdex",
     after: "y muestra datos de las cartas para identificarlas. Los nombres, las ilustraciones y el texto de juego pertenecen a sus titulares.",
     instagram: (brand) => `Sigue a ${brand} en Instagram`,
+    privacy: "Política de privacidad",
   },
   common: {
     skipToContent: "Ir al contenido",

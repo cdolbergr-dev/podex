@@ -1,9 +1,11 @@
 import { InstagramIcon } from "@/components/instagram-icon";
+import Link from "next/link";
 import { brand } from "@/lib/brand";
-import { getDictionary } from "@/lib/i18n/server";
+import { localizePath } from "@/lib/i18n/config";
+import { getDictionary, getLocale } from "@/lib/i18n/server";
 
 export async function SiteFooter() {
-  const t = await getDictionary();
+  const [t, locale] = await Promise.all([getDictionary(), getLocale()]);
   return (
     <footer className="mt-auto border-t border-border">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -23,6 +25,12 @@ export async function SiteFooter() {
           </a>{" "}
           {t.footer.after}
         </p>
+        <Link
+          href={localizePath(locale, "/privacy")}
+          className="mt-3 inline-block text-xs text-faint underline decoration-border underline-offset-2 hover:text-muted"
+        >
+          {t.footer.privacy}
+        </Link>
       </div>
     </footer>
   );

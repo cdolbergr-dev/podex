@@ -10,4 +10,7 @@ export const brand = {
     "A quiet catalog for browsing Pokémon cards and keeping the ones you want to come back to.",
   /** Posts the card of the day every day (app/api/cron/instagram). */
   instagram: "https://www.instagram.com/podexcardsdotcom/",
+  /** Who runs the site and how to reach them (privacy policy, app store listings). */
+  owner: "Christian Dolberg Rasmussen",
+  contactEmail: "hello@podexcards.com",
 } as const;
