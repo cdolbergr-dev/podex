@@ -1,5 +1,5 @@
 import { brand } from "@/lib/brand";
-import { readEdgeConfigItem, writeEdgeConfigItem } from "@/lib/edge-config";
+import { readGlobalConfigItem, writeGlobalConfigItem } from "@/lib/global-config";
 import { dexLabel } from "@/lib/generations";
 import { siteUrl } from "@/lib/site";
 import type { CardOfTheDay } from "@/lib/tcg/collections";
@@ -7,11 +7,11 @@ import type { CardOfTheDay } from "@/lib/tcg/collections";
 /**
  * Pinterest API v5 (pinterest/README.md has the setup). Access tokens last 30 days; refresh
  * tokens last 60 days and are replaced on every refresh ("continuous refresh"), so the current
- * pair lives in Edge Config, together with the last day a pin was posted.
+ * pair lives in Vercel Global Config, together with the last day a pin was posted.
  */
 const API = "https://api.pinterest.com/v5";
 
-/** Edge Config key holding PinterestState. */
+/** Global Config key holding PinterestState. */
 const STATE_KEY = "pinterest";
 
 /** Refresh when the access token has less than this left. */
@@ -71,11 +71,11 @@ export function stateFromToken(token: TokenResponse, previous?: PinterestState):
 }
 
 export async function readPinterestState(): Promise<PinterestState | null> {
-  return readEdgeConfigItem<PinterestState>(STATE_KEY);
+  return readGlobalConfigItem<PinterestState>(STATE_KEY);
 }
 
 export async function savePinterestState(state: PinterestState): Promise<void> {
-  await writeEdgeConfigItem(STATE_KEY, state);
+  await writeGlobalConfigItem(STATE_KEY, state);
 }
 
 /**

@@ -10,9 +10,9 @@ description and alt text are built in `lib/pinterest.ts`.
 
 Pinterest's access tokens last 30 days. The refresh token lasts 60 days, and Pinterest replaces it
 every time the job uses it, so the current tokens can't live in an environment variable. They're
-kept in a free **Vercel Edge Config** store, together with the last day that was pinned. The job
-refreshes the tokens about once a month and skips days it has already pinned. If a run was
-missed, it catches up yesterday's card once.
+kept in a free **Vercel Global Config** store (called Edge Config before July 2026), together with
+the last day that was pinned. The job refreshes the tokens about once a month and skips days it has
+already pinned. If a run was missed, it catches up yesterday's card once.
 
 Everything below is free. Pinterest renames menus now and then; if a label doesn't match exactly,
 look for the closest one.
@@ -45,11 +45,11 @@ Pinterest asks for a short screen recording that shows the integration working: 
 `npm run pinterest:connect` sign-in, then a pin appearing on the board. Approval usually takes a
 few days. Until then the job runs fine, but nobody else sees the pins.
 
-### 3. Edge Config store (Vercel)
+### 3. Global Config store (Vercel)
 
 1. In the Vercel dashboard, open the **podex** project → **Storage** → **Create Database** →
-   **Edge Config** → name it `podex-state` → **Create** → connect it to the project for all
-   environments. This adds the `EDGE_CONFIG` environment variable.
+   **Global Config** → name it `podex-state` → **Create** → connect it to the project for all
+   environments. This adds the `GLOBAL_CONFIG` environment variable.
 2. Create an API token: avatar → **Account Settings** → **Tokens** → **Create**. Name it
    `podex edge config`, scope it to the team that owns the project, and set no expiration. The job
    needs it to save new tokens. Treat it like a password: it can manage the whole Vercel scope.
@@ -67,7 +67,7 @@ In Vercel → podex → **Settings → Environment Variables** (Production), add
 | `VERCEL_API_TOKEN` | token from step 3 |
 | `VERCEL_TEAM_ID` | team id from step 3 (only for a team project) |
 
-Put the same values, plus `EDGE_CONFIG` (copy it from the Edge Config store's page, or run
+Put the same values, plus `GLOBAL_CONFIG` (copy it from the Global Config store's page, or run
 `vercel env pull`), in `.env.local` for the next step.
 
 ### 5. Connect
@@ -85,6 +85,6 @@ job hasn't run for 60 days.
 
 ### Monthly limits
 
-- Edge Config on the free plan allows a limited number of writes per month. The job writes once
-  per pin and once per token refresh, so about 31–35 writes a month.
+- Global Config on the free plan allows 250 writes a month. The job writes once per pin and once
+  per token refresh, so about 31–35 writes a month.
 - The Pinterest API allows 1,000 calls a day with Trial access. The job makes one or two.

@@ -1,7 +1,7 @@
 /**
  * One-time Pinterest sign-in for the daily pin (app/api/cron/pinterest). Opens Pinterest's consent
- * page, catches the redirect on localhost, saves the tokens to Edge Config and lists your boards so
- * you can copy the board id. Needs PINTEREST_APP_ID, PINTEREST_APP_SECRET, EDGE_CONFIG and
+ * page, catches the redirect on localhost, saves the tokens to Global Config and lists your boards so
+ * you can copy the board id. Needs PINTEREST_APP_ID, PINTEREST_APP_SECRET, GLOBAL_CONFIG and
  * VERCEL_API_TOKEN in .env.local. Run again if the job ever reports an expired refresh token.
  *   npm run pinterest:connect
  */
@@ -9,7 +9,7 @@ import { execFile } from "node:child_process";
 import { randomBytes } from "node:crypto";
 import { createServer } from "node:http";
 import { loadProjectEnv } from "../lib/load-env";
-import { hasEdgeConfig } from "../lib/edge-config";
+import { hasGlobalConfig } from "../lib/global-config";
 import { listPinterestBoards, requestPinterestToken, savePinterestState, stateFromToken } from "../lib/pinterest";
 
 loadProjectEnv();
@@ -22,7 +22,7 @@ const SCOPES = "boards:read,boards:write,pins:read,pins:write";
 async function main() {
   const appId = process.env.PINTEREST_APP_ID?.trim();
   if (!appId || !process.env.PINTEREST_APP_SECRET?.trim()) throw new Error("Set PINTEREST_APP_ID and PINTEREST_APP_SECRET in .env.local.");
-  if (!hasEdgeConfig()) throw new Error("Set EDGE_CONFIG and VERCEL_API_TOKEN in .env.local (see pinterest/README.md).");
+  if (!hasGlobalConfig()) throw new Error("Set GLOBAL_CONFIG and VERCEL_API_TOKEN in .env.local (see pinterest/README.md).");
 
   const state = randomBytes(16).toString("hex");
   const authorize = new URL("https://www.pinterest.com/oauth/");
@@ -50,7 +50,7 @@ async function main() {
 
   const token = await requestPinterestToken({ grant_type: "authorization_code", code, redirect_uri: REDIRECT_URI, continuous_refresh: "true" });
   await savePinterestState(stateFromToken(token));
-  console.log("Saved the Pinterest tokens to Edge Config.\n\nYour boards (put the id in PINTEREST_BOARD_ID):");
+  console.log("Saved the Pinterest tokens to Global Config.\n\nYour boards (put the id in PINTEREST_BOARD_ID):");
   for (const board of await listPinterestBoards(token.access_token)) console.log(`  ${board.id}  ${board.name}`);
 }
 
