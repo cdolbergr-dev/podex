@@ -154,6 +154,18 @@ export function cardOfTheDayDate(now = new Date()): string {
 }
 
 /**
+ * Which days' cards a daily social post still needs, oldest first, given the day of the last
+ * post: today, plus yesterday when the last post is older than that (a missed or failed run).
+ * Never more than one day back, so a long outage doesn't flood the feed.
+ */
+export function cardOfTheDayDaysToPost(lastDay: string | null): string[] {
+  const today = cardOfTheDayDate();
+  if (lastDay === today) return [];
+  const yesterday = cardOfTheDayDate(new Date(Date.now() - 24 * 3_600_000));
+  return lastDay && lastDay < yesterday ? [yesterday, today] : [today];
+}
+
+/**
  * The featured card for a day ("YYYY-MM-DD", default today); the day turns over at midnight
  * Danish time. Future days fall back to today, so tomorrow's card can't be looked up early.
  */

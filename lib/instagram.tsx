@@ -13,10 +13,14 @@ import type { CardOfTheDay } from "@/lib/tcg/collections";
  */
 const GRAPH = "https://graph.facebook.com/v27.0";
 
-/** Feed posts are 4:5; stories are 9:16 and keep clear of Instagram's top bar and reply field. */
+/**
+ * Feed posts are 4:5; stories are 9:16 and keep clear of Instagram's top bar and reply field.
+ * Pinterest pins (lib/pinterest.ts) use Pinterest's recommended 2:3.
+ */
 const FORMATS = {
   post: { width: 1080, height: 1350, padding: "56px 80px 52px", card: 600, label: 32, name: 66, gap: 44 },
   story: { width: 1080, height: 1920, padding: "250px 80px 230px", card: 680, label: 40, name: 76, gap: 54 },
+  pin: { width: 1000, height: 1500, padding: "64px 72px 56px", card: 690, label: 32, name: 66, gap: 56 },
 } as const;
 
 export type ImageFormat = keyof typeof FORMATS;

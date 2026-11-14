@@ -2,20 +2,7 @@ import { NextResponse } from "next/server";
 import { isCronAuthorized } from "@/lib/cron-auth";
 import { cardOfTheDayCaption, latestPostTime, publishImage } from "@/lib/instagram";
 import { siteUrl } from "@/lib/site";
-import { cardOfTheDayDate, getCardOfTheDay } from "@/lib/tcg/collections";
-
-/**
- * Which days still need a post, oldest first: today, plus yesterday when the account's latest post
- * is older than that (a missed or failed run). Never more than one day back, so a long outage
- * doesn't flood the feed.
- */
-function daysToPost(last: Date | null): string[] {
-  const today = cardOfTheDayDate();
-  const lastDay = last ? cardOfTheDayDate(last) : null;
-  if (lastDay === today) return [];
-  const yesterday = cardOfTheDayDate(new Date(Date.now() - 24 * 3_600_000));
-  return lastDay && lastDay < yesterday ? [yesterday, today] : [today];
-}
+import { cardOfTheDayDate, cardOfTheDayDaysToPost, getCardOfTheDay } from "@/lib/tcg/collections";
 
 /** Publishes one day's card as a feed post, then as a story. A failed story doesn't undo the post. */
 async function postDay(userId: string, token: string, day: string) {
@@ -56,7 +43,8 @@ export async function GET(request: Request) {
   }
 
   try {
-    const days = daysToPost(await latestPostTime(userId, token));
+    const last = await latestPostTime(userId, token);
+    const days = cardOfTheDayDaysToPost(last ? cardOfTheDayDate(last) : null);
     if (days.length === 0) return NextResponse.json({ ok: true, skipped: "already posted today" });
 
     const posted = [];
