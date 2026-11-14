@@ -2,7 +2,7 @@
  * One-time Pinterest sign-in for the daily pin (app/api/cron/pinterest). Opens Pinterest's consent
  * page, catches the redirect on localhost, saves the tokens to Global Config and lists your boards so
  * you can copy the board id. Needs PINTEREST_APP_ID, PINTEREST_APP_SECRET, GLOBAL_CONFIG and
- * VERCEL_API_TOKEN in .env.local. Run again if the job ever reports an expired refresh token.
+ * PODEX_VERCEL_TOKEN in .env.local. Run again if the job ever reports an expired refresh token.
  *   npm run pinterest:connect
  */
 import { execFile } from "node:child_process";
@@ -22,7 +22,7 @@ const SCOPES = "boards:read,boards:write,pins:read,pins:write";
 async function main() {
   const appId = process.env.PINTEREST_APP_ID?.trim();
   if (!appId || !process.env.PINTEREST_APP_SECRET?.trim()) throw new Error("Set PINTEREST_APP_ID and PINTEREST_APP_SECRET in .env.local.");
-  if (!hasGlobalConfig()) throw new Error("Set GLOBAL_CONFIG and VERCEL_API_TOKEN in .env.local (see pinterest/README.md).");
+  if (!hasGlobalConfig()) throw new Error("Set GLOBAL_CONFIG and PODEX_VERCEL_TOKEN in .env.local (see pinterest/README.md).");
 
   const state = randomBytes(16).toString("hex");
   const authorize = new URL("https://www.pinterest.com/oauth/");

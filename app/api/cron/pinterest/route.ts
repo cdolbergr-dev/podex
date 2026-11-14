@@ -18,7 +18,7 @@ import { cardOfTheDayDaysToPost, getCardOfTheDay } from "@/lib/tcg/collections";
 /**
  * Daily Vercel Schedule "pinterest" (vercel.json, GET): pins the card of the day to the Podex
  * board, linking to the card's page. Needs PINTEREST_APP_ID, PINTEREST_APP_SECRET,
- * PINTEREST_BOARD_ID and a Global Config store (GLOBAL_CONFIG, VERCEL_API_TOKEN) holding the tokens
+ * PINTEREST_BOARD_ID and a Global Config store (GLOBAL_CONFIG, PODEX_VERCEL_TOKEN) holding the tokens
  * from `npm run pinterest:connect` (see pinterest/README.md). The last pinned day is kept there
  * too, so a repeated delivery doesn't pin twice, and a missed day is caught up once.
  *

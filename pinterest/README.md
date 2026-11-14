@@ -73,8 +73,8 @@ In Vercel → podex → **Settings → Environment Variables** (Production), add
 | `PINTEREST_APP_ID` | App ID from step 2 |
 | `PINTEREST_APP_SECRET` | App secret key from step 2 |
 | `PINTEREST_BOARD_ID` | the board id from step 5 |
-| `VERCEL_API_TOKEN` | token from step 3 |
-| `VERCEL_TEAM_ID` | team id from step 3 (only for a team project) |
+| `PODEX_VERCEL_TOKEN` | token from step 3 |
+| `PODEX_VERCEL_TEAM_ID` | team id from step 3 (only for a team project) |
 
 Put the same values, plus `GLOBAL_CONFIG` (copy it from the Global Config store's page, or run
 `vercel env pull`), in `.env.local` for the next step.
