@@ -53,8 +53,9 @@ export async function generateMetadata({ params }: SetPageProps): Promise<Metada
   if (!found) return { title: t.sets.title };
   const { set } = found;
   const description = summary(set, 0, locale, t);
+  const total = setCardTotal(set);
   return {
-    title: set.name,
+    title: t.sets.pageTitle(set.name, total ? formatCount(total, locale) : null),
     description,
     alternates: languageAlternates(locale, setPath(set)),
     openGraph: { title: set.name, description, images: set.images.logo ? [set.images.logo] : undefined },

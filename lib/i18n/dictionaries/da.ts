@@ -18,6 +18,9 @@ const da: Dictionary = {
     cardNotFoundTitle: "Kortet blev ikke fundet",
     cardTitleFallback: "Kort",
     cardDescription: (name, set, rarity) => `${name} fra ${set}${rarity ? ` · ${rarity}` : ""}.`,
+    cardTitle: (name, number, set) => `${name} ${number} (${set}) – pris og detaljer`,
+    cardPageDescription: (name, number, set, rarity) =>
+      `${name} ${number} fra ${set}${rarity ? ` · ${rarity}` : ""}. Se aktuel markedspris, kortdetaljer og artwork.`,
     ogCardAlt: "Pokémon-kort på Podex",
   },
   nav: {
@@ -169,6 +172,7 @@ const da: Dictionary = {
     allPokemon: "Alle Pokémon",
     allCardsOf: (name) => `Alle ${name}-kort`,
     pageDescription: (name, count) => `Alle ${name}-kort — ${count} i alt — fra det første til det nyeste.`,
+    pageTitle: (name, count) => `${name}-kort – alle ${count} Pokémon-kort`,
     history: "Historie",
     category: "Kategori",
     legendary: "Legendarisk Pokémon",
@@ -198,6 +202,7 @@ const da: Dictionary = {
     allArtists: "Alle illustratorer",
     pageIntro: (count) => `${count} kort, ældste først.`,
     pageDescription: (name, count) => `${count} Pokémon-kort tegnet af ${name}.`,
+    pageTitle: (name, count) => `${name} – ${count} Pokémon-kort illustreret`,
     viewArtist: (name) => `Flere kort af ${name}`,
   },
   cardOfTheDay: {
@@ -379,6 +384,7 @@ const da: Dictionary = {
   sets: {
     allSets: "Alle sæt",
     summary: (name, date, count) => `${name}${date ? ` udkom ${date} og` : ""} har ${count} kort.`,
+    pageTitle: (name, count) => `${name} kortliste${count ? ` – alle ${count} kort` : ""}`,
     title: "Sæt",
     intro: "Åbn en udvidelse for at se dens kort.",
     count: (count) => `${count} sæt`,

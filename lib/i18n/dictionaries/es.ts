@@ -20,6 +20,9 @@ const es: Dictionary = {
     cardNotFoundTitle: "Carta no encontrada",
     cardTitleFallback: "Carta",
     cardDescription: (name, set, rarity) => `${name} de ${set}${rarity ? ` · ${rarity}` : ""}.`,
+    cardTitle: (name, number, set) => `${name} ${number} (${set}) – precio y detalles`,
+    cardPageDescription: (name, number, set, rarity) =>
+      `${name} ${number} de ${set}${rarity ? ` · ${rarity}` : ""}. Consulta el precio de mercado actual, los detalles y la ilustración.`,
     ogCardAlt: "Carta Pokémon en Podex",
   },
   nav: {
@@ -176,6 +179,7 @@ const es: Dictionary = {
     allPokemon: "Todos los Pokémon",
     allCardsOf: (name) => `Todas las cartas de ${name}`,
     pageDescription: (name, count) => `Todas las cartas de ${name} — ${count} en total — de la primera a la más reciente.`,
+    pageTitle: (name, count) => `Cartas de ${name} – las ${count} cartas Pokémon`,
     history: "Historia",
     category: "Categoría",
     legendary: "Pokémon legendario",
@@ -205,6 +209,7 @@ const es: Dictionary = {
     allArtists: "Todos los artistas",
     pageIntro: (count, n) => `${count} ${n === 1 ? "carta ilustrada" : "cartas ilustradas"}, las más antiguas primero.`,
     pageDescription: (name, count) => `${count} cartas Pokémon ilustradas por ${name}.`,
+    pageTitle: (name, count) => `${name} – ${count} cartas Pokémon ilustradas`,
     viewArtist: (name) => `Más cartas de ${name}`,
   },
   cardOfTheDay: {
@@ -391,6 +396,7 @@ const es: Dictionary = {
   sets: {
     allSets: "Todas las expansiones",
     summary: (name, date, count) => `${name}${date ? ` salió el ${date} y` : ""} tiene ${count} cartas.`,
+    pageTitle: (name, count) => `Lista de cartas de ${name}${count ? ` – las ${count} cartas` : ""}`,
     title: "Expansiones",
     intro: "Abre una expansión para ver sus cartas.",
     count: (count, n) => `${count} ${n === 1 ? "expansión" : "expansiones"}`,

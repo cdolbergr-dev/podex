@@ -17,6 +17,9 @@ const en = {
     cardTitleFallback: "Card",
     cardDescription: (name: string, set: string, rarity?: string) =>
       `${name} from ${set}${rarity ? ` · ${rarity}` : ""}.`,
+    cardTitle: (name: string, number: string, set: string) => `${name} ${number} (${set}) – Price & Details`,
+    cardPageDescription: (name: string, number: string, set: string, rarity?: string) =>
+      `${name} ${number} from ${set}${rarity ? ` · ${rarity}` : ""}. See the current market price, card details and artwork.`,
     ogCardAlt: "Pokémon card on Podex",
   },
   nav: {
@@ -169,6 +172,7 @@ const en = {
     allPokemon: "All Pokémon",
     allCardsOf: (name: string) => `All ${name} cards`,
     pageDescription: (name: string, count: string) => `Every ${name} Pokémon card — ${count} in total — from the first printing to the newest.`,
+    pageTitle: (name: string, count: string) => `${name} Cards – All ${count} Pokémon Cards`,
     history: "History",
     category: "Category",
     legendary: "Legendary Pokémon",
@@ -199,6 +203,7 @@ const en = {
     allArtists: "All artists",
     pageIntro: (count: string, n: number) => `${count} ${n === 1 ? "card" : "cards"} illustrated, oldest first.`,
     pageDescription: (name: string, count: string) => `${count} Pokémon cards illustrated by ${name}.`,
+    pageTitle: (name: string, count: string) => `${name} – ${count} Pokémon Cards Illustrated`,
     viewArtist: (name: string) => `More cards by ${name}`,
   },
   cardOfTheDay: {
@@ -384,6 +389,7 @@ const en = {
     allSets: "All sets",
     summary: (name: string, date: string | null, count: string) =>
       `${name}${date ? ` was released on ${date} and` : ""} has ${count} cards.`,
+    pageTitle: (name: string, count: string | null) => `${name} Set List${count ? ` – All ${count} Cards` : ""}`,
     title: "Sets",
     intro: "Open an expansion to see its cards.",
     count: (count: string, n: number) => `${count} ${n === 1 ? "set" : "sets"}`,

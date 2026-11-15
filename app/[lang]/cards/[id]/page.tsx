@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/json-ld";
 import { PageContainer } from "@/components/page-container";
 import { CardDetailInfoFallback } from "@/components/card-detail-info-fallback";
 import { DetailFallback } from "@/components/skeletons";
+import { cardSearchNumber } from "@/lib/format";
 import { languageAlternates } from "@/lib/i18n/alternates";
 import { getDictionary, getLocale } from "@/lib/i18n/server";
 import { cardJsonLd } from "@/lib/structured-data";
@@ -30,9 +31,10 @@ export async function generateMetadata({ params }: CardPageProps): Promise<Metad
   try {
     const card = await getCard(id);
     if (!card) return { title: t.meta.cardNotFoundTitle };
-    const description = t.meta.cardDescription(card.name, card.set.name, card.rarity);
+    const number = cardSearchNumber(card);
+    const description = t.meta.cardPageDescription(card.name, number, card.set.name, card.rarity);
     return {
-      title: card.name,
+      title: t.meta.cardTitle(card.name, number, card.set.name),
       description,
       alternates: languageAlternates(locale, `/cards/${encodeURIComponent(card.id)}`),
       openGraph: { title: card.name, description, type: "article" },

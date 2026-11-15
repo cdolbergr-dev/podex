@@ -31,9 +31,10 @@ export async function generateMetadata({ params }: PokemonPageProps): Promise<Me
   const [{ slug }, locale, t] = await Promise.all([params, getLocale(), getDictionary()]);
   const page = await getPokemonPage(slug).catch(() => null);
   if (!page) return { title: t.pokemon.title };
-  const description = t.pokemon.pageDescription(page.pokemon.name, formatCount(page.cards.length, locale));
+  const count = formatCount(page.cards.length, locale);
+  const description = t.pokemon.pageDescription(page.pokemon.name, count);
   return {
-    title: page.pokemon.name,
+    title: t.pokemon.pageTitle(page.pokemon.name, count),
     description,
     alternates: languageAlternates(locale, `/pokemon/${page.pokemon.slug}`),
     openGraph: { title: page.pokemon.name, description },

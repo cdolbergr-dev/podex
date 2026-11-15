@@ -24,6 +24,12 @@ export function cardNumberLabel(card: Card): string {
   return total ? `${card.number} / ${total}` : card.number;
 }
 
+/** "199/165": the card number as people type it into a search box. */
+export function cardSearchNumber(card: Card): string {
+  const total = card.set.printedTotal || card.set.total;
+  return total ? `${card.number}/${total}` : card.number;
+}
+
 export function cardMetaLabel(card: Card): string {
   const bits = [card.number];
   if (card.rarity) bits.push(card.rarity);

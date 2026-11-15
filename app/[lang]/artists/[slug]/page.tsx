@@ -29,9 +29,10 @@ export async function generateMetadata({ params }: ArtistPageProps): Promise<Met
   const [{ slug }, locale, t] = await Promise.all([params, getLocale(), getDictionary()]);
   const page = await getArtistPage(slug).catch(() => null);
   if (!page) return { title: t.artists.title };
-  const description = t.artists.pageDescription(page.artist.name, formatCount(page.cards.length, locale));
+  const count = formatCount(page.cards.length, locale);
+  const description = t.artists.pageDescription(page.artist.name, count);
   return {
-    title: page.artist.name,
+    title: t.artists.pageTitle(page.artist.name, count),
     description,
     alternates: languageAlternates(locale, `/artists/${page.artist.slug}`),
     openGraph: { title: page.artist.name, description },
